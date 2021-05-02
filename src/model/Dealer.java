@@ -4,7 +4,7 @@ package model;
 
 /***********************************************************************/
 
-class Dealer extends PlayerWrapper {
+class Dealer extends AbstractPlayer {
 	
 	/***************************************************************************
 	*  Method: Constructor - Dealer : Initializes the Dealer

@@ -18,7 +18,8 @@ class Card {
 	*  ****/
 	
 	Card(int value, String name, Suit suit) {
-		this.value = value;
+		setValue(value);
+		
 		this.name = name;
 		this.suit = suit;
 	}
@@ -28,6 +29,10 @@ class Card {
 	 * 
 	 * Method: int getValue : Returns an int with the value of the Card
 	 *  ****/
+	
+	void setValue(int value) {
+		this.value = value;
+	}
 	
 	int getValue() {
 		return value;
@@ -42,6 +47,7 @@ class Card {
 	String getName() {
 		return name;
 	}
+	
 	/* End Method: int getValue */
 	/*
 	****************************************************************************

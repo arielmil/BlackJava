@@ -4,7 +4,7 @@ package model;
 
 /***********************************************************************/
 
-class Player extends PlayerWrapper {
+class Player extends AbstractPlayer {
 	
 	/***************************************************************************
 	*  Method: Constructor - Player : Initializes the Player
