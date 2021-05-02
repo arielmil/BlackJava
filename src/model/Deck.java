@@ -1,11 +1,20 @@
+/***********************************************************************/
+
 package model;
+
+/***********************************************************************/
 
 class Deck {
 	private int quantity;
 	private static Stack deck;
 	private static Stack bin;
 	
+	/***************************************************************************
+	*  Method: Constructor - Deck : Initializes the Deck
+	*  ****/
+	
 	Deck() {
+		
 		deck = new Stack();
 		bin = new Stack();
 		Suit suits[] = new Suit[4];
@@ -36,24 +45,55 @@ class Deck {
 		
 		quantity = deck.getSize();
 	}
+	/* End Method: Constructor - Deck */
+	/*
+	***************************************************************************
+	*  Method: void shuffle : Shuffles the Cards in the Deck
+	*  ****/
 	
 	void shuffle() {
 		deck.shuffle();
 	}
+	/* End Method: void shuffle */
+	/*
+	***************************************************************************
+	*  Method: Card draw : Draw a Card from the Deck
+	*  ****/
 	
 	Card draw() {
 		deckSubtract();
 		return (Card) deck.drawL();
 	}
+	/* End Method: Card draw */
+	/*
+	***************************************************************************
+	*  Method: void deckSubtract : Subtracts a Card unit in the quantity variable
+	*  ****/
 	
 	void deckSubtract() {
 		quantity--;
 	}
+	/* End Method: void deckSubtract */
+	/*
+	***************************************************************************
+	*  Method: int getQuantity : Returns how many Cards are currently in the Deck
+	*  ****/
 	
 	int getQuantity() {
 		return quantity;
 	}
+	/* End Method: int getQuantity */
+	/*
+	****************************************************************************
+	 * 
+	 * To be implemented...
+	 * 
+	 * Method: void render: Render the image of the Deck on the Screen.
+	 *  ****/
+	/*void render() {
 	
-	/*void render();*/
+	
+	}*/
+	/* End Method: void render */
 	
 }
