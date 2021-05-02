@@ -19,7 +19,7 @@ class Deck {
 		bin = new Stack();
 		Suit suits[] = new Suit[4];
 		
-		int i, j, w;
+		int i, j;
 		Card card;
 		
 		String card_names[] = new String[] {"Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"};
@@ -31,12 +31,10 @@ class Deck {
 		}
 		
 		/*Create a single complete Deck */
-		for (i = 0; i < 52; i++) {
-			for (j = 0; j < 13; j++) {
-				for (w = 0; w < 4; w++) {
-					card = new Card(card_values[j], card_names[j], suits[w]);
-					deck.insertL(card);
-				}
+		for (i = 0; i < 13; i++) {
+			for (j = 0; j < 4; j++) {
+				card = new Card(card_values[i], card_names[i], suits[j]);
+				deck.insertL(card);
 			}
 		}
 		

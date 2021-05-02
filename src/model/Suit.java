@@ -7,6 +7,7 @@ package model;
 class Suit {
 	
 	private String name;
+	/*private img*/
 	
 	/***************************************************************************
 	*  Method: Constructor - Suit : Initializes the Suit
