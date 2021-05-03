@@ -7,6 +7,7 @@ package model;
 class Player extends AbstractPlayer {
 	Bet bet;
 	Tokens tokens_array[];
+	int total_money;
 	boolean insurance;
 	boolean isBetting;
 	
@@ -20,6 +21,7 @@ class Player extends AbstractPlayer {
 		initializeTokensArray();
 		insurance = false;
 		isBetting = false;
+		total_money = 500;
 	}
 	
 	/* End Method: Constructor - Player */
@@ -54,10 +56,12 @@ class Player extends AbstractPlayer {
 	
 	void subtractTokensFromBet(Token token) {
 		bet.subtractToken(tokens_array[tokenToIndex(token)].tokensSubtract());
+		total_money = total_money - token.getValue();
 	}
 	
 	void addTokensToBet(Token token) {
 		bet.addToken(tokens_array[tokenToIndex(token)].tokensSubtract());
+		total_money = total_money - token.getValue();
 	}
 	
 	void finishBet() {
@@ -77,8 +81,17 @@ class Player extends AbstractPlayer {
 		}
 	}
 	
+	void Split() {
+		if (getHand().getSize() <= 2) {
+			Hand hand = (Hand) getHand().get(0);
+			if(hand.canSplit() && canDouble()) {
+				doubleBet();
+				
+			}	
+		}
+	}
 	
-	
+	/* Utils */
 	private int tokenToIndex(Token token) {
 		if (token.getValue() == 1) {
 			return 0;
@@ -114,6 +127,86 @@ class Player extends AbstractPlayer {
 		int i;
 		for (i = 0; i < 6; i++) {
 			tokens_array[i] = new Tokens(new Token(token_values[i], token_names[i]), token_quantities[i], (token_quantities[i] * token_values[i]));
+		}
+	}
+	
+	private List convertValueToTokens(int value) {
+        int blackTokens = 0;
+        int purpleTokens = 0;
+        int greenTokens = 0;
+        int blueTokens = 0;
+        int redTokens = 0;
+        int grayTokens = 0;
+
+        if (value % 100 > 0) {
+            blackTokens += value/100;
+            value -= blackTokens * 100;
+        }
+
+        if (value % 50 > 0) {
+            purpleTokens += value/50;
+            value -= purpleTokens * 50;
+        }
+
+        if (value % 25 > 0) {
+            greenTokens += value/25;
+            value -= greenTokens * 25;
+        }
+
+        if (value % 10 > 0) {
+            blueTokens += value/10;
+            value -= blueTokens * 10;
+        }
+
+        if (value % 5 > 0) {
+            redTokens += value/5;
+            value -= redTokens * 5;
+        }
+
+        if (value > 0) {
+            grayTokens += value;
+            value -= grayTokens;
+        } else {}
+
+        List result = new List ();
+
+        result.insertL(blackTokens);
+        result.insertL(purpleTokens);
+        result.insertL(greenTokens);
+        result.insertL(blueTokens);
+        result.insertL(redTokens);
+        result.insertL(grayTokens);
+
+        return result;
+
+    }
+	
+	private boolean canDouble() {
+		if (total_money >= bet.getTotalValue() * 2) {
+			return true;
+		}
+		
+		return false;
+	}
+	
+	private void doubleBet() {
+		if (canDouble()) {
+			int totalValue = bet.getTotalValue(), i;
+			List tokens;
+			Token token;
+			
+			totalValue = totalValue * 2;
+			
+			tokens = convertValueToTokens(totalValue);
+			for (i = 0; i < tokens.getSize(); i++) {
+				token = (Token) tokens.drawL();
+				bet.addToken(token);
+			}
+			
+		}
+		
+		else {
+			return;
 		}
 	}
 	

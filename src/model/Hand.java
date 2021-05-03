@@ -7,6 +7,7 @@ class Hand {
 	private boolean isBlackJack;
 	private boolean stopDraw;
 	private boolean isTwentyOne;
+	private boolean canSplit;
 	
 	Hand() {
 		cards = new List();
@@ -14,6 +15,7 @@ class Hand {
 		isBlackJack = false;
 		stopDraw = false;
 		isTwentyOne = false;
+		canSplit = false;
 		setCurrentScoresToZero();
 	}
 	
@@ -71,10 +73,19 @@ class Hand {
 		isBlackJack = false;
 		stopDraw = false;
 		isTwentyOne = false;
+		canSplit = false;
 	}
 	
 	void addCard(Card card) {
 		cards.insertL(card);
+	}
+	
+	boolean canSplit() {
+		if (cards.getSize() == 2 && (cards.get(0).equals(cards.get(1)))) {
+			canSplit = true;
+		}
+		
+		return canSplit;
 	}
 	
 	/* void render() {

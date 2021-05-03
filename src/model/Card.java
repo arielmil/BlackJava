@@ -87,6 +87,14 @@ class Card {
 	String getSuitname() {
 		return suit.getName();
 	}
+	
+	int equals(Card card) {
+		if (name == card.name) {
+			return 1;
+		}
+		
+		return 0;
+	}
 	/* End Method: String getSuitname */
 	/*
 	****************************************************************************
