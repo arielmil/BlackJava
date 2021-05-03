@@ -88,12 +88,12 @@ class Card {
 		return suit.getName();
 	}
 	
-	int equals(Card card) {
+	boolean equals(Card card) {
 		if (name == card.name) {
-			return 1;
+			return true;
 		}
 		
-		return 0;
+		return false;
 	}
 	/* End Method: String getSuitname */
 	/*

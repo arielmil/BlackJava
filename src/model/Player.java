@@ -251,24 +251,17 @@ class Player extends AbstractPlayer {
 	}
 	
 	private void doubleBet() {
-		if (canDouble()) {
-			int totalValue = bet.getTotalValue(), i;
-			List tokens;
-			Token token;
-			
-			totalValue = totalValue * 2;
-			
-			tokens = convertValueToTokens(totalValue);
-			for (i = 0; i < tokens.getSize(); i++) {
-				token = (Token) tokens.drawL();
-				bet.addToken(token);
-			}
-			
+		int totalValue = bet.getTotalValue(), i;
+		List tokens;
+		Token token;
+		
+		totalValue = totalValue * 2;
+		
+		tokens = convertValueToTokens(totalValue);
+		for (i = 0; i < tokens.getSize(); i++) {
+			token = (Token) tokens.drawL();
+			bet.addToken(token);
 		}
 		
-		else {
-			return;
-		}
 	}
-	
 }
