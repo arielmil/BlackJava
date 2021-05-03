@@ -6,6 +6,8 @@ package model;
 
 class AbstractPlayer {
 	private String name;
+	private List hands;
+	private boolean isPlaying;
 	
 	/***************************************************************************
 	*  Method: Constructor - PlayerWrapper : Initializes the PlayerWrapper
@@ -13,6 +15,12 @@ class AbstractPlayer {
 	
 	AbstractPlayer(String name) {
 		this.name = name;
+		hands = new List();
+		
+		Hand hand = new Hand();
+		hands.insertL(hand);
+		
+		isPlaying = false;
 	}
 	/* End Method: Constructor - Player */
 	/*
@@ -20,30 +28,33 @@ class AbstractPlayer {
 	*  Method: String getName : Returns the Name of the Player (!)
 	*  ****/
 	
+	void hit(Card card) {
+		Hand hand = (Hand)this.hands.get(0);
+		hand.addCard(card);
+	}
+	
+	void stand() {
+		endTurn();
+	}
+	
 	String getName() {
 		return name;
 	}
-	/* End Method: Constructor - Player */
-	/*
-	****************************************************************************
-	 * 
-	 * To be implemented...
-	 * 
-	 * Method: Card Hit: The Player draws a card
-	 *  ****/
-	/*Card Hit() {
-		return Card;
-	}*/
-	/* End Method: Card Hit */
-	/*
-	***************************************************************************
-	*  Method: void Stand : The Player keeps his hand at it's current value
-	*  ****/
-	/*
-	void Stand() {
-		return;
+	
+	void playerTurn() {
+		isPlaying = true;
 	}
-	*/
-	/* End Method: void Stand */
+	
+	boolean getIsPlaying() {
+		return isPlaying;
+	}
+	
+	void endTurn() {
+		isPlaying = false;
+	}
+	
+	List getHand() {
+		return hands;
+	}
 	
 }

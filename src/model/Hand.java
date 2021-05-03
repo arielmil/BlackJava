@@ -73,6 +73,10 @@ class Hand {
 		isTwentyOne = false;
 	}
 	
+	void addCard(Card card) {
+		cards.insertL(card);
+	}
+	
 	/* void render() {
 		
 	} */
