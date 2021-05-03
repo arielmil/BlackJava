@@ -28,8 +28,8 @@ class AbstractPlayer {
 	*  Method: String getName : Returns the Name of the Player (!)
 	*  ****/
 	
-	void hit(Card card) {
-		Hand hand = (Hand)this.hands.get(0);
+	void hit(Card card, int whichHand) {
+		Hand hand = (Hand)this.hands.get(whichHand);
 		hand.addCard(card);
 	}
 	

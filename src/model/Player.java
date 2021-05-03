@@ -47,16 +47,16 @@ class Player extends AbstractPlayer {
 	
 	void endTurn() {
 		insurance = false;
+		super.endTurn();
 	}
 	
-	void appendHand() {
-		Hand hand = new Hand();
-		getHand().insertL(hand);
+	void prepareNextTurn() {
+		bet.clear();
 	}
-	
+		
 	void subtractTokensFromBet(Token token) {
-		bet.subtractToken(tokens_array[tokenToIndex(token)].tokensSubtract());
-		total_money = total_money - token.getValue();
+		bet.subtractToken(tokens_array[tokenToIndex(token)].getToken());
+		total_money = total_money + token.getValue();
 	}
 	
 	void addTokensToBet(Token token) {
@@ -81,17 +81,77 @@ class Player extends AbstractPlayer {
 		}
 	}
 	
-	void Split() {
-		if (getHand().getSize() <= 2) {
-			Hand hand = (Hand) getHand().get(0);
-			if(hand.canSplit() && canDouble()) {
-				doubleBet();
-				
-			}	
+	void Split(Card card1, Card card2, int whichHand) {
+		if (getIsPlaying()) {
+			if (getHand().getSize() <= 2) {
+				Hand hand = (Hand) getHand().get(whichHand);
+				if(hand.canSplit() && canDouble()) {
+					doubleBet();
+					appendHand(card1, card2);
+					
+				}	
+			}
+			
+		}
+		
+		else {
+			return;
 		}
 	}
 	
+	/* Escolhe a Hand que quer dar Double */
+	void Double(Card card, int whichHand) {
+		if (getIsPlaying()) {
+			if (canDouble()) {
+				doubleBet();
+				hit(card, whichHand);
+				stand();
+			}
+			
+		}
+		
+		else {
+			return;
+		}
+	}
+	
+	void Surrender() {
+		if (getIsPlaying()) {
+			
+			endTurn();
+			getHalfBetBack();
+		}
+		else {
+			return;
+		}
+	}
+	
+	private void appendHand(Card card1, Card card2) {
+		List hands = getHand();
+		int howManyHands = getHand().getSize();
+		Hand new_hand = new Hand();
+		
+		
+		hit(card1, howManyHands + 1);
+		hit(card2, howManyHands + 1);
+		
+		getHand().insertL(new_hand);
+	}
+	
 	/* Utils */
+	private void getHalfBetBack() {
+		int half_bet = bet.getTotalValue()/2;
+		List getBack = convertValueToTokens(half_bet);
+		int i;
+		Token token;
+		
+		for (i = 0; i < getBack.getSize(); i++) {
+			token = (Token) getBack.drawL();
+			tokens_array[tokenToIndex(token)].tokenAdd();
+		}
+		
+	}
+	
 	private int tokenToIndex(Token token) {
 		if (token.getValue() == 1) {
 			return 0;

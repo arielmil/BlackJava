@@ -124,4 +124,11 @@ class List {
 		}
 	}
 	
+	void clear() {
+		int i;
+		for (i = 0; i < getSize(); i++) {
+			drawL();
+		}
+	}
+	
 }

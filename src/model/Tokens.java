@@ -56,6 +56,11 @@ class Tokens {
 		quantity = quantity + tokens.quantity;
 		total = total + tokens.total;
 	}
+	
+	void tokenAdd() {
+		quantity++;
+		total = total + token.getValue();
+	}
 	/* End Method: void tokensAdd */
 	/*
 	***************************************************************************

@@ -30,4 +30,9 @@ class Bet {
 		tokens.drawL();
 		totalValue = totalValue - token.getValue();
 	}
+	
+	void clear() {
+		tokens.clear();
+		totalValue = 0;
+	}
 }
