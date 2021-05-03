@@ -92,7 +92,7 @@ class Tokens {
 		return returned;
 	}
 	
-	Token tokensSubtract() {
+	Token tokenSubtract() {
 		quantity = quantity - 1;
 		total = total - token.getValue();
 		return new Token(token.getValue(), token.getColor());

@@ -4,6 +4,8 @@ package model;
 
 /***********************************************************************/
 
+/* Falta fazer algumas checagens de erro, e trocar os return -1 pelo uso de execoes */
+
 class Player extends AbstractPlayer {
 	Bet bet;
 	Tokens tokens_array[];
@@ -60,7 +62,7 @@ class Player extends AbstractPlayer {
 	}
 	
 	void addTokensToBet(Token token) {
-		bet.addToken(tokens_array[tokenToIndex(token)].tokensSubtract());
+		bet.addToken(tokens_array[tokenToIndex(token)].tokenSubtract());
 		total_money = total_money - token.getValue();
 	}
 	
@@ -127,7 +129,6 @@ class Player extends AbstractPlayer {
 	}
 	
 	private void appendHand(Card card1, Card card2) {
-		List hands = getHand();
 		int howManyHands = getHand().getSize();
 		Hand new_hand = new Hand();
 		

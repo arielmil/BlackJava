@@ -61,6 +61,7 @@ class List {
 	
 	void insertL(Object o) {
 		list.add(o);
+		updateSize();
 	}
 	/* End Method: void insertL */
 	/*
