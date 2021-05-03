@@ -128,6 +128,7 @@ class Player extends AbstractPlayer {
 		}
 	}
 	
+	/* Utils */
 	private void appendHand(Card card1, Card card2) {
 		int howManyHands = getHand().getSize();
 		Hand new_hand = new Hand();
@@ -139,7 +140,6 @@ class Player extends AbstractPlayer {
 		getHand().insertL(new_hand);
 	}
 	
-	/* Utils */
 	private void getHalfBetBack() {
 		int half_bet = bet.getTotalValue()/2;
 		List getBack = convertValueToTokens(half_bet);
