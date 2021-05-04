@@ -6,7 +6,7 @@ package model;
 
 /* Falta fazer algumas checagens de erro, e trocar os return -1 pelo uso de execoes */
 
-class Player extends AbstractPlayer {
+public class Player extends AbstractPlayer {
 	Bet bet;
 	Tokens tokens_array[];
 	int total_money;
@@ -17,7 +17,7 @@ class Player extends AbstractPlayer {
 	*  Method: Constructor - Player : Initializes the Player
 	*  ****/
 	
-	Player(String name){
+	public Player(String name){
 		super(name);
 		bet = new Bet();
 		initializeTokensArray();
@@ -28,7 +28,7 @@ class Player extends AbstractPlayer {
 	
 	/* End Method: Constructor - Player */
 	
-	void appendTokens(List tokensList) {
+	public void addTokens(List tokensList) {
 		int i;
 		Tokens tokens;
 		
@@ -39,34 +39,35 @@ class Player extends AbstractPlayer {
 		}	
 	}
 	
-	void insurance() {
+	public void insurance() {
 		insurance = true;
 	}
 	
-	boolean getInsurance() {
+	public boolean getInsurance() {
 		return insurance;
 	}
 	
-	void endTurn() {
+	public void endTurn() {
 		insurance = false;
 		super.endTurn();
 	}
 	
-	void prepareNextTurn() {
+	public void prepareNextTurn() {
 		bet.clear();
 	}
 		
-	void subtractTokensFromBet(Token token) {
-		bet.subtractToken(tokens_array[tokenToIndex(token)].getToken());
-		total_money = total_money + token.getValue();
-	}
-	
-	void addTokensToBet(Token token) {
+	public void betToken(Token token) {
 		bet.addToken(tokens_array[tokenToIndex(token)].tokenSubtract());
 		total_money = total_money - token.getValue();
 	}
 	
-	void finishBet() {
+	public void unbetToken(Token token) {
+		bet.subtractToken(token);
+		total_money = total_money + token.getValue();
+	}
+	
+	
+	public void finishBet() {
 		isBetting = false;
 	}
 	
@@ -75,10 +76,10 @@ class Player extends AbstractPlayer {
 		isBetting = true;
 		while(isBetting) {
 			if (option == 0) {
-				subtractTokensFromBet(token);
+				unbetToken(token);
 			}
 			else {
-				addTokensToBet(token);
+				betToken(token);
 			}
 		}
 	}
@@ -142,7 +143,7 @@ class Player extends AbstractPlayer {
 	
 	private void getHalfBetBack() {
 		int half_bet = bet.getTotalValue()/2;
-		List getBack = convertValueToTokens(half_bet);
+		List getBack = Tokens.convertValueToTokens(half_bet);
 		int i;
 		Token token;
 		
@@ -183,60 +184,13 @@ class Player extends AbstractPlayer {
 		tokens_array = new Tokens[6];
 		String token_names[] = new String[] {"Gray", "Red", "Blue", "Purple", "Black"};
 		int token_quantities[] = new int[] {10, 8, 5, 5, 2, 2};
-		int token_values[] = new int[] {1, 5, 10, 20, 50, 100};
 		
 		int i;
 		for (i = 0; i < 6; i++) {
-			tokens_array[i] = new Tokens(new Token(token_values[i], token_names[i]), token_quantities[i], (token_quantities[i] * token_values[i]));
+			tokens_array[i] = new Tokens(new Token(token_names[i]), token_quantities[i]);
 		}
 	}
-	
-	private List convertValueToTokens(int value) {
-        int blackTokens, purpleTokens, greenToken blueTokens = 0; redTokens = 0; grayTokens = 0;
-
-        if (value % 100 > 0) {
-            blackTokens += value/100;
-            value -= blackTokens * 100;
-        }
-
-        if (value % 50 > 0) {
-            purpleTokens += value/50;
-            value -= purpleTokens * 50;
-        }
-
-        if (value % 25 > 0) {
-            greenTokens += value/25;
-            value -= greenTokens * 25;
-        }
-
-        if (value % 10 > 0) {
-            blueTokens += value/10;
-            value -= blueTokens * 10;
-        }
-
-        if (value % 5 > 0) {
-            redTokens += value/5;
-            value -= redTokens * 5;
-        }
-
-        if (value > 0) {
-            grayTokens += value;
-            value -= grayTokens;
-        } else {}
-
-        List result = new List ();
-
-        result.insertL(blackTokens);
-        result.insertL(purpleTokens);
-        result.insertL(greenTokens);
-        result.insertL(blueTokens);
-        result.insertL(redTokens);
-        result.insertL(grayTokens);
-
-        return result;
-
-    }
-	
+		
 	private boolean canDouble() {
 		if (total_money >= bet.getTotalValue() * 2) {
 			return true;
@@ -252,7 +206,7 @@ class Player extends AbstractPlayer {
 		
 		totalValue = totalValue * 2;
 		
-		tokens = convertValueToTokens(totalValue);
+		tokens = Tokens.convertValueToTokens(totalValue);
 		for (i = 0; i < tokens.getSize(); i++) {
 			token = (Token) tokens.drawL();
 			bet.addToken(token);
