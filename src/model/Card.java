@@ -4,7 +4,7 @@ package model;
 
 /***********************************************************************/
 
-class Card {
+public class Card {
 	
 	private int value;
 	private String name;
@@ -17,7 +17,7 @@ class Card {
 	*  Method: Constructor - Card : Initializes the Cards
 	*  ****/
 	
-	Card(int value, String name, Suit suit) {
+	public Card(int value, String name, Suit suit) {
 		setValue(value);
 		
 		this.name = name;
@@ -30,11 +30,11 @@ class Card {
 	 * Method: int getValue : Returns an int with the value of the Card
 	 *  ****/
 	
-	void setValue(int value) {
+	public void setValue(int value) {
 		this.value = value;
 	}
 	
-	int getValue() {
+	public int getValue() {
 		return value;
 	}
 	/* End Method: int getValue */
@@ -44,7 +44,7 @@ class Card {
 	 * Method: String getName : Returns a String with the Name of the Card
 	 *  ****/
 	
-	String getName() {
+	public String getName() {
 		return name;
 	}
 	
@@ -55,7 +55,7 @@ class Card {
 	 * Method: void reveal : Reveal the Card
 	 *  ****/
 	
-	void reveal() {
+	public void reveal() {
 		revealed = true;
 	}
 	/* End Method: void reveal */
@@ -65,7 +65,7 @@ class Card {
 	 * Method: boolean getRevealed : Returns the status of the Card: If it's hidden or showing
 	 *  ****/
 	
-	boolean getRevealed() {
+	public boolean getRevealed() {
 		return revealed;
 	}
 	/* End Method: boolean getRevealed */
@@ -74,7 +74,7 @@ class Card {
 	 * 
 	 * Method: Suit getSuit: Returns the Suit of the Card
 	 *  ****/
-	Suit getSuit() {
+	public Suit getSuit() {
 		return suit;
 	}
 	/* End Method: Suit getSuit */
@@ -84,7 +84,7 @@ class Card {
 	 * Method: String getSuitname: Returns the Name of the Card Suit
 	 *  ****/
 	
-	String getSuitname() {
+	public String getSuitname() {
 		return suit.getName();
 	}
 	

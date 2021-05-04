@@ -4,20 +4,20 @@ package model;
 
 /***********************************************************************/
 
-class Bet {
-	private List tokens;
-	private int totalValue;
+public class Bet {
+	public List tokens;
+	public int totalValue;
 	
-	Bet() {
+	public Bet() {
 		tokens = new List();
 		totalValue = 0;
 	}
 		
-	int getTotalValue() {
+	public int getTotalValue() {
 		return totalValue;
 	}
 	
-	List getTokens() {
+	public List getTokens() {
 		return tokens;
 	}
 	

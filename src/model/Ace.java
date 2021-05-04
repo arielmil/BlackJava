@@ -1,23 +1,23 @@
 package model;
 
-class Ace extends Card {
+public class Ace extends Card {
 	
 	boolean isEleven = true;
 	
 	
 	/* Method: Constructor - Ace : Initializes the Card - Ace*/
-	Ace(String name, Suit suit) {
+	public Ace(String name, Suit suit) {
 		super(11, name, suit);
 	}
 	
 	/* Method: boolean getIsEleven */
 	
-	boolean getIsEleven() {
+	public boolean getIsEleven() {
 		return isEleven;
 	}
 	
 	/* Method: void changeValue : Decide whether the ace can be 11 */
-	void changeValue() {
+	public void changeValue() {
 		isEleven = false;
 		setValue(1);
 	}

@@ -4,7 +4,7 @@ package model;
 
 /***********************************************************************/
 
-class AbstractPlayer {
+public class AbstractPlayer {
 	private String name;
 	private List hands;
 	private boolean isPlaying;
@@ -13,7 +13,7 @@ class AbstractPlayer {
 	*  Method: Constructor - PlayerWrapper : Initializes the PlayerWrapper
 	*  ****/
 	
-	AbstractPlayer(String name) {
+	public AbstractPlayer(String name) {
 		this.name = name;
 		hands = new List();
 		
@@ -37,7 +37,7 @@ class AbstractPlayer {
 		endTurn();
 	}
 	
-	String getName() {
+	public String getName() {
 		return name;
 	}
 	

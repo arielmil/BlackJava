@@ -4,7 +4,7 @@ package model;
 
 /***********************************************************************/
 
-class Suit {
+public class Suit {
 	
 	private String name;
 	/*private img*/
@@ -13,7 +13,7 @@ class Suit {
 	*  Method: Constructor - Suit : Initializes the Suit
 	*  ****/
 	
-	Suit(String name) {
+	public Suit(String name) {
 		this.name = name;
 	}
 	
@@ -23,7 +23,7 @@ class Suit {
 	*  Method: String getName : Returns the Name of the Suit
 	*  ****/
 	
-	String getName() {
+	public String getName() {
 		return name;
 	}
 	
