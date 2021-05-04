@@ -30,14 +30,16 @@ public class Card {
 	 * Method: int getValue : Returns an int with the value of the Card
 	 *  ****/
 	
-	public void setValue(int value) {
-		this.value = value;
-	}
 	
 	public int getValue() {
 		return value;
 	}
 	/* End Method: int getValue */
+	
+	public void setValue(int value) {
+		this.value = value;
+	}
+	
 	/*
 	****************************************************************************
 	 * 
@@ -65,18 +67,15 @@ public class Card {
 	 * Method: boolean getRevealed : Returns the status of the Card: If it's hidden or showing
 	 *  ****/
 	
-	public boolean getRevealed() {
-		return revealed;
-	}
-	/* End Method: boolean getRevealed */
 	/*
-	****************************************************************************
+	 ****************************************************************************
 	 * 
 	 * Method: Suit getSuit: Returns the Suit of the Card
 	 *  ****/
 	public Suit getSuit() {
 		return suit;
 	}
+	
 	/* End Method: Suit getSuit */
 	/*
 	****************************************************************************
@@ -88,7 +87,12 @@ public class Card {
 		return suit.getName();
 	}
 	
-	boolean equals(Card card) {
+	public boolean getRevealed() {
+		return revealed;
+	}
+	/* End Method: boolean getRevealed */
+	
+	public boolean equals(Card card) {
 		if (name == card.name) {
 			return true;
 		}

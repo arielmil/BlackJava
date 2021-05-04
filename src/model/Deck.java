@@ -13,7 +13,7 @@ class Deck {
 	*  Method: Constructor - Deck : Initializes the Deck
 	*  ****/
 	
-	Deck() {
+	public Deck() {
 		
 		deck = new List();
 		bin = new List();
@@ -31,7 +31,7 @@ class Deck {
 	*  Method: void shuffle : Shuffles the Cards in the Deck
 	*  ****/
 	
-	void shuffle() {
+	public void shuffle() {
 		deck.shuffle();
 	}
 	/* End Method: void shuffle */
@@ -40,7 +40,7 @@ class Deck {
 	*  Method: Card draw : Draw a Card from the Deck
 	*  ****/
 	
-	Card draw() {
+	public Card draw() {
 		deckSubtract();
 		return (Card) deck.drawL();
 	}
@@ -50,7 +50,7 @@ class Deck {
 	*  Method: void deckSubtract : Subtracts a Card unit in the quantity variable
 	*  ****/
 	
-	void deckSubtract() {
+	public void deckSubtract() {
 		quantity--;
 	}
 	/* End Method: void deckSubtract */
@@ -59,11 +59,11 @@ class Deck {
 	*  Method: int getQuantity : Returns how many Cards are currently in the Deck
 	*  ****/
 	
-	int getQuantity() {
+	public int getQuantity() {
 		return quantity;
 	}
 	
-	private void makeOneDeck() {
+	public void makeOneDeck() {
 		int i, j;
 		Card card;
 		Suit suits[] = new Suit[4];
@@ -86,7 +86,7 @@ class Deck {
 	}
 	
 	
-	void addToBin(Card card) {
+	public void addToBin(Card card) {
 		bin.insertL(card);
 	}
 	
@@ -94,7 +94,7 @@ class Deck {
 	 * we decided to simulate the use of ArrayList.addAll (and after that, the use of ArrayList.clear() 
 	 */
 	
-	void emptyBin() {
+	public void emptyBin() {
 		deck.moveFrom(bin);
 	}
 	 

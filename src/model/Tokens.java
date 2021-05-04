@@ -14,10 +14,10 @@ class Tokens {
 	*  Method: Constructor - Tokens : Initializes the Tokens
 	*  ****/
 	
-	Tokens(Token token, int quantity, int total) {
+	public Tokens(Token token, int quantity) {
 		this.token = token;
 		this.quantity = quantity;
-		this.total = total;
+		setTotal();
 	}
 	/* End Method: Constructor - Tokens */
 	/*
@@ -25,7 +25,7 @@ class Tokens {
 	*  Method: int getQuantity : Returns the amount of Tokens
 	*  ****/
 	
-	int getQuantity() {
+	public int getQuantity() {
 		return quantity;
 	}
 	/* End Method: int getQuantity */
@@ -34,7 +34,7 @@ class Tokens {
 	*  Method: Token getToken : Returns the Token Object
 	*  ****/
 	
-	Token getToken() {
+	public Token getToken() {
 		return token;
 	}
 	/* End Method: Token getToken */
@@ -43,7 +43,7 @@ class Tokens {
 	*  Method: int getTotal : Returns the total amount of money that represents those Tokens
 	*  ****/
 		
-	int getTotal() {
+	public int getTotal() {
 		return total;
 	}
 	/* End Method: int getTotal */
@@ -52,12 +52,12 @@ class Tokens {
 	*  Method: void tokensAdd : Add Player Tokens
 	*  ****/
 	
-	void tokensAdd(Tokens tokens) {
+	public void tokensAdd(Tokens tokens) {
 		quantity = quantity + tokens.quantity;
 		total = total + tokens.total;
 	}
 	
-	void tokenAdd() {
+	public void tokenAdd() {
 		quantity++;
 		total = total + token.getValue();
 	}
@@ -67,32 +67,31 @@ class Tokens {
 	*  Method: private int findTotal : Calculates how much Tokens will represent in cash
 	*  ****/
 	
-	private int findTotal(int quantity) {
+	public void setTotal() {
 		int i;
 		int total = 0;
 		for (i = 0; i < quantity; i++) {
 			total = total + token.getValue();
 		}
-		return total;
+		this.total = total;
 	}
+	
 	/* End Method: private int findTotal */
 	/*
 	***************************************************************************
 	*  Method: Tokens tokensSubtract : Remove Player Tokens
 	*  ****/
 	
-	Tokens tokensSubtract(int quantity) {
-		int total = findTotal(quantity);
-		
-		Tokens returned = new Tokens(new Token(token.getValue(), token.getColor()), quantity, total);
+	public Tokens tokensSubtract(int quantity) {
+		Tokens returned = new Tokens(new Token(token.getValue(), token.getColor()), quantity);
 		
 		this.quantity = this.quantity - quantity;
-		this.total = this.total - total;
+		setTotal();
 		
 		return returned;
 	}
 	
-	Token tokenSubtract() {
+	public Token tokenSubtract() {
 		quantity = quantity - 1;
 		total = total - token.getValue();
 		return new Token(token.getValue(), token.getColor());

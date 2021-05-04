@@ -16,14 +16,14 @@ class List {
 	*  Method: Constructor - list : Initializes the list
 	*  ****/
 	
-	List() {
+	public List() {
 		list = new ArrayList<Object>();
 		size = 0;
 		empty = true;
 	}
 	/* End Method: Constructor - list */
 	
-	Object get(int index) {
+	public Object get(int index) {
 		if (index > size) {
 			return -1;
 		}
@@ -34,7 +34,7 @@ class List {
 	*  Method: Object drawL : Removes the Object from the end of the list, returning it
 	*  ****/
 	
-	Object drawL() {
+	public Object drawL() {
 		if (!empty) {
 			Object o = list.remove(size - 1);
 			
@@ -59,7 +59,7 @@ class List {
 	*  Method: void insertL : Inserts the object at the end of the list
 	*  ****/
 	
-	void insertL(Object o) {
+	public void insertL(Object o) {
 		list.add(o);
 		updateSize();
 	}
@@ -69,7 +69,7 @@ class List {
 	*  Method: Boolean empty : Returns the boolean empty (!)
 	*  ****/
 	
-	Boolean empty() {
+	public Boolean empty() {
 		return empty;
 	}
 	/* End Method: void insertL */
@@ -78,7 +78,7 @@ class List {
 	*  Method: void shuffle : Shuffles the list 
 	*  ****/
 	
-	void shuffle() {
+	public void shuffle() {
 		Collections.shuffle(list);
 	}
 	/* End Method: void shuffle */
@@ -87,7 +87,7 @@ class List {
 	*  Method: void copyNTimes : Get an int n, and copy the list n times. Inserting all copied elements at the end 
 	*  ****/
 	
-	void copyNTimes(int times) {
+	public void copyNTimes(int times) {
 		int i,j;
 		
 		for (i = 0; i < times; i++) {
@@ -104,7 +104,7 @@ class List {
 	*  Method: int getSize : Returns the size of the list 
 	*  ****/
 	
-	int getSize() {
+	public int getSize() {
 		return size;
 	}
 	/* End Method: int getSize */
@@ -113,19 +113,19 @@ class List {
 	*  Method: private void updateSize : Every time drawL or insertL is called, this method updates the size variable 
 	*  ****/
 	
-	private void updateSize() {
+	public void updateSize() {
 		size = list.size();
 	}
 	/* End Method: private void updateSize */
 	
-	void moveFrom(List list) {
+	public void moveFrom(List list) {
 		int i;
 		for (i = 0; i < list.getSize(); i++) {
 			this.insertL(list.drawL());
 		}
 	}
 	
-	void clear() {
+	public void clear() {
 		int i;
 		for (i = 0; i < getSize(); i++) {
 			drawL();

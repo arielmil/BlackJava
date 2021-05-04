@@ -192,12 +192,7 @@ class Player extends AbstractPlayer {
 	}
 	
 	private List convertValueToTokens(int value) {
-        int blackTokens = 0;
-        int purpleTokens = 0;
-        int greenTokens = 0;
-        int blueTokens = 0;
-        int redTokens = 0;
-        int grayTokens = 0;
+        int blackTokens, purpleTokens, greenToken blueTokens = 0; redTokens = 0; grayTokens = 0;
 
         if (value % 100 > 0) {
             blackTokens += value/100;

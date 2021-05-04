@@ -14,7 +14,7 @@ class Token {
 	*  Method: Constructor - Token : Initializes the Token
 	*  ****/
 	
-	Token(int value, String color)	{
+	public Token(int value, String color)	{
 		this.value = value;
 		this.color = color;
 	}
@@ -24,7 +24,7 @@ class Token {
 	*  Method: int getValue : Returns the value of the Token
 	*  ****/
 	
-	int getValue() {
+	public int getValue() {
 		return value;
 	}
 	/* End Method: int getValue */
@@ -32,7 +32,7 @@ class Token {
 	***************************************************************************
 	*  Method: String getColor : Returns a String with the color of the Token
 	*  ****/
-	String getColor() {
+	public String getColor() {
 		return color;
 	}
 	/* End Method: String getColor */

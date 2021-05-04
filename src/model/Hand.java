@@ -9,7 +9,7 @@ class Hand {
 	private boolean isTwentyOne;
 	private boolean canSplit;
 	
-	Hand() {
+	public Hand() {
 		cards = new List();
 		isBroke = false;
 		isBlackJack = false;
@@ -19,7 +19,7 @@ class Hand {
 		setCurrentScoresToZero();
 	}
 	
-	void setCurrentScore() {
+	public void setCurrentScore() {
 		int i;
 		
 		Card card;
@@ -34,40 +34,40 @@ class Hand {
 		
 	}
 	
-	int getCurrentScore() {
+	public int getCurrentScore() {
 		return CurrentScore;
 	}
 	
-	boolean isBroke() {
+	public boolean isBroke() {
 		return isBroke;
 	}
 	
-	void setIsBlackJack() {
+	public void setIsBlackJack() {
 		isBlackJack = true;
 	}
 	
-	boolean getIsBlackJack() {
+	public boolean getIsBlackJack() {
 		return isBlackJack;
 	}
 	
 	
-	void seventeenPoints() {
+	public void seventeenPoints() {
 		stopDraw = true;
 	}
 	
-	boolean canDraw() {
+	public boolean canDraw() {
 		return stopDraw;
 	}
 	
-	void twentyOnePoints() {
+	public void twentyOnePoints() {
 		isTwentyOne = true;
 	}
 	
-	boolean getIsTwentyOne() {
+	public boolean getIsTwentyOne() {
 		return isTwentyOne;
 	}
 	
-	void setCurrentScoresToZero() {
+	public void setCurrentScoresToZero() {
 		CurrentScore = 0;
 		isBroke = false;
 		isBlackJack = false;
@@ -76,11 +76,11 @@ class Hand {
 		canSplit = false;
 	}
 	
-	void addCard(Card card) {
+	public void addCard(Card card) {
 		cards.insertL(card);
 	}
 	
-	boolean canSplit() {
+	public boolean canSplit() {
 		if (cards.getSize() == 2 && (cards.get(0).equals(cards.get(1)))) {
 			canSplit = true;
 		}

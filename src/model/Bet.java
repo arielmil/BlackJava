@@ -21,17 +21,17 @@ public class Bet {
 		return tokens;
 	}
 	
-	void addToken(Token token) {
+	public void addToken(Token token) {
 		tokens.insertL(token);
 		totalValue = totalValue + token.getValue();
 	}
 	
-	void subtractToken(Token token) {
+	public void subtractToken(Token token) {
 		tokens.drawL();
 		totalValue = totalValue - token.getValue();
 	}
 	
-	void clear() {
+	public void clear() {
 		tokens.clear();
 		totalValue = 0;
 	}
