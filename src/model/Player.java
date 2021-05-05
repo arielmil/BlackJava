@@ -17,6 +17,8 @@ public class Player extends AbstractPlayer {
 	*  Method: Constructor - Player : Initializes the Player
 	*  ****/
 	
+	/*falta limpar, e tirar e somar no total_money */
+	
 	public Player(String name){
 		super(name);
 		bet = new Bet();
@@ -63,6 +65,7 @@ public class Player extends AbstractPlayer {
 	
 	public void unbetToken(Token token) {
 		bet.subtractToken(token);
+		/*falta devolver tokens para o array*/
 		total_money = total_money + token.getValue();
 	}
 	
@@ -142,41 +145,45 @@ public class Player extends AbstractPlayer {
 	
 	private void getHalfBetBack() {
 		int half_bet = bet.getTotalValue()/2;
-		List getBack = Tokens.convertValueToTokens(half_bet);
+		List tokens = bet.subtractTokensFromValue(half_bet);
 		Token token;
 		
 		int i;
-		for (i = 0; i < getBack.getSize(); i++) {
-			token = (Token) getBack.drawL();
-			tokens_array[tokenToIndex(token)].tokenAdd();
+		for (i = 0; i < tokens.getSize(); i++) {
+			token = ((Tokens) tokens.get(i)).getToken();
+			tokens_array[tokenToIndex(token)].tokensAdd((Tokens) tokens.get(i));
 		}
-		
 	}
 	
 	private int tokenToIndex(Token token) {
-		if (token.getValue() == 1) {
-			return 0;
+		int index;
+		
+		switch (token.getValue()) {
+			case 1:
+				index = 0;
+				break;
+				
+			case 5:
+				index = 1;
+				break;
+				
+			case 10:
+				index = 2;
+				break;
+				
+			case 20:
+				index = 3;
+				break;
+				
+			case 50:
+				index = 4;
+				break;
+				
+			default:
+				index = 5;
 		}
 		
-		if (token.getValue() == 5) {
-			return 1;
-		}
-		
-		if (token.getValue() == 10) {
-			return 2;
-		}
-		
-		if (token.getValue() == 20) {
-			return 3;
-		}
-		
-		if (token.getValue() == 50) {
-			return 4;
-		}
-		
-		else {
-			return 5;
-		}
+		return index;
 	}
 	
 	private void initializeTokensArray() {

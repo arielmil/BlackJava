@@ -11,6 +11,8 @@ class List {
 	private int size;
 	private ArrayList<Object> list;
 	private boolean empty;
+	private static int countRemoved;
+	private static int countAdded;
 	
 	/***************************************************************************
 	*  Method: Constructor - list : Initializes the list
@@ -45,6 +47,13 @@ class List {
 				empty = false;
 			}
 			
+			countRemoved++;
+			
+			/* To minimize bloated storage */
+			if(Math.abs(countRemoved - countAdded) >= 10) {
+				list.trimToSize();
+			}
+			
 			updateSize();
 			return o;
 		}
@@ -54,10 +63,6 @@ class List {
 		}
 	}
 	/* End Method: Object drawL */
-	
-	/*public List drawMany (int quantity) {
-		return List list = new List9);
-	}*/
 	/*
 	***************************************************************************
 	*  Method: void insertL : Inserts the object at the end of the list
@@ -119,6 +124,7 @@ class List {
 	
 	public void updateSize() {
 		size = list.size();
+		countAdded++;
 	}
 	/* End Method: private void updateSize */
 	
@@ -135,5 +141,13 @@ class List {
 			drawL();
 		}
 	}
+	
+	public Object remove(Object o) {
+		return list.remove(o);
+	}
+	
+	/*public int indexOf(Object o) {
+		return list.indexOf(o);
+	}*/
 	
 }
