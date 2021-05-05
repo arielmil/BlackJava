@@ -182,7 +182,7 @@ public class Player extends AbstractPlayer {
 	
 	private void initializeTokensArray() {
 		tokens_array = new Tokens[6];
-		String token_names[] = new String[] {"Gray", "Red", "Blue", "Purple", "Black"};
+		String token_names[] = new String[] {"Gray", "Red", "Blue", "Green", "Purple", "Black"};
 		int token_quantities[] = new int[] {10, 8, 5, 5, 2, 2};
 		
 		int i;
@@ -207,7 +207,7 @@ public class Player extends AbstractPlayer {
 		totalValue = totalValue * 2;
 		
 		tokens = Tokens.convertValueToTokens(totalValue);
-		for (i = 0; i < tokens.getSize() - 1; i++) {
+		for (i = 0; i < tokens.getSize(); i++) {
 			token = (Token) tokens.drawL();
 			bet.addToken(token);
 		}
