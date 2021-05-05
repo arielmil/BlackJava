@@ -6,7 +6,7 @@ import java.util.HashMap;
 
 /***********************************************************************/
 
-class Tokens {
+class Token {
 	
 	private int value;
 	private String color;
