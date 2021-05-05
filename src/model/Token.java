@@ -24,7 +24,7 @@ class Token {
 	}
 	
 	/***************************************************************************
-	*  Method: Constructor - Token : Initializes the Token Oi Ariel
+	*  Method: Constructor - Token : Initializes the Token
 	*  ****/
 	
 	public Token(String color)	{
