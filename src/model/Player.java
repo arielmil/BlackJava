@@ -207,7 +207,7 @@ public class Player extends AbstractPlayer {
 		totalValue = totalValue * 2;
 		
 		tokens = Tokens.convertValueToTokens(totalValue);
-		for (i = 0; i < tokens.getSize(); i++) {
+		for (i = 0; i < tokens.getSize() - 1; i++) {
 			token = (Token) tokens.drawL();
 			bet.addToken(token);
 		}
