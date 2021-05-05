@@ -71,23 +71,22 @@ public class Player extends AbstractPlayer {
 		isBetting = false;
 	}
 	
-	void bet(int option, Token token) {
+	void bet(Token token, boolean bet) {
 		
-		isBetting = true;
-		while(isBetting) {
-			if (option == 0) {
-				unbetToken(token);
-			}
-			else {
-				betToken(token);
-			}
+		if (bet) {
+			betToken(token);
+		}
+		
+		else {
+			unbetToken(token);
 		}
 	}
 	
 	void Split(Card card1, Card card2, int whichHand) {
+		Hand hand;
 		if (getIsPlaying()) {
 			if (getHand().getSize() <= 2) {
-				Hand hand = (Hand) getHand().get(whichHand);
+				hand = (Hand) getHand().get(whichHand);
 				if(hand.canSplit() && canDouble()) {
 					doubleBet();
 					appendHand(card1, card2);
@@ -144,9 +143,9 @@ public class Player extends AbstractPlayer {
 	private void getHalfBetBack() {
 		int half_bet = bet.getTotalValue()/2;
 		List getBack = Tokens.convertValueToTokens(half_bet);
-		int i;
 		Token token;
 		
+		int i;
 		for (i = 0; i < getBack.getSize(); i++) {
 			token = (Token) getBack.drawL();
 			tokens_array[tokenToIndex(token)].tokenAdd();

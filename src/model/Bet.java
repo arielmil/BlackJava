@@ -31,6 +31,18 @@ public class Bet {
 		totalValue = totalValue - token.getValue();
 	}
 	
+	public List subtractTokens(int tokenQuantity) {
+		List tokens = Tokens.convertValueToTokens(tokenQuantity);
+		int i;
+		
+		for (i = 0; i < tokens.getSize(); i++) {
+			/*fazer testes de retirar no meio de arrayList e ver se os elementos a direita "caem"*/
+		}
+		
+		return tokens;
+		
+	}
+	
 	public void clear() {
 		tokens.clear();
 		totalValue = 0;

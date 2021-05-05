@@ -54,6 +54,10 @@ class List {
 		}
 	}
 	/* End Method: Object drawL */
+	
+	/*public List drawMany (int quantity) {
+		return List list = new List9);
+	}*/
 	/*
 	***************************************************************************
 	*  Method: void insertL : Inserts the object at the end of the list
