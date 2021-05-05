@@ -27,7 +27,7 @@ class Token {
 	*  Method: Constructor - Token : Initializes the Token
 	*  ****/
 	
-	public Tokens(String color)	{
+	public Token(String color)	{
 		value = color_to_value.get(color);
 		this.color = color;
 	}
