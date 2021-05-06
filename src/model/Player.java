@@ -97,10 +97,8 @@ public class Player extends AbstractPlayer {
 				if(hand.canSplit() && canDouble()) {
 					doubleBet();
 					appendHand(card1, card2);
-					
 				}	
 			}
-			
 		}
 		
 		else {
@@ -116,7 +114,6 @@ public class Player extends AbstractPlayer {
 				hit(card, whichHand);
 				stand();
 			}
-			
 		}
 		
 		else {
