@@ -21,14 +21,22 @@ public class Bet {
 		return tokens;
 	}
 	
-	public void addToken(Token token) {
-		tokens.insertL(token);
-		totalValue = totalValue + token.getValue();
+	public void addTokens(String color) {
+		Tokens tokens = new Tokens(color, 1);
+		this.tokens.insertL(tokens);
+		totalValue = totalValue + tokens.getValue();
 	}
 	
-	public void subtractToken(Token token) {
-		tokens.drawL();
+	public void addTokens(String color, int i) {
+		Tokens tokens = new Tokens(color, i);
+		this.tokens.insertL(tokens);
+		totalValue = totalValue + tokens.getValue();
+	}
+	
+	public Tokens subtractTokens(Tokens token) {
+		Tokens tokens = (Tokens)this.tokens.drawL();
 		totalValue = totalValue - token.getValue();
+		return tokens;
 	}
 	
 	public List subtractTokensFromValue(int tokens_value) {

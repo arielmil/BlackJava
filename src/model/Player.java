@@ -8,7 +8,7 @@ package model;
 
 public class Player extends AbstractPlayer {
 	Bet bet;
-	Tokens tokens_array[];
+	List tokens_list;
 	int total_money;
 	boolean insurance;
 	boolean isBetting;
@@ -22,7 +22,7 @@ public class Player extends AbstractPlayer {
 	public Player(String name){
 		super(name);
 		bet = new Bet();
-		initializeTokensArray();
+		initializeTokensList();
 		insurance = false;
 		isBetting = false;
 		total_money = 500;
@@ -30,15 +30,18 @@ public class Player extends AbstractPlayer {
 	
 	/* End Method: Constructor - Player */
 	
-	public void addTokens(List tokensList) {
+	public void addTokens(List tokens_list) {
 		int i;
 		Tokens tokens;
+		Tokens my_tokens;
 		
-		for(i = 0; i < tokensList.getSize(); i++) {
-			
-			tokens = (Tokens) tokensList.drawL();
-			tokens_array[tokenToIndex(tokens.getToken())].tokensAdd(tokens);
-		}	
+		for(i = 0; i < tokens_list.getSize(); i++) {
+			tokens = (Tokens) tokens_list.get(i);
+			my_tokens = (Tokens)this.tokens_list.get(tokens);
+			my_tokens.tokensAdd(tokens);
+			total_money = total_money + tokens.getValue();
+		}
+		
 	}
 	
 	public void insurance() {
@@ -58,14 +61,15 @@ public class Player extends AbstractPlayer {
 		bet.clear();
 	}
 		
-	public void betToken(Token token) {
-		bet.addToken(tokens_array[tokenToIndex(token)].tokenSubtract());
+	public void betToken(Tokens token) {
+		( (Tokens)tokens_list.get(token) ).tokenSubtract();
+		bet.addTokens(token.getColor());
 		total_money = total_money - token.getValue();
 	}
 	
-	public void unbetToken(Token token) {
-		bet.subtractToken(token);
-		/*falta devolver tokens para o array*/
+	public void unbetToken(Tokens token) {
+		Tokens toAdd = bet.subtractTokens(token);
+		( (Tokens)tokens_list.get(token) ).tokensAdd(toAdd);
 		total_money = total_money + token.getValue();
 	}
 	
@@ -74,7 +78,7 @@ public class Player extends AbstractPlayer {
 		isBetting = false;
 	}
 	
-	void bet(Token token, boolean bet) {
+	void bet(Tokens token, boolean bet) {
 		
 		if (bet) {
 			betToken(token);
@@ -132,7 +136,7 @@ public class Player extends AbstractPlayer {
 	}
 	
 	/* Utils */
-	private void appendHand(Card card1, Card card2) {
+	public void appendHand(Card card1, Card card2) {
 		int howManyHands = getHand().getSize();
 		Hand new_hand = new Hand();
 		
@@ -143,61 +147,25 @@ public class Player extends AbstractPlayer {
 		getHand().insertL(new_hand);
 	}
 	
-	private void getHalfBetBack() {
+	public void getHalfBetBack() {
 		int half_bet = bet.getTotalValue()/2;
-		List tokens = bet.subtractTokensFromValue(half_bet);
-		Token token;
-		
-		int i;
-		for (i = 0; i < tokens.getSize(); i++) {
-			token = ((Tokens) tokens.get(i)).getToken();
-			tokens_array[tokenToIndex(token)].tokensAdd((Tokens) tokens.get(i));
-		}
+		List tokens = bet.subtractTokensFromValue(half_bet);	
+		addTokens(tokens);
+		total_money = total_money + half_bet;
 	}
-	
-	private int tokenToIndex(Token token) {
-		int index;
 		
-		switch (token.getValue()) {
-			case 1:
-				index = 0;
-				break;
-				
-			case 5:
-				index = 1;
-				break;
-				
-			case 10:
-				index = 2;
-				break;
-				
-			case 20:
-				index = 3;
-				break;
-				
-			case 50:
-				index = 4;
-				break;
-				
-			default:
-				index = 5;
-		}
-		
-		return index;
-	}
-	
-	private void initializeTokensArray() {
-		tokens_array = new Tokens[6];
+	public void initializeTokensList() {
+		tokens_list = new List();
 		String token_names[] = new String[] {"Gray", "Red", "Blue", "Green", "Purple", "Black"};
 		int token_quantities[] = new int[] {10, 8, 5, 5, 2, 2};
 		
 		int i;
 		for (i = 0; i < 6; i++) {
-			tokens_array[i] = new Tokens(new Token(token_names[i]), token_quantities[i]);
+			tokens_list.insertL(new Tokens(token_names[i], token_quantities[i]));
 		}
 	}
 		
-	private boolean canDouble() {
+	public boolean canDouble() {
 		if (total_money >= bet.getTotalValue() * 2) {
 			return true;
 		}
@@ -205,17 +173,19 @@ public class Player extends AbstractPlayer {
 		return false;
 	}
 	
-	private void doubleBet() {
+	public void doubleBet() {
 		int totalValue = bet.getTotalValue(), i;
 		List tokens;
-		Token token;
+		Tokens token;
 		
+		total_money = total_money - totalValue;
 		totalValue = totalValue * 2;
 		
 		tokens = Tokens.convertValueToTokens(totalValue);
+		
 		for (i = 0; i < tokens.getSize(); i++) {
-			token = (Token) tokens.drawL();
-			bet.addToken(token);
+			token = ( (Tokens)tokens_list.get(tokens) ).tokensSubtract( ((Tokens)tokens.get(i)).getQuantity() );
+			bet.addTokens(token.getColor(), token.getQuantity());
 		}
 		
 	}

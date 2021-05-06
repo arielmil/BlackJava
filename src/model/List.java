@@ -32,6 +32,11 @@ class List {
 		return list.get(index);
 	}
 	
+	public Object get(Object o) {
+		int i = list.indexOf(o);
+		return list.get(i);
+	}
+	
 	/****************************************************************************
 	*  Method: Object drawL : Removes the Object from the end of the list, returning it
 	*  ****/
@@ -143,6 +148,7 @@ class List {
 	}
 	
 	public Object remove(Object o) {
+		size--;
 		return list.remove(o);
 	}
 	
