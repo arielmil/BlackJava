@@ -78,7 +78,7 @@ public class Player extends AbstractPlayer {
 		isBetting = false;
 	}
 	
-	void bet(Tokens token, boolean bet) {
+	public void bet(Tokens token, boolean bet) {
 		
 		if (bet) {
 			betToken(token);
@@ -89,7 +89,7 @@ public class Player extends AbstractPlayer {
 		}
 	}
 	
-	void Split(Card card1, Card card2, int whichHand) {
+	public void Split(Card card1, Card card2, int whichHand) {
 		Hand hand;
 		if (getIsPlaying()) {
 			if (getHand().getSize() <= 2) {
@@ -107,7 +107,7 @@ public class Player extends AbstractPlayer {
 	}
 	
 	/* Escolhe a Hand que quer dar Double */
-	void Double(Card card, int whichHand) {
+	public void Double(Card card, int whichHand) {
 		if (getIsPlaying()) {
 			if (canDouble()) {
 				doubleBet();
@@ -121,7 +121,7 @@ public class Player extends AbstractPlayer {
 		}
 	}
 	
-	void Surrender() {
+	public void Surrender() {
 		if (getIsPlaying()) {
 			
 			endTurn();
