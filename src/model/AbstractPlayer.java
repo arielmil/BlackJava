@@ -1,17 +1,10 @@
-/***********************************************************************/
-
 package model;
-
-/***********************************************************************/
 
 public class AbstractPlayer {
 	private String name;
 	private List hands;
 	private boolean isPlaying;
-	
-	/***************************************************************************
-	*  Method: Constructor - PlayerWrapper : Initializes the PlayerWrapper
-	*  ****/
+	private boolean isBroke;
 	
 	public AbstractPlayer(String name) {
 		this.name = name;
@@ -22,18 +15,23 @@ public class AbstractPlayer {
 		
 		isPlaying = false;
 	}
-	/* End Method: Constructor - Player */
-	/*
-	***************************************************************************
-	*  Method: String getName : Returns the Name of the Player (!)
-	*  ****/
 	
-	void hit(Card card, int whichHand) {
-		Hand hand = (Hand)this.hands.get(whichHand);
-		hand.addCard(card);
+	public void takeCard(Card card, int whichHand) {
+		if (isPlaying) {
+			if(!isBroke) {
+				Hand hand = (Hand)this.hands.get(whichHand);
+				hand.addCard(card);				
+			}
+			
+			/*execao de estar quebrado*/
+			return;
+		}
+		
+		/*execao de nao estar jogando*/
+		return;
 	}
 	
-	void stand() {
+	public void stand() {
 		endTurn();
 	}
 	
@@ -41,19 +39,19 @@ public class AbstractPlayer {
 		return name;
 	}
 	
-	void playerTurn() {
+	public void playerTurn() {
 		isPlaying = true;
 	}
 	
-	boolean getIsPlaying() {
+	public boolean getIsPlaying() {
 		return isPlaying;
 	}
 	
-	void endTurn() {
+	public void endTurn() {
 		isPlaying = false;
 	}
 	
-	List getHand() {
+	public List getHand() {
 		return hands;
 	}
 	

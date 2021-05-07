@@ -132,6 +132,10 @@ public class Player extends AbstractPlayer {
 		}
 	}
 	
+	public void hit(Card card, int whichHand) {
+		takeCard(card, whichHand);
+	}
+	
 	/* Utils */
 	public void appendHand(Card card1, Card card2) {
 		int howManyHands = getHand().getSize();
