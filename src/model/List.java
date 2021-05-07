@@ -32,7 +32,7 @@ class List {
 		return list.get(index);
 	}
 	
-	public Object get(Object o) {
+	public Object acess(Object o) {
 		int i = list.indexOf(o);
 		return list.get(i);
 	}

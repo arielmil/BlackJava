@@ -37,7 +37,7 @@ public class Player extends AbstractPlayer {
 		
 		for(i = 0; i < tokens_list.getSize(); i++) {
 			tokens = (Tokens) tokens_list.get(i);
-			my_tokens = (Tokens)this.tokens_list.get(tokens);
+			my_tokens = (Tokens)this.tokens_list.acess(tokens);
 			my_tokens.tokensAdd(tokens);
 			total_money = total_money + tokens.getValue();
 		}
@@ -62,14 +62,14 @@ public class Player extends AbstractPlayer {
 	}
 		
 	public void betToken(Tokens token) {
-		( (Tokens)tokens_list.get(token) ).tokenSubtract();
+		( (Tokens)tokens_list.acess(token) ).tokenSubtract();
 		bet.addTokens(token.getColor());
 		total_money = total_money - token.getValue();
 	}
 	
 	public void unbetToken(Tokens token) {
 		Tokens toAdd = bet.subtractTokens(token);
-		( (Tokens)tokens_list.get(token) ).tokensAdd(toAdd);
+		( (Tokens)tokens_list.acess(token) ).tokensAdd(toAdd);
 		total_money = total_money + token.getValue();
 	}
 	
@@ -181,7 +181,7 @@ public class Player extends AbstractPlayer {
 		tokens = Tokens.convertValueToTokens(totalValue);
 		
 		for (i = 0; i < tokens.getSize(); i++) {
-			token = ( (Tokens)tokens_list.get(tokens) ).tokensSubtract( ((Tokens)tokens.get(i)).getQuantity() );
+			token = ( (Tokens)tokens_list.acess(tokens) ).tokensSubtract( ((Tokens)tokens.get(i)).getQuantity() );
 			bet.addTokens(token.getColor(), token.getQuantity());
 		}
 		

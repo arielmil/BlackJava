@@ -116,27 +116,27 @@ public class Tokens {
             value -= blackTokens * 100;
         }
 
-        else if (value % 50 > 0) {
+        if (value % 50 > 0) {
             purpleTokens += value/50;
             value -= purpleTokens * 50;
         }
 
-        else if (value % 25 > 0) {
+        if (value % 25 > 0) {
             greenTokens += value/25;
             value -= greenTokens * 25;
         }
 
-        else if (value % 10 > 0) {
+        if (value % 10 > 0) {
             blueTokens += value/10;
             value -= blueTokens * 10;
         }
 
-        else if (value % 5 > 0) {
+        if (value % 5 > 0) {
             redTokens += value/5;
             value -= redTokens * 5;
         }
 
-        else if (value > 0) {
+        if (value > 0) {
             grayTokens += value;
             value -= grayTokens;
         }
