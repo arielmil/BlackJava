@@ -4,7 +4,6 @@ public class AbstractPlayer {
 	private String name;
 	private List hands;
 	private boolean isPlaying;
-	private boolean isBroke;
 	
 	public AbstractPlayer(String name) {
 		this.name = name;
@@ -16,10 +15,15 @@ public class AbstractPlayer {
 		isPlaying = false;
 	}
 	
-	public void takeCard(Card card, int whichHand) {
+	public boolean isBroke(Hand hand) {
+		hand = (Hand)hands.acess(hand);
+		return hand.getIsBroke();
+	}
+	
+	public void takeCard(Card card, Hand hand) {
 		if (isPlaying) {
-			if(!isBroke) {
-				Hand hand = (Hand)this.hands.get(whichHand);
+			if(!isBroke(hand)) {
+				hand = (Hand)this.hands.acess(hand);
 				hand.addCard(card);				
 			}
 			
@@ -51,8 +55,19 @@ public class AbstractPlayer {
 		isPlaying = false;
 	}
 	
-	public List getHand() {
+	public List getHands() {
 		return hands;
 	}
 	
+	public List prepareNextTurn() {
+		List cards = new List();
+		
+		int i;
+		for (i = 0; i < hands.getSize(); i++) {
+			Hand hand = (Hand)hands.get(i);
+			cards.moveFrom(hand.clear());
+		}
+		
+		return cards;
+	}
 }

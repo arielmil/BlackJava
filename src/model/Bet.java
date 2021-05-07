@@ -44,7 +44,7 @@ public class Bet {
 		
 		int i;
 		for (i = 0; i < tokens.getSize(); i++) {
-			this.tokens.remove(tokens.get(i));
+			this.tokens.draw(tokens.get(i));
 		}
 		
 		totalValue = totalValue - tokens_value;

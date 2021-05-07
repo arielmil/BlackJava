@@ -1,10 +1,4 @@
-/***********************************************************************/
-
 package model;
-
-/***********************************************************************/
-
-/* Falta fazer algumas checagens de erro, e trocar os return -1 pelo uso de execoes */
 
 public class Player extends AbstractPlayer {
 	Bet bet;
@@ -12,13 +6,7 @@ public class Player extends AbstractPlayer {
 	int total_money;
 	boolean insurance;
 	boolean isBetting;
-	
-	/***************************************************************************
-	*  Method: Constructor - Player : Initializes the Player
-	*  ****/
-	
-	/*falta limpar, e tirar e somar no total_money */
-	
+		
 	public Player(String name){
 		super(name);
 		bet = new Bet();
@@ -27,8 +15,6 @@ public class Player extends AbstractPlayer {
 		isBetting = false;
 		total_money = 500;
 	}
-	
-	/* End Method: Constructor - Player */
 	
 	public void addTokens(List tokens_list) {
 		int i;
@@ -57,8 +43,9 @@ public class Player extends AbstractPlayer {
 		super.endTurn();
 	}
 	
-	public void prepareNextTurn() {
+	public List prepareNextTurn() {
 		bet.clear();
+		return super.prepareNextTurn();
 	}
 		
 	public void betToken(Tokens token) {
@@ -89,11 +76,10 @@ public class Player extends AbstractPlayer {
 		}
 	}
 	
-	public void Split(Card card1, Card card2, int whichHand) {
-		Hand hand;
+	public void Split(Card card1, Card card2, Hand hand) {
 		if (getIsPlaying()) {
-			if (getHand().getSize() <= 2) {
-				hand = (Hand) getHand().get(whichHand);
+			if (getHands().getSize() <= 2) {
+				hand = (Hand) getHands().acess(hand);
 				if(hand.canSplit() && canDouble()) {
 					doubleBet();
 					appendHand(card1, card2);
@@ -107,12 +93,12 @@ public class Player extends AbstractPlayer {
 	}
 	
 	/* Escolhe a Hand que quer dar Double */
-	public void Double(Card card, int whichHand) {
+	public void Double(Card card, Hand hand) {
 		if (getIsPlaying()) {
 			if (canDouble()) {
 				doubleBet();
-				hit(card, whichHand);
-				stand();
+				hit(card, hand);
+				hand.stop();
 			}
 		}
 		
@@ -132,20 +118,18 @@ public class Player extends AbstractPlayer {
 		}
 	}
 	
-	public void hit(Card card, int whichHand) {
-		takeCard(card, whichHand);
+	public void hit(Card card, Hand hand) {
+		takeCard(card, hand);
 	}
 	
 	/* Utils */
 	public void appendHand(Card card1, Card card2) {
-		int howManyHands = getHand().getSize();
 		Hand new_hand = new Hand();
 		
+		takeCard(card1, new_hand);
+		takeCard(card2, new_hand);
 		
-		hit(card1, howManyHands + 1);
-		hit(card2, howManyHands + 1);
-		
-		getHand().insertL(new_hand);
+		getHands().insertL(new_hand);
 	}
 	
 	public void getHalfBetBack() {

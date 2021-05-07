@@ -59,7 +59,7 @@ class List {
 				list.trimToSize();
 			}
 			
-			updateSize();
+			updateSize('r');
 			return o;
 		}
 		
@@ -75,7 +75,7 @@ class List {
 	
 	public void insertL(Object o) {
 		list.add(o);
-		updateSize();
+		updateSize('a');
 	}
 	/* End Method: void insertL */
 	/*
@@ -109,9 +109,8 @@ class List {
 				this.insertL(get(j));
 			}
 		}
-		
-		updateSize();
 	}
+	
 	/* End Method: void copyNTimes */
 	/*
 	***************************************************************************
@@ -127,9 +126,14 @@ class List {
 	*  Method: private void updateSize : Every time drawL or insertL is called, this method updates the size variable 
 	*  ****/
 	
-	public void updateSize() {
+	public void updateSize(char added_or_removed) {
 		size = list.size();
-		countAdded++;
+		if (added_or_removed == 'a') {
+			countAdded++;			
+		}
+		else {
+			countRemoved++;
+		}
 	}
 	/* End Method: private void updateSize */
 	
@@ -141,15 +145,20 @@ class List {
 	}
 	
 	public void clear() {
-		int i;
-		for (i = 0; i < getSize(); i++) {
-			drawL();
-		}
+		list.clear();
+		size = 0;
 	}
 	
-	public Object remove(Object o) {
+	public Object draw(Object o) {
 		size--;
-		return list.remove(o);
+		o = list.remove(o);
+		return o;
+	}
+	
+	public List drawAll() {
+		List list = new List();
+		list.moveFrom(this);
+		return list;
 	}
 	
 	/*public int indexOf(Object o) {

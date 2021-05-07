@@ -8,18 +8,14 @@ class Hand {
 	private boolean stopDraw;
 	private boolean isTwentyOne;
 	private boolean canSplit;
+	private boolean stoppedThisTurn;
 	
 	public Hand() {
 		cards = new List();
-		isBroke = false;
-		isBlackJack = false;
-		stopDraw = false;
-		isTwentyOne = false;
-		canSplit = false;
 		setCurrentScoresToZero();
 	}
 	
-	public void setCurrentScore() {
+	public void countScore() {
 		int i;
 		
 		Card card;
@@ -38,7 +34,7 @@ class Hand {
 		return CurrentScore;
 	}
 	
-	public boolean isBroke() {
+	public boolean getIsBroke() {
 		return isBroke;
 	}
 	
@@ -51,7 +47,7 @@ class Hand {
 	}
 	
 	
-	public void seventeenPoints() {
+	public void stopDraw() {
 		stopDraw = true;
 	}
 	
@@ -74,6 +70,7 @@ class Hand {
 		stopDraw = false;
 		isTwentyOne = false;
 		canSplit = false;
+		stoppedThisTurn = false;
 	}
 	
 	public void addCard(Card card) {
@@ -86,6 +83,19 @@ class Hand {
 		}
 		
 		return canSplit;
+	}
+	
+	public void stop() {
+		stoppedThisTurn = true;
+	}
+	
+	public boolean isStopped() {
+		return stoppedThisTurn;
+	}
+	
+	public List clear() {
+		setCurrentScoresToZero();
+		return cards.drawAll();
 	}
 	
 	/* void render() {
