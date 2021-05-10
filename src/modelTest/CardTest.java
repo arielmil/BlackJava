@@ -43,9 +43,11 @@ public class CardTest {
 
         assertFalse(actual.getRevealed());
         actual.toggleReveal();
+
         assertTrue("Method getRevealed didn't worked sucessfully",actual.getRevealed());
-    }
-    
+
+	}
+	
 	@Test (timeout = DEFAULT_TIMEOUT)
     public void testGetSuitReturnsExpectedSuit() {
         Suit expected = new Suit("Clubs");
