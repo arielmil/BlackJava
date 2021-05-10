@@ -4,6 +4,7 @@ public class AbstractPlayer {
 	private String name;
 	private List hands;
 	private boolean isPlaying;
+	private boolean isTurnWinner;
 	
 	public AbstractPlayer(String name) {
 		this.name = name;
@@ -17,7 +18,7 @@ public class AbstractPlayer {
 	
 	public boolean isBroke(Hand hand) {
 		hand = (Hand)hands.acess(hand);
-		return hand.getIsBroke();
+		return hand.getIsBusted();
 	}
 	
 	public void takeCard(Card card, Hand hand) {
@@ -69,5 +70,13 @@ public class AbstractPlayer {
 		}
 		
 		return cards;
+	}
+	
+	public void turnWinner() {
+		isTurnWinner = true;
+	}
+	
+	public boolean isTurnWinner() {
+		return isTurnWinner;
 	}
 }

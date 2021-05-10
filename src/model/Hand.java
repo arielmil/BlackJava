@@ -2,44 +2,43 @@ package model;
 
 class Hand {
 	private List cards;
-	private int CurrentScore;
-	private boolean isBroke;
+	private int score;
+	private boolean isBusted;
 	private boolean isBlackJack;
 	private boolean stopDraw;
-	private boolean isTwentyOne;
 	private boolean canSplit;
 	private boolean stoppedThisTurn;
 	
 	public Hand() {
 		cards = new List();
-		setCurrentScoresToZero();
+		setScoreToZero();
 	}
 	
-	public void countScore() {
+	public void countScore(boolean isDrawPhase) {
 		int i;
 		
 		Card card;
 		for (i = 0; i < cards.getSize(); i++) {
 			card = (Card)cards.get(i);
-			CurrentScore = CurrentScore + card.getValue();
+			score = score + card.getValue();
 		}
 		
-		if (CurrentScore > 21) {
-			isBroke = true;
+		if (score > 21) {
+			isBusted = true;
+		}
+		
+		else if (score == 21 && isDrawPhase) {
+			isBlackJack = true;
 		}
 		
 	}
 	
-	public int getCurrentScore() {
-		return CurrentScore;
+	public int getscore() {
+		return score;
 	}
 	
-	public boolean getIsBroke() {
-		return isBroke;
-	}
-	
-	public void setIsBlackJack() {
-		isBlackJack = true;
+	public boolean getIsBusted() {
+		return isBusted;
 	}
 	
 	public boolean getIsBlackJack() {
@@ -54,21 +53,16 @@ class Hand {
 	public boolean canDraw() {
 		return stopDraw;
 	}
-	
-	public void twentyOnePoints() {
-		isTwentyOne = true;
+		
+	public boolean IsTwentyOne() {
+		return score == 21;
 	}
 	
-	public boolean getIsTwentyOne() {
-		return isTwentyOne;
-	}
-	
-	public void setCurrentScoresToZero() {
-		CurrentScore = 0;
-		isBroke = false;
+	public void setScoreToZero() {
+		score = 0;
+		isBusted = false;
 		isBlackJack = false;
 		stopDraw = false;
-		isTwentyOne = false;
 		canSplit = false;
 		stoppedThisTurn = false;
 	}
@@ -94,7 +88,7 @@ class Hand {
 	}
 	
 	public List clear() {
-		setCurrentScoresToZero();
+		setScoreToZero();
 		return cards.drawAll();
 	}
 	
