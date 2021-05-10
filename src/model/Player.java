@@ -1,12 +1,12 @@
 package model;
 
 public class Player extends AbstractPlayer {
-	Bet bet;
-	List tokens_list;
-	int total_money;
-	boolean insurance;
-	boolean isBetting;
-		
+	private Bet bet;
+	private List tokens_list;
+	private int total_money;
+	private boolean insurance;
+	private boolean isBetting;
+	
 	public Player(String name){
 		super(name);
 		bet = new Bet();
@@ -61,11 +61,15 @@ public class Player extends AbstractPlayer {
 	}
 	
 	
-	public void finishBet() {
-		isBetting = false;
+	public void toggleIsBetting() {
+		isBetting = !isBetting;
 	}
 	
-	public void bet(Tokens token, boolean bet) {
+	public boolean isBetting() {
+		return isBetting;
+	}
+	
+	public boolean bet(Tokens token, boolean bet) {
 		
 		if (bet) {
 			betToken(token);
@@ -74,6 +78,8 @@ public class Player extends AbstractPlayer {
 		else {
 			unbetToken(token);
 		}
+		
+		return true;
 	}
 	
 	public void Split(Card card1, Card card2, Hand hand) {
@@ -173,5 +179,9 @@ public class Player extends AbstractPlayer {
 			bet.addTokens(token.getColor(), token.getQuantity());
 		}
 		
+	}
+	
+	public int getTotalMoney() {
+		return total_money;
 	}
 }

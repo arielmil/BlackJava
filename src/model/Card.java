@@ -57,8 +57,8 @@ public class Card {
 	 * Method: void reveal : Reveal the Card
 	 *  ****/
 	
-	public void reveal() {
-		revealed = true;
+	public void toggleReveal() {
+		revealed = !revealed;
 	}
 	/* End Method: void reveal */
 	/*
