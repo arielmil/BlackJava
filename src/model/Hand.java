@@ -1,9 +1,9 @@
 package model;
 
-class Hand {
+public class Hand {
 	private List cards;
 	private int score;
-	private boolean isBusted;
+	public boolean isBusted;
 	private boolean isBlackJack;
 	private boolean stopDraw;
 	private boolean canSplit;

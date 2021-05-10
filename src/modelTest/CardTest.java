@@ -15,17 +15,18 @@ public class CardTest {
 	@Test (timeout = DEFAULT_TIMEOUT)
     public void testGetValueReturnsExpectedValue() {
         Card actual = new Card(2, "dois", new Suit("Clubs"));
-        
+        int expected = 2;
 
-        assertEquals(2, actual.getValue());
+        assertEquals("Method getValue didn't worked sucessfully",expected, actual.getValue());
     }
     
 	@Test (timeout = DEFAULT_TIMEOUT)
     public void testSetValueReturnsExpectedValue() {
         Card actual = new Card(2, "dois", new Suit("Clubs"));
-
-        actual.setValue(5);
-        assertEquals(5, actual.getValue());
+        int expected = 5;
+        
+        actual.setValue(expected);
+        assertEquals("Method setValue didn't worked sucessfully",expected, actual.getValue());
     
     }
     
@@ -33,16 +34,16 @@ public class CardTest {
     public void testGetNameReturnsExpectedName() {
         Card actual = new Card(2, "dois", new Suit("Clubs"));
 
-        assertEquals("dois", actual.getName());
+        assertEquals("Method getName didn't worked sucessfully","dois", actual.getName());
     }
     
 	@Test (timeout = DEFAULT_TIMEOUT)
-    public void testGetRevealedReturnsExpectedValue() {
-        Card actual = new Card(2, "dois", new Suit("paus"));
+    public void testToggleRevealExpectedValue() {
+        Card actual = new Card(2, "dois", new Suit("Clubs"));
 
         assertFalse(actual.getRevealed());
-        actual.reveal();
-        assertTrue(actual.getRevealed());
+        actual.toggleReveal();
+        assertTrue("Method getRevealed didn't worked sucessfully",actual.getRevealed());
     }
     
 	@Test (timeout = DEFAULT_TIMEOUT)
@@ -50,7 +51,7 @@ public class CardTest {
         Suit expected = new Suit("Clubs");
         Card actual = new Card(2, "dois", expected);
 
-        assertEquals(expected,actual.getSuit());
+        assertEquals("Method getSuit didn't worked sucessfully",expected,actual.getSuit());
     }
 
 	@Test (timeout = DEFAULT_TIMEOUT)
@@ -58,8 +59,23 @@ public class CardTest {
         Suit actual = new Suit("Clubs");
         Card expected = new Card(2, "dois", actual);
 
-        assertEquals(expected.getSuitname(), actual.getName());
+        assertEquals("Method getSuitName didn't worked sucessfully",expected.getSuitname(), actual.getName());
     }
 
-    
+	@Test (timeout = DEFAULT_TIMEOUT)
+    public void testGetRevealedExpectedValue() {
+        Card actual = new Card(2, "dois", new Suit("Clubs"));
+
+        assertFalse("Method getRevealed didn't worked sucessfully",actual.getRevealed());
+
+    }
+	
+	@Test (timeout = DEFAULT_TIMEOUT)
+    public void testEquals() {
+        Card actual = new Card(2, "dois", new Suit("Clubs"));
+        Card expected = new Card(2, "dois", new Suit("Clubs"));
+        
+        assertTrue("Method equals didn't worked sucessfully",expected.equals(actual));
+   
+    }
 }

@@ -2,9 +2,9 @@ package model;
 
 public class AbstractPlayer {
 	private String name;
-	private List hands;
-	private boolean isPlaying;
-	private boolean isTurnWinner;
+	public List hands;
+	public boolean isPlaying;
+	public boolean isTurnWinner;
 	
 	public AbstractPlayer(String name) {
 		this.name = name;

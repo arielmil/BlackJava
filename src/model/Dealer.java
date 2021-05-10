@@ -1,7 +1,7 @@
 package model;
 
 public class Dealer extends AbstractPlayer {
-	private boolean FirstDrawIsTen;
+	public boolean FirstDrawIsTen;
 	private boolean hasSeventeen;
 	
 	public Dealer() {

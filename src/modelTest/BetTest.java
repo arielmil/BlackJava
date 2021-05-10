@@ -20,7 +20,7 @@ public class BetTest {
         assertEquals("Method getTotalValue didn't worked successfully",bet.totalValue,bet.getTotalValue());
 
     }
-    /*
+    
     @Test (timeout = DEFAULT_TIMEOUT)
     public void testGetTokens() {
         Bet bet = new Bet();
@@ -28,23 +28,40 @@ public class BetTest {
         assertEquals("Method getTokens didn't worked successfully",bet.tokens,bet.getTokens());
 
     }
-    
+    /*
     @Test (timeout = DEFAULT_TIMEOUT)
-    public void testAddTokens(String color) {
+    public void testAddTokens() {
         
                 
     }
     
     @Test (timeout = DEFAULT_TIMEOUT)
-    public void testAddTokens(String color, int i) {
+    public void testAddTokens() {
         
                 
     }
     
     @Test (timeout = DEFAULT_TIMEOUT)
-    public void subtractTokens(String color) {
+    public void subtractTokens() {
         
                 
-    }*/
+    }
+    
+    @Test (timeout = DEFAULT_TIMEOUT)
+    public void subtractTokensFromValue() {
+        
+                
+    }
+    */
+    
+    @Test (timeout = DEFAULT_TIMEOUT)
+    public void testclear() {
+        Bet actual = new Bet();
+        int expected = 0;
+        actual.clear();
+        
+        assertEquals("Method getTokens didn't worked successfully",expected,actual.totalValue);
+
+    }
 
 }

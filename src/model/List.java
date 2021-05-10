@@ -6,7 +6,7 @@ import java.util.Collections;
 
 /***********************************************************************/
 
-class List {
+public class List {
 	
 	private int size;
 	private ArrayList<Object> list;
