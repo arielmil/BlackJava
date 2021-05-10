@@ -10,52 +10,55 @@ import org.junit.Test;
 
 public class CardTest {
 
-    @Test
+	private static final int DEFAULT_TIMEOUT = 5000;
+	
+	@Test (timeout = DEFAULT_TIMEOUT)
     public void testGetValueReturnsExpectedValue() {
-        Card card = new Card(2, "dois", new Suit("Clubs"));
+        Card actual = new Card(2, "dois", new Suit("Clubs"));
+        
 
-        assertEquals(2, card.getValue());
+        assertEquals(2, actual.getValue());
     }
     
-    @Test
+	@Test (timeout = DEFAULT_TIMEOUT)
     public void testSetValueReturnsExpectedValue() {
-        Card card = new Card(2, "dois", new Suit("Clubs"));
+        Card actual = new Card(2, "dois", new Suit("Clubs"));
 
-        card.setValue(5);
-        assertEquals(5, card.getValue());
+        actual.setValue(5);
+        assertEquals(5, actual.getValue());
     
     }
     
-    @Test
+	@Test (timeout = DEFAULT_TIMEOUT)
     public void testGetNameReturnsExpectedName() {
-        Card card = new Card(2, "dois", new Suit("Clubs"));
+        Card actual = new Card(2, "dois", new Suit("Clubs"));
 
-        assertEquals("dois", card.getName());
+        assertEquals("dois", actual.getName());
     }
     
-    @Test
+	@Test (timeout = DEFAULT_TIMEOUT)
     public void testGetRevealedReturnsExpectedValue() {
-        Card card = new Card(2, "dois", new Suit("paus"));
+        Card actual = new Card(2, "dois", new Suit("paus"));
 
-        assertFalse(card.getRevealed());
-        card.reveal();
-        assertTrue(card.getRevealed());
+        assertFalse(actual.getRevealed());
+        actual.reveal();
+        assertTrue(actual.getRevealed());
     }
     
-    @Test
+	@Test (timeout = DEFAULT_TIMEOUT)
     public void testGetSuitReturnsExpectedSuit() {
-        Suit suit = new Suit("Clubs");
-        Card card = new Card(2, "dois", suit);
+        Suit expected = new Suit("Clubs");
+        Card actual = new Card(2, "dois", expected);
 
-        assertEquals(suit,card.getSuit());
+        assertEquals(expected,actual.getSuit());
     }
 
-    @Test
+	@Test (timeout = DEFAULT_TIMEOUT)
     public void testGetNameSuitReturnsExpectedSuit() {
-        Suit suit = new Suit("Clubs");
-        Card card = new Card(2, "dois", suit);
+        Suit actual = new Suit("Clubs");
+        Card expected = new Card(2, "dois", actual);
 
-        assertEquals(card.getSuitname(), suit.getName());
+        assertEquals(expected.getSuitname(), actual.getName());
     }
 
     

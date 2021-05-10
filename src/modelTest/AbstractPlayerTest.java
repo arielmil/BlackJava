@@ -2,17 +2,21 @@ package modelTest;
 
 import model.*;
 
+
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
 public class AbstractPlayerTest {
 
-    @Test
+	private static final int DEFAULT_TIMEOUT = 5000;
+	
+    @Test (timeout = DEFAULT_TIMEOUT)
     public void testGetName() {
-        AbstractPlayer absplayer = new AbstractPlayer("playername");
-
-        assertTrue(absplayer.getName() == "playername");
+        AbstractPlayer actual = new AbstractPlayer("playername");
+        
+        
+        assertTrue("Method getName was unsuccessfull",actual.getName() == "playername");
 
     }
 }

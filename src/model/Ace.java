@@ -6,6 +6,7 @@ public class Ace extends Card {
 	
 	
 	/* Method: Constructor - Ace : Initializes the Card - Ace*/
+	
 	public Ace(String name, Suit suit) {
 		super(11, name, suit);
 	}
@@ -17,6 +18,7 @@ public class Ace extends Card {
 	}
 	
 	/* Method: void changeValue : Decide whether the ace can be 11 */
+	
 	public void changeValue() {
 		isEleven = false;
 		setValue(1);

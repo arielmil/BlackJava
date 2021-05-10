@@ -8,21 +8,22 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 public class AceTest {
-
-    @Test
+	
+	private static final int DEFAULT_TIMEOUT = 5000;
+	
+    @Test (timeout = DEFAULT_TIMEOUT)
     public void testGetIsElevenIsInitiallyTrue() {
-        Ace ace = new Ace("√Ås", new Suit("copas"));
+        Ace actual = new Ace("¡s", new Suit("copas"));
 
-        assertTrue(ace.getIsEleven());
+        assertTrue("Instance Boolean Variable IsEleven didn't initialized sucessfully",actual.getIsEleven());
 
     }
 
-    @Test
+    @Test (timeout = DEFAULT_TIMEOUT)
     public void testGetIsElevenChangesValue() {
-        Ace ace = new Ace("√Ås", new Suit("copas"));
+        Ace actual = new Ace("¡s", new Suit("copas"));
 
-        assertTrue(ace.getIsEleven());
-        ace.changeValue();
-        assertFalse(ace.getIsEleven());
+        actual.changeValue();
+        assertFalse("Method getIsEleven didn't worked successfully",actual.getIsEleven());
     }
 }
