@@ -41,7 +41,7 @@ public class CardTest {
         Card actual = new Card(2, "dois", new Suit("paus"));
 
         assertFalse(actual.getRevealed());
-        actual.reveal();
+        actual.toggleReveal();
         assertTrue(actual.getRevealed());
     }
     
