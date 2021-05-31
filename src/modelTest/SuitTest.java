@@ -9,6 +9,11 @@ public class SuitTest {
 
 	private static final int DEFAULT_TIMEOUT = 5000;
 	
+	/****************************************************************************
+	* 
+	* Method: void testGetNameReturnsExpectedName
+	*  ****/
+	
 	@Test (timeout = DEFAULT_TIMEOUT)
     public void testGetNameReturnsExpectedName() {
         Suit actual = new Suit("Clubs");
@@ -16,5 +21,7 @@ public class SuitTest {
 
         assertEquals("Method getName didn't worked successfully",expected, actual.getName());
     }
+	
+	/* End Method: testGetNameReturnsExpectedName */
 	
 }

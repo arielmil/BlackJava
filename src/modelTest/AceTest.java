@@ -11,6 +11,11 @@ public class AceTest {
 	
 	private static final int DEFAULT_TIMEOUT = 5000;
 	
+	/****************************************************************************
+	* 
+	* Method: void testGetIsElevenIsInitiallyTrue
+	*  ****/
+	
     @Test (timeout = DEFAULT_TIMEOUT)
     public void testGetIsElevenIsInitiallyTrue() {
         Ace actual = new Ace("Ás", new Suit("copas"));
@@ -18,6 +23,13 @@ public class AceTest {
         assertTrue("Instance Boolean Variable IsEleven didn't initialized sucessfully",actual.getIsEleven());
 
     }
+    
+    /* End Method: testGetIsElevenIsInitiallyTrue */
+	/*
+	****************************************************************************
+	* 
+	* Method: void testGetIsElevenChangesValue
+	*  ****/
 
     @Test (timeout = DEFAULT_TIMEOUT)
     public void testGetIsElevenChangesValue() {
@@ -26,4 +38,8 @@ public class AceTest {
         actual.changeValue();
         assertFalse("Method getIsEleven didn't worked successfully",actual.getIsEleven());
     }
+    
+    /* End Method: testGetIsElevenChangesValue */
+	/*
+	****************************************************************************/
 }

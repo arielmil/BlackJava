@@ -17,14 +17,14 @@ public class AbstractPlayer {
 	}
 	
 	public boolean isBroke(Hand hand) {
-		hand = (Hand)hands.acess(hand);
+		
 		return hand.getIsBusted();
 	}
 	
 	public void takeCard(Card card, Hand hand) {
 		if (isPlaying) {
 			if(!isBroke(hand)) {
-				hand = (Hand)this.hands.acess(hand);
+				
 				hand.addCard(card);				
 			}
 			

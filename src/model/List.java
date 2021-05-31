@@ -8,7 +8,7 @@ import java.util.Collections;
 
 public class List {
 	
-	private int size;
+	public int size;
 	private ArrayList<Object> list;
 	private boolean empty;
 	private static int countRemoved;
@@ -76,6 +76,7 @@ public class List {
 	public void insertL(Object o) {
 		list.add(o);
 		updateSize('a');
+		empty = false;
 	}
 	/* End Method: void insertL */
 	/*
@@ -138,8 +139,8 @@ public class List {
 	/* End Method: private void updateSize */
 	
 	public void moveFrom(List list) {
-		int i;
-		for (i = 0; i < list.getSize(); i++) {
+		int size = list.getSize();
+		for (int i = 0; i < size; i++) {
 			this.insertL(list.drawL());
 		}
 	}

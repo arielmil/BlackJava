@@ -12,28 +12,37 @@ public class DealerTest {
 	
 	private static final int DEFAULT_TIMEOUT = 5000;
 	
-	/*
-	@Test (timeout = DEFAULT_TIMEOUT)
-    public void testGetTotalVallue() {
-        Dealer actual = new Dealer ();
-        
-
-
-    }*/
+	
+	/****************************************************************************
+	* 
+	* Method: void testsetIsTenIsTrue: Tests the case if the boolean parameter is true
+	*  ****/
 	
 	@Test (timeout = DEFAULT_TIMEOUT)
-    public void testsetIsTen() {
+    public void testsetIsTenIsTrue() {
         Dealer actual = new Dealer ();
         
         actual.setIsTen(true);
-        assertTrue("Method getName was unsuccessfull",actual.FirstDrawIsTen);
-        
-        actual.setIsTen(false);
-        assertFalse("Method getName was unsuccessfull",actual.FirstDrawIsTen);
-
-        
-
+        assertTrue("Method setIsTen for true was unsuccessfull",actual.FirstDrawIsTen);
 
     }
+
+	/* End Method: testsetIsTenIsTrue */
+	/*
+	****************************************************************************
+	* 
+	* Method: void testsetIsTenIsFalse: Tests the case if the boolean parameter is false
+	*  ****/
+	
+	@Test (timeout = DEFAULT_TIMEOUT)
+    public void testsetIsTenIsFalse() {
+        Dealer actual = new Dealer ();
+               
+        actual.setIsTen(false);
+        assertFalse("Method setIsTen for false was unsuccessfull",actual.FirstDrawIsTen);
+
+    }
+	
+	/* End Method: testsetIsTenIsFalse */
 
 }

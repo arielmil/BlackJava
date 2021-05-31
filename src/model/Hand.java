@@ -1,8 +1,8 @@
 package model;
 
 public class Hand {
-	private List cards;
-	private int score;
+	public List cards;
+	public int score;
 	public boolean isBusted;
 	private boolean isBlackJack;
 	private boolean stopDraw;

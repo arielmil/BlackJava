@@ -12,6 +12,12 @@ public class CardTest {
 
 	private static final int DEFAULT_TIMEOUT = 5000;
 	
+	
+	/****************************************************************************
+	* 
+	* Method: void testGetValueReturnsExpectedValue
+	*  ****/
+	
 	@Test (timeout = DEFAULT_TIMEOUT)
     public void testGetValueReturnsExpectedValue() {
         Card actual = new Card(2, "dois", new Suit("Clubs"));
@@ -19,6 +25,13 @@ public class CardTest {
 
         assertEquals("Method getValue didn't worked sucessfully",expected, actual.getValue());
     }
+	
+	/* End Method: testGetValueReturnsExpectedValue */
+	/*
+	****************************************************************************
+	* 
+	* Method: void testSetValueReturnsExpectedValue
+	*  ****/
     
 	@Test (timeout = DEFAULT_TIMEOUT)
     public void testSetValueReturnsExpectedValue() {
@@ -30,12 +43,26 @@ public class CardTest {
     
     }
     
+	/* End Method: testSetValueReturnExpectedValue */
+	/*
+	****************************************************************************
+	* 
+	* Method: void testGetNameReturnsExpectedName
+	*  ****/
+	
 	@Test (timeout = DEFAULT_TIMEOUT)
     public void testGetNameReturnsExpectedName() {
         Card actual = new Card(2, "dois", new Suit("Clubs"));
 
         assertEquals("Method getName didn't worked sucessfully","dois", actual.getName());
     }
+	
+	/* End Method: testGetNameReturnsExpectedName */
+	/*
+	****************************************************************************
+	* 
+	* Method: void testToggleRevealExpectedValue
+	*  ****/
     
 	@Test (timeout = DEFAULT_TIMEOUT)
     public void testToggleRevealExpectedValue() {
@@ -48,6 +75,13 @@ public class CardTest {
 
 	}
 	
+	/* End Method: testToggleRevealExpectedValue */
+	/*
+	****************************************************************************
+	* 
+	* Method: void testGetSuitReturnsExpectedSuit
+	*  ****/
+	
 	@Test (timeout = DEFAULT_TIMEOUT)
     public void testGetSuitReturnsExpectedSuit() {
         Suit expected = new Suit("Clubs");
@@ -55,6 +89,13 @@ public class CardTest {
 
         assertEquals("Method getSuit didn't worked sucessfully",expected,actual.getSuit());
     }
+	
+	/* End Method: testGetSuitReturnsExpectedSuit */
+	/*
+	****************************************************************************
+	* 
+	* Method: void testGetNameSuitReturnsExpectedSuit
+	*  ****/
 
 	@Test (timeout = DEFAULT_TIMEOUT)
     public void testGetNameSuitReturnsExpectedSuit() {
@@ -63,6 +104,13 @@ public class CardTest {
 
         assertEquals("Method getSuitName didn't worked sucessfully",expected.getSuitname(), actual.getName());
     }
+	
+	/* End Method: testGetNameSuitReturnsExpectedSuit */
+	/*
+	****************************************************************************
+	* 
+	* Method: void testGetRevealedExpectedValue
+	*  ****/
 
 	@Test (timeout = DEFAULT_TIMEOUT)
     public void testGetRevealedExpectedValue() {
@@ -72,6 +120,13 @@ public class CardTest {
 
     }
 	
+	/* End Method: testGetRevealedExpectedValue */
+	/*
+	****************************************************************************
+	* 
+	* Method: void testEquals
+	*  ****/
+	
 	@Test (timeout = DEFAULT_TIMEOUT)
     public void testEquals() {
         Card actual = new Card(2, "dois", new Suit("Clubs"));
@@ -80,4 +135,7 @@ public class CardTest {
         assertTrue("Method equals didn't worked sucessfully",expected.equals(actual));
    
     }
+	
+	/* End Method: testEquals */
+	
 }

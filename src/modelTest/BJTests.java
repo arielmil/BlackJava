@@ -9,7 +9,15 @@ import org.junit.runners.*;
 	AceTest.class,
 	BetTest.class,
 	CardTest.class,
-	PlayerTest.class
+//	DeckTest.class,
+	DealerTest.class,
+//	GameTest.class,
+//	HandTest.class,
+	ListTest.class,
+//	ModelTest.class,
+	PlayerTest.class,
+	SuitTest.class,
+//	TokensTest.class,
 })
 
 public class BJTests {
