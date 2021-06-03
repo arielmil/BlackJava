@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
@@ -13,8 +14,9 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
 @SuppressWarnings("serial")
-public class OpeningScreen extends JPanel implements ComponentPositionDebuggingInterface, ActionListener{
-	
+public class OpeningScreen extends JPanel {
+	private debugPositioningMode debugPositioning;
+	private Boolean debugPositioningMode = false;
 	private Point center;
 	private Point screenSize;
 	private JButton newGameButton;
@@ -61,14 +63,11 @@ public class OpeningScreen extends JPanel implements ComponentPositionDebuggingI
 		JButtonArray[0] = newGameButton;
 		JButtonArray[1] = loadGameButton;
 		
+		this.debugPositioningMode = debugPositioningMode;
 		if (debugPositioningMode) {
 			setDebugPositioningMode();
 		}
 		
-	}
-	
-	public void actionPerformed(ActionEvent e) {
-		movingComponent = (JButton)e.getSource();
 	}
 	
 	public void buildNewGameButton() {
@@ -77,10 +76,9 @@ public class OpeningScreen extends JPanel implements ComponentPositionDebuggingI
 		
 		add(newGameButton);
 		
-		newGameButton.setBounds((int)(screenSize.x * 0.4), (int)(center.y * 0.9777), 148, 45);
+		newGameButton.setBounds(404, center.y, 148, 45);
 		System.out.println(newGameButton.getBounds());
 		newGameButton.setVisible(true);
-		newGameButton.addActionListener(this);
 	}
 	
 	public void buildLoadGameButton() {
@@ -88,10 +86,9 @@ public class OpeningScreen extends JPanel implements ComponentPositionDebuggingI
 		loadGameButton.setToolTipText("Load a previously saved game");
 		
 		add(loadGameButton);
-		
-		loadGameButton.setBounds(1098, 528, 148, 45);
+		System.out.printf("%d",center.x);
+		loadGameButton.setBounds(648, center.y, 148, 45);
 		loadGameButton.setVisible(true);
-		loadGameButton.addActionListener(this);
 	}
 	
 	public void buildPlayerSelectButtons() {
@@ -108,20 +105,35 @@ public class OpeningScreen extends JPanel implements ComponentPositionDebuggingI
 		
 	}
 	
-	public void setDebugPositioningMode() {
-		mouseEventHandler = new ComponentPositionHelper(this);
-		addMouseListener(mouseEventHandler);
-		addMouseMotionListener(mouseEventHandler);
-	}
-	
-	public void setChildPosition(Point childNewPosition) {
-		movingComponent.setLocation(childNewPosition.x, childNewPosition.y);
+	private void setDebugPositioningMode() {
+		debugPositioning = new debugPositioningMode();
 	}
 	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		//String size = String.format("x: %d, y: %d", g.getFontMetrics().stringWidth("New Game"), g.getFontMetrics().stringWidth("Load game"));
-		//System.out.println(size);
+		
+		if (debugPositioningMode) {
+			g.drawLine(center.x, 0, center.x, screenSize.y);
+			g.drawLine(0, center.y, screenSize.x, center.y);
+		}
 	}
 	
+	private class debugPositioningMode implements ComponentPositionDebuggingInterface, ActionListener {
+		
+		public debugPositioningMode() {
+			mouseEventHandler = new ComponentPositionHelper(this);
+			addMouseListener(mouseEventHandler);
+			addMouseMotionListener(mouseEventHandler);
+			newGameButton.addActionListener(this);
+			loadGameButton.addActionListener(this);
+		}
+		
+		public void actionPerformed(ActionEvent e) {
+			movingComponent = (JButton)e.getSource();
+		}
+		
+		public void setChildPosition(Point childNewPosition) {
+			movingComponent.setLocation(childNewPosition.x, childNewPosition.y);
+		}
+	}
 }
