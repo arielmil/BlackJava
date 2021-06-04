@@ -180,9 +180,9 @@ public class OpeningScreen extends JPanel implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		JButton clickedButton = (JButton)e.getSource();
 		
+		changeMenusVisibility();
+		
 		if (clickedButton.getText() == "New Game") {
-			changeMenusVisibility();
-			
 			playerSelectMenu.setVisible(true);
 			
 			for (JRadioButton button : playerSelectButton) {
@@ -193,9 +193,7 @@ public class OpeningScreen extends JPanel implements ActionListener{
 		}
 		
 		
-		else if (clickedButton.getText() == "Load Game") {
-			changeMenusVisibility();
-			
+		else if (clickedButton.getText() == "Load Game") {			
 			loadGameMenu.setVisible(true);
 			
 			for (JRadioButton button : playerSelectButton) {
