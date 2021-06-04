@@ -32,7 +32,7 @@ public class OpeningScreenTest {
 		center = new Point(1200/2, 700/2);
 		screenSize = new Point(1200, 700);
 		
-		Foreground = new OpeningScreen(screenSize, center, true);
+		Foreground = new OpeningScreen(screenSize, center);
 		backgroundPanel = new TablePanel(screenSize, Foreground);
 	}
 }
