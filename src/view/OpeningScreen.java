@@ -10,7 +10,6 @@ import java.awt.event.MouseAdapter;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComponent;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
@@ -29,15 +28,14 @@ public class OpeningScreen extends JPanel implements ActionListener{
 	
 	private JButton newGameButton;
 	private JButton loadGameButton;
+	private JButton okButton;
 	
 	private JRadioButton playerSelectButton[];
-	
-	private JLabel newGameMenuLabel;
-	private JLabel loadGameMenuLabel;
 	
 	private ButtonGroup playerSelectButtonsGroup;
 	
 	private MouseAdapter mouseEventHandler;
+	
 	
 	public OpeningScreen(Point screenSize, Point topContainerCenter) {
 		super();
@@ -50,7 +48,6 @@ public class OpeningScreen extends JPanel implements ActionListener{
 		
 		buildButtons();
 		buildPopUpMenus();
-		
 	}
 	
 	public OpeningScreen(Point screenSize, Point topContainerCenter, Boolean debugPositioningMode) {
@@ -68,9 +65,7 @@ public class OpeningScreen extends JPanel implements ActionListener{
 		
 		this.debugPositioningMode = debugPositioningMode;
 		
-		setDebugPositioningMode();
-		
-		
+		setDebugPositioningMode();		
 	}
 	
 	private void buildNewGameButton() {
@@ -94,9 +89,16 @@ public class OpeningScreen extends JPanel implements ActionListener{
 		loadGameButton.setBounds(648, center.y, 148, 45);
 		loadGameButton.setVisible(true);
 		
-		if (!debugPositioningMode) {
-			loadGameButton.addActionListener(this);
-		}
+		loadGameButton.addActionListener(this);
+	}
+	
+	private void buildOkButton() {
+		okButton = new JButton("Ok");
+		okButton.setToolTipText("Confirm selected players");
+		
+		okButton.setBounds(148 - 55, 206 - 45, 55, 45);
+		
+		okButton.addActionListener(this);
 	}
 	
 	private void buildPlayerSelectButtons() {
@@ -113,62 +115,65 @@ public class OpeningScreen extends JPanel implements ActionListener{
 			playerSelectButton[i] = button;
 			playerSelectButtonsGroup.add(button);
 		}
-		
 	}
 	
 	private void buildButtons() {
 		buildNewGameButton();
 		buildLoadGameButton();
 		buildPlayerSelectButtons();
+		buildOkButton();
 	}
-	
-	private void setDebugPositioningMode() {
-		debugPositioning = new debugPositioningMode();
-	}
-	
-	
+		
 	private void buildPopUpMenus() {
 		int buttonsY;
-				
-		playerSelectMenu = new JPanel(null);
-		loadGameMenu = new JPanel(null);
 		
 		Point newGameButtonLocation = newGameButton.getLocation();
 		Point loadGameButtonLocation = loadGameButton.getLocation();
 		
-		playerSelectMenu.setBounds(newGameButtonLocation.x, 144, newGameButton.getWidth(), newGameButtonLocation.y - 144);
+		playerSelectMenu = new JPanel() {
+			{
+				setLayout(null);
+				setBounds(newGameButtonLocation.x, 144, newGameButton.getWidth(), newGameButtonLocation.y - 144);
+			}
+			
+			public void paintComponent(Graphics g) {
+				super.paintComponent(g);
+				g.drawString("Select players", 30, 25);
+			}
+		};
+		
+		loadGameMenu = new JPanel(null);		
 		loadGameMenu.setBounds(loadGameButtonLocation.x, 144, loadGameButton.getWidth(), loadGameButtonLocation.y - 144);
 				
 		add(playerSelectMenu);
 		add(loadGameMenu);
 		
-		buttonsY =  newGameButton.getHeight() - 15;
+		playerSelectMenu.add(okButton);
+		
+		buttonsY =  newGameButton.getHeight() - 13;
 		
 		for (JRadioButton button : playerSelectButton) {
 			playerSelectMenu.add(button);
 			button.setBounds(7, buttonsY, 35, 35);
 			buttonsY = buttonsY + newGameButton.getHeight();
 		}
-		
-		newGameMenuLabel = new JLabel("Select players");
-		newGameMenuLabel.setBounds(20, 0, newGameButton.getWidth(), newGameButton.getHeight());
-		newGameMenuLabel.setVisible(false);
-		
-		playerSelectMenu.add(newGameMenuLabel);
-		
+				
 		playerSelectMenu.setVisible(false);
 		loadGameMenu.setVisible(false);
 	}
 	
+	private void setDebugPositioningMode() {
+		debugPositioning = new debugPositioningMode();
+	}
+	
 	private void changeMenusVisibility() {
 		if (loadGameMenu.isVisible()) {
-			//loadGameMenuLabel.setVisible(false);
 			loadGameMenu.setVisible(false);
 		}
 		
 		else if (playerSelectMenu.isVisible()) {
-			newGameMenuLabel.setVisible(false);
 			playerSelectMenu.setVisible(false);
+			okButton.setVisible(false);
 		}
 	}
 	
@@ -184,11 +189,11 @@ public class OpeningScreen extends JPanel implements ActionListener{
 				button.setVisible(true);
 			}
 			
-			newGameMenuLabel.setVisible(true);
+			okButton.setVisible(true);
 		}
 		
 		
-		else {
+		else if (clickedButton.getText() == "Load Game") {
 			changeMenusVisibility();
 			
 			loadGameMenu.setVisible(true);
@@ -197,7 +202,6 @@ public class OpeningScreen extends JPanel implements ActionListener{
 				button.setVisible(false);
 			}
 			
-			//loadGameMenuLabel.setVisible(true);
 		}
 	}
 	
@@ -217,18 +221,16 @@ public class OpeningScreen extends JPanel implements ActionListener{
 		
 		public debugPositioningMode() {
 			mouseEventHandler = new ComponentPositionHelper(this);
+			
 			addMouseListener(mouseEventHandler);
 			addMouseMotionListener(mouseEventHandler);
+			
 			newGameButton.addActionListener(this);
 			loadGameButton.addActionListener(this);
 		}
 		
 		public void setSource(Object source) {
 			movingComponent = (JComponent)source;
-			if (movingComponent instanceof JButton || movingComponent instanceof JRadioButton) {
-				movingComponent = (JComponent)source;
-			}
-			
 		}
 		
 		public void actionPerformed(ActionEvent e) {
@@ -236,7 +238,6 @@ public class OpeningScreen extends JPanel implements ActionListener{
 		}
 		
 		public void setChildPosition(Point childNewPosition, AWTEvent e) {
-			
 			movingComponent.setLocation(childNewPosition.x, childNewPosition.y);				
 		}
 	}
