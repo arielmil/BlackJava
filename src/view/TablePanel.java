@@ -10,28 +10,33 @@ import javax.swing.JPanel;
 public class TablePanel extends JPanel {
 	private String img_name;
 	private Image img;
-	private Point screenSize;
+	private Point panelSize;
 	
-	public TablePanel(Point screenSize, OpeningScreen Foreground) {
+	public TablePanel(Point screenSize, JPanel foreGround) {
 		super();
 		
-		setBounds(0, 0, screenSize.x, screenSize.y);
+		setLocation(0, 0);
 		setLayout(null);
 		
 		img_name = "blackjackBKG.png";
 		img = ImageLoader.load(img_name);
 		
-		if (Foreground != null) {
-			add(Foreground);
+		if (foreGround != null) {
+			panelSize = new Point(foreGround.getWidth(), foreGround.getHeight());
+			
+			add(foreGround);
 		}
 		
-		setOpaque(false);
+		else {
+			panelSize = new Point(screenSize.x, screenSize.y);
+		}
 		
-		this.screenSize = screenSize;
+		setSize(panelSize.x, panelSize.y);
+		setOpaque(false);
 	}
 	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		g.drawImage(img, 0, 0, screenSize.x, screenSize.y, null);
+		g.drawImage(img, 0, 0, panelSize.x, panelSize.y, null);
 	}
 }
