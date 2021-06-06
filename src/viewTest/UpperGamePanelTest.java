@@ -30,7 +30,7 @@ public class UpperGamePanelTest {
 		
 		screenSize = new Point(1200, 700);
 		
-		Foreground = new UpperGamePanel(screenSize);
+		Foreground = new UpperGamePanel(screenSize, true);
 		backgroundPanel = new TablePanel(screenSize, Foreground);
 	}
 }

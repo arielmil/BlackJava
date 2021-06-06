@@ -29,7 +29,7 @@ public class OpeningScreenTest {
 	static{		
 		screenSize = new Point(1200, 700);
 		
-		Foreground = new OpeningScreen(screenSize);
+		Foreground = new OpeningScreen(screenSize, true);
 		backgroundPanel = new TablePanel(screenSize, Foreground);
 	}
 }

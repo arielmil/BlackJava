@@ -2,8 +2,9 @@ package viewTest;
 
 import view.TablePanel;
 
-import javax.swing.*;
 import java.awt.Point;
+
+import javax.swing.JFrame;
 
 public class TablePanelTest {
 	public static void main(String args[]) {
@@ -12,6 +13,7 @@ public class TablePanelTest {
 		
 		JFrame frame = new JFrame("Table_panel Test");
 		frame.setBounds(0, 0, screenSize.x, screenSize.y);
+		System.out.println(frame.getInsets());
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);		
 		
 		TablePanel TablePanelTest = new TablePanel(screenSize, null);

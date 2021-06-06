@@ -15,7 +15,6 @@ public class TablePanel extends JPanel {
 	public TablePanel(Point screenSize, JPanel foreGround) {
 		super();
 		
-		setLocation(0, 0);
 		setLayout(null);
 		
 		img_name = "blackjackBKG.png";
@@ -31,7 +30,7 @@ public class TablePanel extends JPanel {
 			panelSize = new Point(screenSize.x, screenSize.y);
 		}
 		
-		setSize(panelSize.x, panelSize.y);
+		setBounds(0, 0, panelSize.x, panelSize.y);
 		setOpaque(false);
 	}
 	

@@ -17,7 +17,7 @@ import javax.swing.JRadioButton;
 public class OpeningScreen extends JPanel implements ActionListener{
 	
 	@SuppressWarnings("unused") //For whatever reason, eclipse doesn't recognize that this variable is being used.
-	private debugPositioningMode debugPositioning;
+	private DebugPositioningMode debugPositioning;
 	private Boolean debugPositioningMode = false;
 	
 	private Point center;
@@ -75,7 +75,6 @@ public class OpeningScreen extends JPanel implements ActionListener{
 		add(newGameButton);
 		
 		newGameButton.setBounds(404, center.y, 148, 45);
-		newGameButton.setVisible(true);
 		
 		newGameButton.addActionListener(this);
 	}
@@ -87,7 +86,6 @@ public class OpeningScreen extends JPanel implements ActionListener{
 		add(loadGameButton);
 		
 		loadGameButton.setBounds(648, center.y, 148, 45);
-		loadGameButton.setVisible(true);
 		
 		loadGameButton.addActionListener(this);
 	}
@@ -163,7 +161,7 @@ public class OpeningScreen extends JPanel implements ActionListener{
 	}
 	
 	private void setDebugPositioningMode() {
-		debugPositioning = new debugPositioningMode();
+		debugPositioning = new DebugPositioningMode();
 	}
 	
 	private void changeMenusVisibility() {
@@ -214,10 +212,10 @@ public class OpeningScreen extends JPanel implements ActionListener{
 		
 	}
 	
-	private class debugPositioningMode implements ComponentPositionDebuggingInterface, ActionListener {
+	private class DebugPositioningMode implements ComponentPositionDebuggingInterface, ActionListener {
 		private JComponent movingComponent;
 		
-		public debugPositioningMode() {
+		public DebugPositioningMode() {
 			mouseEventHandler = new ComponentPositionHelper(this);
 			
 			addMouseListener(mouseEventHandler);
