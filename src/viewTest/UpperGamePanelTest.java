@@ -5,17 +5,17 @@ import java.awt.Point;
 
 import javax.swing.JFrame;
 
-import view.OpeningScreen;
+import view.UpperGamePanel;
 import view.TablePanel;
 
-public class OpeningScreenTest {
+public class UpperGamePanelTest {
 	static private Container contentPane;
 	static private Point screenSize;
 	static private TablePanel backgroundPanel;
-	static private OpeningScreen Foreground;
+	static private UpperGamePanel Foreground;
 	
 	public static void main (String args[]) {
-		JFrame frame = new JFrame("OpeningScreen Test");
+		JFrame frame = new JFrame("UpperGamePanel Test");
 		contentPane = frame.getContentPane();
 		contentPane.setLayout(null);
 		
@@ -26,10 +26,11 @@ public class OpeningScreenTest {
 		frame.setVisible(true);
 	}
 	
-	static{		
+	static{
+		
 		screenSize = new Point(1200, 700);
 		
-		Foreground = new OpeningScreen(screenSize);
+		Foreground = new UpperGamePanel(screenSize);
 		backgroundPanel = new TablePanel(screenSize, Foreground);
 	}
 }

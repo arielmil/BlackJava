@@ -37,27 +37,27 @@ public class OpeningScreen extends JPanel implements ActionListener{
 	private MouseAdapter mouseEventHandler;
 	
 	
-	public OpeningScreen(Point screenSize, Point topContainerCenter) {
+	public OpeningScreen(Point screenSize) {
 		super();
 		setBounds(0, 0, screenSize.x, screenSize.y);
 		setLayout(null);
 		setOpaque(false);
 		
-		center = topContainerCenter;
+		center = new Point(screenSize.x/2, screenSize.y/2);
 		this.screenSize = screenSize;
 		
 		buildButtons();
 		buildPopUpMenus();
 	}
 	
-	public OpeningScreen(Point screenSize, Point topContainerCenter, Boolean debugPositioningMode) {
+	public OpeningScreen(Point screenSize, Boolean debugPositioningMode) {
 		super();
 		
 		setBounds(0, 0, screenSize.x, screenSize.y);
 		setLayout(null);
 		setOpaque(false);
 		
-		center = topContainerCenter;
+		center = new Point(screenSize.x/2, screenSize.y/2);
 		this.screenSize = screenSize;
 		
 		buildButtons();

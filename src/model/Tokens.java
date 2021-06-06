@@ -10,20 +10,24 @@ import java.util.Map;
 public class Tokens {
 	private int value;
 	private int quantity;
-	private String color;
 	private int total;
 	
-	private static Map <String, Integer> color_to_value = new HashMap <String, Integer>(6);
-	/*private img*/
+	private static int tokensValues[];
 	
+	private String color;
+	
+	private static String tokensNames[];
+	
+	private static Map <String, Integer> color_to_value = new HashMap <String, Integer>(6);
+		
 	
 	static {
-        int token_values[] = new int[] {1, 5, 10, 20, 50, 100};
-		String token_names[] = new String[] {"Gray", "Red", "Blue", "Green", "Purple", "Black"};
+        tokensValues = new int[] {1, 5, 10, 20, 50, 100};
+		tokensNames = new String[] {"Gray", "Red", "Blue", "Green", "Purple", "Black"};
 		
 		int i;
-		for (i = 0; i < token_values.length; i++) {
-			color_to_value.put(token_names[i], token_values[i]);
+		for (i = 0; i < tokensValues.length; i++) {
+			color_to_value.put(tokensNames[i], tokensValues[i]);
 		}
 	}
 	
@@ -88,7 +92,6 @@ public class Tokens {
 		return returned;
 	}
 	
-	/*ver se tem necessidade de retornar um objeto tokens nos metodos de subtract*/
 	public Tokens tokenSubtract() {
 		quantity = quantity - 1;
 		total = total - value;
@@ -106,8 +109,7 @@ public class Tokens {
         
         int i;
         
-        String token_names[] = new String[] {"Gray", "Red", "Blue", "Green", "Purple", "Black"};
-        int token_quantities[] = new int[] {grayTokens, redTokens, blueTokens, greenTokens, purpleTokens, blackTokens};
+        int tokenQuantities[] = new int[] {grayTokens, redTokens, blueTokens, greenTokens, purpleTokens, blackTokens};
   
         List result = new List ();
         
@@ -141,16 +143,19 @@ public class Tokens {
             value -= grayTokens;
         }
 
-        for (i = 0; i < token_quantities.length; i++) {
-        	result.insertL(new Tokens(token_names[i], token_quantities[i]));
+        for (i = 0; i < tokenQuantities.length; i++) {
+        	result.insertL(new Tokens(tokensNames[i], tokenQuantities[i]));
         }
    
         return result;
 
     }
 	
-	/*void render() {
+	public static int[] getTokensValues() {
+		return tokensValues;
+	}
 	
-	
-	}*/
+	public static String[] getTokensNames() {
+		return tokensNames;
+	}
 }
