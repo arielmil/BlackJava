@@ -15,6 +15,7 @@ public class ComponentPositionHelper extends MouseAdapter{
 		Point location = e.getPoint();
 		String locationString = String.format("x: %d, y: %d", location.x, location.y);
 		System.out.println(locationString);
+		System.out.println(e.getSource());
 	}
 	
 	public void mouseDragged(MouseEvent e) {

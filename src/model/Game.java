@@ -1,6 +1,6 @@
 package model;
 
-class Game {
+public class Game {
 	private Player players[];
 	private Deck deck;
 	private Dealer dealer;

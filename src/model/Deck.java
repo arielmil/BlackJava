@@ -1,6 +1,6 @@
 package model;
 
-class Deck {
+public class Deck {
 	private int quantity;
 	private List deck;
 	private List bin;

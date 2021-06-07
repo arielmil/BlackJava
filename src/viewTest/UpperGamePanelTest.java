@@ -3,6 +3,7 @@ package viewTest;
 import java.awt.Container;
 import java.awt.Point;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 
 import view.UpperGamePanel;
@@ -20,10 +21,12 @@ public class UpperGamePanelTest {
 		contentPane.setLayout(null);
 		
 		contentPane.add(backgroundPanel);
-		
-		frame.setBounds(0, 0, screenSize.x, screenSize.y);
+				
+		frame.setBounds(0,0,screenSize.x, screenSize.y);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
+				
 	}
 	
 	static{
@@ -33,4 +36,6 @@ public class UpperGamePanelTest {
 		Foreground = new UpperGamePanel(screenSize, true);
 		backgroundPanel = new TablePanel(screenSize, Foreground);
 	}
+	
+	
 }

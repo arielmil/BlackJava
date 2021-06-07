@@ -71,5 +71,52 @@ public class ListTest {
     }
 	
 	/* End Method: testMoveFrom */
+	/*
+	****************************************************************************
+	* 
+	* Method: void testMoveFrom
+	*  ****/
 	
+	@Test 
+    public void testCopyNTimes() {
+        List actual_list = new List();
+        int expected_times = 3;
+        int expected_size = 8;
+        
+        for (int i = 0; i < 2;i++) {
+        	actual_list.insertL(i);
+        }
+        
+        actual_list.copyNTimes(expected_times);
+        
+        assertEquals("Method testCopyNTimes was unsuccessfull",expected_size,actual_list.size); 
+        
+    }
+	
+	/* End Method: testMoveFrom */
+	/*
+	****************************************************************************
+	* 
+	* Method: void insertL
+	*  ****/
+	
+	@Test 
+    public void testInsertL() {
+        List actual_list = new List();
+        int object = 2;
+        int object_2 = 3;
+        
+        actual_list.insertL(object);
+        
+        assertEquals("Method testInsertL Size was unsuccessfull", 1,actual_list.getSize());
+        assertEquals("Method testInsertL Element Add was unsuccessfull",object,actual_list.get(0));
+        
+        actual_list.insertL(object_2);
+        
+        assertEquals("Method testInsertL Size was unsuccessfull", 2,actual_list.getSize());
+        assertEquals("Method testInsertL Element Add was unsuccessfull",object_2,actual_list.get(1));
+        
+    }
+	
+	/* End Method: testMoveFrom */
 }

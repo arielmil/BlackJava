@@ -103,10 +103,10 @@ public class List {
 	*  ****/
 	
 	public void copyNTimes(int times) {
-		int i,j;
+		int original_size = size;
 		
-		for (i = 0; i < times; i++) {
-			for (j = 0; j < size; i++) {
+		for (int i = 0; i < times; i++) {
+			for (int j = 0; j < original_size; j++) {
 				this.insertL(get(j));
 			}
 		}
