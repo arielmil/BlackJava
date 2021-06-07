@@ -24,6 +24,8 @@ public class OpeningScreenTest {
 		frame.setBounds(0, 0, screenSize.x, screenSize.y);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
+		System.out.println(frame.getInsets());
+
 	}
 	
 	static{		

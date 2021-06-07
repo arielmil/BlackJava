@@ -52,7 +52,7 @@ public class UpperGamePanel extends JPanel{
 		center = new Point(screenSize.x/2, screenSize.y/2);
 		
 		buildButtons();
-		//loadImages();
+		loadImages();
 	}
 	
 	public UpperGamePanel(Point screenSize, Boolean debugPositioningMode) {
@@ -71,7 +71,7 @@ public class UpperGamePanel extends JPanel{
 			debugPositioning = new DebugPositioningMode();
 		}
 		
-		//loadImages();
+		loadImages();
 	}
 	
 	private void buildButtons() {
