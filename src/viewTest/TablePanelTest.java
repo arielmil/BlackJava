@@ -9,7 +9,7 @@ import java.awt.Point;
 
 public class TablePanelTest {
 	public static void main(String args[]) {
-		Insets frameInsets;
+		Insets frameBorders;
 		Point TablePanelSize;
 		
 		Point screenSize = new Point(1200, 700);
@@ -21,11 +21,13 @@ public class TablePanelTest {
 		
 		frame.setVisible(true);
 		
-		frameInsets = frame.getInsets();
-		TablePanelSize = new Point(screenSize.x, screenSize.y - (frameInsets.top + frameInsets.bottom));
+		frameBorders = frame.getInsets();
+		
+		TablePanelSize = new Point(screenSize.x, screenSize.y - (frameBorders.top + frameBorders.bottom));
 		
 		TablePanel TablePanelTest = new TablePanel(TablePanelSize, null);
 		
 		frame.getContentPane().add(TablePanelTest);
+		frame.repaint();
 	}
 }

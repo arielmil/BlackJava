@@ -71,7 +71,7 @@ public class UpperGamePanel extends JPanel{
 			debugPositioning = new DebugPositioningMode();
 		}
 		
-		loadImages();
+		//loadImages();
 	}
 	
 	private void buildButtons() {

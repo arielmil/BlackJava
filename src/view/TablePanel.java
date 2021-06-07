@@ -20,18 +20,27 @@ public class TablePanel extends JPanel {
 		img_name = "blackjackBKG.png";
 		img = ImageLoader.load(img_name);
 		
-		if (foreGround != null) {
-			panelSize = new Point(foreGround.getWidth(), foreGround.getHeight());
-			
-			add(foreGround);
-		}
-		
-		else {
-			panelSize = new Point(screenSize.x, screenSize.y);
-		}
+		panelSize = new Point(screenSize.x, screenSize.y);
 		
 		setBounds(0, 0, panelSize.x, panelSize.y);
 		setOpaque(false);
+	}
+	
+	public TablePanel(JPanel foreGround) {
+		super();
+		
+		setLayout(null);
+		
+		img_name = "blackjackBKG.png";
+		img = ImageLoader.load(img_name);
+		
+		panelSize = new Point(foreGround.getWidth(), foreGround.getHeight());
+		
+		setBounds(0, 0, panelSize.x, panelSize.y);
+		setOpaque(false);
+		
+		add(foreGround);
+		repaint();
 	}
 	
 	public void paintComponent(Graphics g) {
