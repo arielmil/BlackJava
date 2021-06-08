@@ -18,6 +18,6 @@ public class ComponentPositionHelper extends MouseAdapter{
 	}
 	
 	public void mouseDragged(MouseEvent e) {
-		parent.setChildPosition(e.getPoint(), e);
+		parent.setChildPosition(e.getPoint());
 	}
 }

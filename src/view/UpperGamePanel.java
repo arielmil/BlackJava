@@ -2,7 +2,6 @@ package view;
 
 import controller.API;
 
-import java.awt.AWTEvent;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
@@ -12,13 +11,11 @@ import java.awt.event.MouseAdapter;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
-import javax.swing.JPanel;
 
 //Criar uma generalização a qual este painel, e o painel do jogador são subclasses que contenha APENAS a imagem de fundo, e o painel com nome + pontuação.
-//Criar um método que escala uma coordenada x e y baseado em um tamanho de tela (largura x altura) para escalar todos os elementos dessa classe de acordo com o tamanho de tela utilizado.
 
 @SuppressWarnings("serial")
-public class UpperGamePanel extends JPanel implements MyMouseListener {
+public class UpperGamePanel extends GamePanel implements MyMouseListener {
 	
 	@SuppressWarnings("unused") //For whatever reason, eclipse doesn't recognize that this variable is being used.
 	private DebugPositioningMode debugPositioning;
@@ -28,8 +25,6 @@ public class UpperGamePanel extends JPanel implements MyMouseListener {
 	private String cardSuitNames[];
 	private String tokenNames[];
 	
-	private Point screenSize;
-	private Point center;
 	private Point cardsSize;
 	private Point tokensSize;
 	private Point buttonsLocation;
@@ -50,15 +45,7 @@ public class UpperGamePanel extends JPanel implements MyMouseListener {
 	private JButton saveGameButton;
 	
 	public UpperGamePanel(Point screenSize) {
-		super();
-		
-		setLayout(null);
-		setBounds(0, 0, screenSize.x, screenSize.y);
-		setOpaque(false);
-		
-		this.screenSize = screenSize;
-		center = new Point(screenSize.x/2, screenSize.y/2);
-		
+		super(screenSize);
 		buttonsSize = new Point(148, 45);
 		
 		mouseEventHandler = new MyMouseAdapter(this);
@@ -70,15 +57,7 @@ public class UpperGamePanel extends JPanel implements MyMouseListener {
 	}
 	
 	public UpperGamePanel(Point screenSize, Boolean debugPositioningMode) {
-		super();
-		
-		setLayout(null);
-		setBounds(0, 0, screenSize.x, screenSize.y);
-		setOpaque(false);
-		
-		this.screenSize = screenSize;
-		center = new Point(screenSize.x/2, screenSize.y/2);
-		
+		super(screenSize);
 		buttonsSize = new Point(148, 45);
 		
 		mouseEventHandler = new MyMouseAdapter(this);
@@ -307,7 +286,7 @@ public class UpperGamePanel extends JPanel implements MyMouseListener {
 			setSource(e.getSource());
 		}
 		
-		public void setChildPosition(Point childNewPosition, AWTEvent e) {
+		public void setChildPosition(Point childNewPosition) {
 			movingComponent.setLocation(childNewPosition.x, childNewPosition.y);			
 		}
 		

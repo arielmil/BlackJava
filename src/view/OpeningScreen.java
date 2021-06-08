@@ -1,6 +1,5 @@
 package view;
 
-import java.awt.AWTEvent;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
@@ -233,7 +232,7 @@ public class OpeningScreen extends JPanel implements ActionListener{
 			setSource(e.getSource());
 		}
 		
-		public void setChildPosition(Point childNewPosition, AWTEvent e) {
+		public void setChildPosition(Point childNewPosition) {
 			movingComponent.setLocation(childNewPosition.x, childNewPosition.y);				
 		}
 	}
