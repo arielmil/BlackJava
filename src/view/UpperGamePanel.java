@@ -152,7 +152,7 @@ public class UpperGamePanel extends GamePanel implements MyMouseListener {
 		
 		i = 0;
 		for (String tokenName : tokenNames) {
-			imgName = "Token_" + tokenName + ".png";
+			imgName = "Token_" + tokenName + "_Transparent" + ".png";
 			tokensImages[i] = ImageLoader.load(imgName);
 			i++;
 		}
