@@ -12,8 +12,6 @@ import java.awt.event.MouseAdapter;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 
-//Criar uma generalização a qual este painel, e o painel do jogador são subclasses que contenha APENAS a imagem de fundo, e o painel com nome + pontuação.
-
 @SuppressWarnings("serial")
 public class UpperGamePanel extends GamePanel implements MyMouseListener {
 	
@@ -44,8 +42,8 @@ public class UpperGamePanel extends GamePanel implements MyMouseListener {
 	private JButton newTurnButton;
 	private JButton saveGameButton;
 	
-	public UpperGamePanel(Point screenSize) {
-		super(screenSize);
+	public UpperGamePanel(Point screenSize, String playerName) {
+		super(screenSize, playerName);
 		buttonsSize = new Point(148, 45);
 		
 		mouseEventHandler = new MyMouseAdapter(this);
@@ -56,8 +54,9 @@ public class UpperGamePanel extends GamePanel implements MyMouseListener {
 		buildButtons();
 	}
 	
-	public UpperGamePanel(Point screenSize, Boolean debugPositioningMode) {
-		super(screenSize);
+	public UpperGamePanel(Point screenSize, String playerName, Boolean debugPositioningMode) {
+		super(screenSize, playerName, debugPositioningMode);
+		
 		buttonsSize = new Point(148, 45);
 		
 		mouseEventHandler = new MyMouseAdapter(this);

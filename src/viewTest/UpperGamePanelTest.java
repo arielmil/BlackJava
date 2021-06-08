@@ -42,7 +42,7 @@ public class UpperGamePanelTest {
 		
 		PanelsSize = new Point(screenSize.x, screenSize.y - (frameBorders.top + frameBorders.bottom));
 		
-		Foreground = new UpperGamePanel(PanelsSize);
+		Foreground = new UpperGamePanel(PanelsSize, "Dealer");
 		backgroundPanel = new TablePanel(Foreground);
 	}
 }
