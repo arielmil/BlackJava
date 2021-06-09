@@ -11,8 +11,8 @@ public class List {
 	public int size;
 	private ArrayList<Object> list;
 	private boolean empty;
-	private static int countRemoved;
-	private static int countAdded;
+	public static int countRemoved;
+	public static int countAdded;
 	
 	/***************************************************************************
 	*  Method: Constructor - list : Initializes the list
