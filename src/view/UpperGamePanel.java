@@ -1,7 +1,5 @@
 package view;
 
-import controller.API;
-
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
@@ -13,30 +11,19 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 
 @SuppressWarnings("serial")
-public class UpperGamePanel extends GamePanel implements MyMouseListener {
+public class UpperGamePanel extends AbstractGamePanel implements MyMouseListener {
 	
 	@SuppressWarnings("unused") //For whatever reason, eclipse doesn't recognize that this variable is being used.
 	private DebugPositioningMode debugPositioning;
 	private Boolean debugPositioningMode = false;
 	
-	private String cardNames[];
-	private String cardSuitNames[];
-	private String tokenNames[];
+	private Image cardsBinImage;
 	
-	private Point cardsSize;
-	private Point tokensSize;
-	private Point buttonsLocation;
-	private Point buttonsSize;
 	private Point deckLocation;
 	private Point cardsBinLocation;
 	private Point grayTokenLocation, purpleTokenLocation, blueTokenLocation, redTokenLocation, greenTokenLocation, blackTokenLocation;
 	
 	private MyMouseAdapter mouseEventHandler;
-	
-	private Image cardsImages[];
-	private Image tokensImages[];
-	private Image deckImage;
-	private Image cardsBinImage;
 	
 	private JButton quitButton;
 	private JButton newTurnButton;
@@ -44,25 +31,25 @@ public class UpperGamePanel extends GamePanel implements MyMouseListener {
 	
 	public UpperGamePanel(Point screenSize, String playerName) {
 		super(screenSize, playerName);
-		buttonsSize = new Point(148, 45);
 		
 		mouseEventHandler = new MyMouseAdapter(this);
 		addMouseListener(mouseEventHandler);
 		
-		loadImages();
+		cardsBinImage = ImageLoader.load("deck1.gif");
+		
 		setLocations();
 		buildButtons();
+		
 	}
 	
 	public UpperGamePanel(Point screenSize, String playerName, Boolean debugPositioningMode) {
 		super(screenSize, playerName, debugPositioningMode);
-		
-		buttonsSize = new Point(148, 45);
-		
+				
 		mouseEventHandler = new MyMouseAdapter(this);
 		addMouseListener(mouseEventHandler);
+		
+		cardsBinImage = ImageLoader.load("deck1.gif");
 
-		loadImages();
 		setLocations();
 		buildButtons();
 		
@@ -75,7 +62,7 @@ public class UpperGamePanel extends GamePanel implements MyMouseListener {
 	
 	private void setLocations() {
 		//Uses quitButton as reference
-		buttonsLocation = new Point(screenSize.x - 148 * 3, screenSize.y - 45);
+		buttonsLocation = new Point(screenSize.x - buttonsSize.x * 3, screenSize.y - buttonsSize.y);
 		
 		deckLocation = new Point(683 - cardsSize.x, 105);
 		cardsBinLocation = new Point(517, 105);
@@ -94,6 +81,25 @@ public class UpperGamePanel extends GamePanel implements MyMouseListener {
 		buildNewTurnButton();
 	}
 	
+	private void buildNewTurnButton() {
+		newTurnButton = new JButton("New Turn");
+		newTurnButton.setToolTipText("Starts a new turn");
+		
+		add(newTurnButton);
+		
+		newTurnButton.setBounds(buttonsLocation.x + buttonsSize.x * 2, buttonsLocation.y, buttonsSize.x, buttonsSize.y);
+	}
+	
+	private void buildSaveGameButton() {
+		
+		saveGameButton = new JButton("Save");
+		saveGameButton.setToolTipText("Saves this game state");
+		
+		add(saveGameButton);
+		
+		saveGameButton.setBounds(buttonsLocation.x + buttonsSize.x, buttonsLocation.y, buttonsSize.x, buttonsSize.y);
+	}
+		
 	private void buildQuitButton() {
 		quitButton = new JButton("Quit");
 		quitButton.setToolTipText("Returns to Opening Screen");
@@ -101,70 +107,6 @@ public class UpperGamePanel extends GamePanel implements MyMouseListener {
 		add(quitButton);
 		
 		quitButton.setBounds(buttonsLocation.x, buttonsLocation.y, buttonsSize.x, buttonsSize.y);
-	}
-	
-	private void buildNewTurnButton() {
-		newTurnButton = new JButton("New Turn");
-		newTurnButton.setToolTipText("Starts a new turn");
-		
-		add(newTurnButton);
-		
-		newTurnButton.setBounds(buttonsLocation.x + 148 * 2, buttonsLocation.y, buttonsSize.x, buttonsSize.y);
-	}
-	
-	private void buildSaveGameButton() {
-		saveGameButton = new JButton("Save");
-		saveGameButton.setToolTipText("Saves this game state");
-		
-		add(saveGameButton);
-		
-		saveGameButton.setBounds(buttonsLocation.x + 148, buttonsLocation.y, buttonsSize.x, buttonsSize.y);
-	}
-	
-	private void loadImages() {
-		int i = 0;
-		String imgName;
-		
-		String localCardNames[] = API.getCardNames();
-		String localCardSuitNames[] = API.getCardSuitNames();
-		String localTokenNames[] = API.getTokensNames();
-		
-		cardNames = new String[localCardNames.length];
-		cardSuitNames = new String[localCardSuitNames.length];
-		tokenNames = new String[localTokenNames.length];
-		
-		cardNames = localCardNames;
-		cardSuitNames = localCardSuitNames;
-		tokenNames = localTokenNames;
-		
-		cardsImages = new Image[cardNames.length * cardSuitNames.length];
-		
-		for (String cardName : cardNames) {
-			
-			for (String suitName : cardSuitNames) {
-				imgName = cardName + "_" + suitName + ".gif";
-				cardsImages[i] = ImageLoader.load(imgName);
-				i++;
-			}
-		}
-		
-		tokensImages = new Image[tokenNames.length];
-		
-		i = 0;
-		for (String tokenName : tokenNames) {
-			imgName = "Token_" + tokenName + "_Transparent" + ".png";
-			tokensImages[i] = ImageLoader.load(imgName);
-			i++;
-		}
-		
-		imgName = "deck2.gif";
-		deckImage = ImageLoader.load(imgName);
-		
-		imgName = "deck1.gif";
-		cardsBinImage = ImageLoader.load(imgName);
-		
-		cardsSize = new Point(deckImage.getWidth(null), deckImage.getHeight(null));
-		tokensSize = new Point(tokensImages[0].getWidth(null), tokensImages[0].getHeight(null));
 	}
 	
 	private int tokenClicked(Point clickedPoint) {
@@ -266,6 +208,8 @@ public class UpperGamePanel extends GamePanel implements MyMouseListener {
 		private DebugPositioningMode() {
 			mouseEventHandler = new ComponentPositionHelper(this);
 			
+			buildDebugPositionReferenceButton();
+			
 			addMouseListener(mouseEventHandler);
 			addMouseMotionListener(mouseEventHandler);
 			
@@ -273,7 +217,6 @@ public class UpperGamePanel extends GamePanel implements MyMouseListener {
 			saveGameButton.addActionListener(this);
 			newTurnButton.addActionListener(this);
 			
-			buildDebugPositionReferenceButton();
 			debugPositionReferenceButton.addActionListener(this);
 		}
 		

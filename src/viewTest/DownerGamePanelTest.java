@@ -6,11 +6,11 @@ import java.awt.Point;
 
 import javax.swing.JFrame;
 
-import view.OpeningScreen;
+import view.DownerGamePanel;
 import view.TablePanel;
 
-public class OpeningScreenTest {
-	static private JFrame frame;
+public class DownerGamePanelTest {
+static private JFrame frame;
 	
 	static private Container contentPane;
 	
@@ -18,7 +18,7 @@ public class OpeningScreenTest {
 	static private Point PanelsSize;
 	
 	static private TablePanel backgroundPanel;
-	static private OpeningScreen Foreground;
+	static private DownerGamePanel Foreground;
 	
 	public static void main (String args[]) {
 		contentPane = frame.getContentPane();
@@ -30,7 +30,7 @@ public class OpeningScreenTest {
 	
 	static{
 		Insets frameBorders;
-		frame = new JFrame("OpeningScreen Test");
+		frame = new JFrame("DownerGamePanel Test");
 		
 		screenSize = new Point(1200, 700);
 		
@@ -42,7 +42,7 @@ public class OpeningScreenTest {
 		
 		PanelsSize = new Point(screenSize.x, screenSize.y - (frameBorders.top + frameBorders.bottom));
 		
-		Foreground = new OpeningScreen(PanelsSize);
+		Foreground = new DownerGamePanel(PanelsSize, "Player 1", true);
 		backgroundPanel = new TablePanel(Foreground);
 	}
 }
