@@ -1,20 +1,22 @@
 package view;
 
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 import controller.API;
 
-//Ver primeiro comentario em UpperGamePanel
 //Criar um método que escala uma coordenada x e y baseado em um tamanho de tela (largura x altura) para escalar todos os elementos dessa classe de acordo com o tamanho de tela utilizado.
 @SuppressWarnings("serial")
 abstract class AbstractGamePanel extends JPanel {
-	private JPanel infoPanel;
-	private JLabel infoLabel;
-
+	private JLabel scoreLabel;
+	
+	Point scoreLabelLocation, scoreLabelSize;
+	
 	Boolean debugPositioningMode = false;
 	
 	int playerScore;
@@ -51,14 +53,14 @@ abstract class AbstractGamePanel extends JPanel {
 		
 		buttonsSize = new Point(148, 45);
 		
-		infoPanel = new JPanel(null);
-		infoPanel.setBounds(936, 0, 264, 45);
-		add(infoPanel);
-				
-		infoLabel = new JLabel();
-		infoLabel.setText(String.format("%s is Playing. Score: 0", playerName));
-		infoLabel.setBounds(38, 0, 264, 45);
-		infoPanel.add(infoLabel);
+		scoreLabelLocation = new Point(screenSize.x - 264, 1);
+		scoreLabelSize = new Point(264, 45);
+		
+		scoreLabel = new JLabel(String.format("%s is Playing. Score: 0", playerName), SwingConstants.CENTER);
+		scoreLabel.setBounds(scoreLabelLocation.x, scoreLabelLocation.y, scoreLabelSize.x, scoreLabelSize.y);
+		scoreLabel.setOpaque(true);
+		
+		add(scoreLabel);
 		
 		loadImages();
 	}
@@ -77,14 +79,14 @@ abstract class AbstractGamePanel extends JPanel {
 		
 		buttonsSize = new Point(148, 45);
 		
-		infoPanel = new JPanel(null);
-		infoPanel.setBounds(936, 0, 264, 45);
-		add(infoPanel);
+		scoreLabelLocation = new Point(screenSize.x - 264, 1);
+		scoreLabelSize = new Point(264, 45);
 		
-		infoLabel = new JLabel();
-		infoLabel.setText(String.format("%s is Playing. Score: 0", playerName));
-		infoLabel.setBounds(38, 0, 264, 45);
-		infoPanel.add(infoLabel);
+		scoreLabel = new JLabel(String.format("%s is Playing. Score: 0", playerName), SwingConstants.CENTER);
+		scoreLabel.setBounds(scoreLabelLocation.x, scoreLabelLocation.y, scoreLabelSize.x, scoreLabelSize.y);
+		scoreLabel.setOpaque(true);
+		
+		add(scoreLabel);
 		
 		loadImages();
 		
@@ -143,6 +145,15 @@ abstract class AbstractGamePanel extends JPanel {
 	
 	void setPlayerScore(int playerScore) {
 		this.playerScore = playerScore;
-		infoLabel.setText(String.format("%s is Playing. Score: %d", playerName, playerScore));
+		scoreLabel.setText(String.format("%s is Playing. Score: %d", playerName, playerScore));
+		scoreLabel.setHorizontalAlignment(SwingConstants.CENTER);
+	}
+
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		
+		//Draws scoreLabel outline
+		g.drawLine(scoreLabelLocation.x, scoreLabelLocation.y - 1, scoreLabelLocation.x, scoreLabelSize.y + 1);
+		g.drawLine(scoreLabelLocation.x, scoreLabelLocation.y + scoreLabelSize.y, scoreLabelLocation.x + scoreLabelSize.x, scoreLabelLocation.y + scoreLabelSize.y);
 	}
 }

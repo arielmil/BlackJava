@@ -8,6 +8,8 @@ import java.awt.event.MouseAdapter;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 
 // Falta criar o painel das cartas, fazer a logica de se as cartas estiverem para baixo, renderizar a imagem dela para baixo
 // Falta criar o painel das fichas, e a logica de elas vão aparecendo conforme se vai apostando, ou diminuindo conforme se vai clicando de volta nelas, até que elas somem
@@ -24,7 +26,11 @@ public class DownerGamePanel extends AbstractGamePanel{
 	private DebugPositioningMode debugPositioning;
 	
 	private int betValue;
-	private int totalTokensValue;
+	private int balance = 500;
+	private int labelsWidth;
+	
+	private JLabel betLabel;
+	private JLabel balanceLabel;
 	
 	private JButton standButton;
 	private JButton doubleButton;
@@ -37,6 +43,8 @@ public class DownerGamePanel extends AbstractGamePanel{
 		setLocations();
 		
 		buildButtons();
+		
+		buildLabels();
 	}
 	
 	public DownerGamePanel(Point screenSize, String playerName, Boolean debugPositioningMode) {
@@ -46,9 +54,26 @@ public class DownerGamePanel extends AbstractGamePanel{
 		
 		buildButtons();
 		
+		buildLabels();
+		
 		if (debugPositioningMode) {
 			debugPositioning = new DebugPositioningMode();
 		}
+	}
+	
+	private void buildLabels() {
+		
+		labelsWidth = (int)(scoreLabelSize.x * 0.75);
+		
+		balanceLabel = new JLabel(String.format("   Balance: %d ", balance), SwingConstants.CENTER);
+		balanceLabel.setBounds(1, screenSize.y - scoreLabelSize.y * 2, labelsWidth, scoreLabelSize.y);
+		balanceLabel.setOpaque(true);
+		add(balanceLabel);
+		
+		betLabel = new JLabel(String.format("Bet value: %d", betValue), SwingConstants.CENTER);
+		betLabel.setBounds(1, screenSize.y - scoreLabelSize.y + 1, labelsWidth, scoreLabelSize.y);
+		betLabel.setOpaque(true);
+		add(betLabel);
 	}
 	
 	private void buildButtons() {
@@ -92,7 +117,7 @@ public class DownerGamePanel extends AbstractGamePanel{
 		
 		add(doubleButton);
 		
-		doubleButton.setBounds(buttonsLocation.x + + buttonsSize.x * 3, buttonsLocation.y, buttonsSize.x, buttonsSize.y);
+		doubleButton.setBounds(buttonsLocation.x + buttonsSize.x * 3, buttonsLocation.y, buttonsSize.x, buttonsSize.y);
 	}
 	
 	private void setLocations() {
@@ -102,6 +127,10 @@ public class DownerGamePanel extends AbstractGamePanel{
 	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
+		
+		//Draws labels outlines
+		g.drawLine(1, screenSize.y - scoreLabelSize.y, labelsWidth + 1, screenSize.y - scoreLabelSize.y);
+		g.drawRect(0, screenSize.y - scoreLabelSize.y * 2 - 1, labelsWidth + 1, scoreLabelSize.y * 2);
 		
 		if (debugPositioningMode) {
 			g.drawLine(screenSize.x/2, 0, screenSize.x/2, screenSize.y);
