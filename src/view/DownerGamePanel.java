@@ -36,7 +36,7 @@ public class DownerGamePanel extends AbstractGamePanel{
 	private JButton doubleButton;
 	private JButton splitButton;
 	private JButton insuranceButton;
-		
+	
 	public DownerGamePanel(Point screenSize, String playerName) {
 		super(screenSize, playerName);
 		
@@ -61,15 +61,28 @@ public class DownerGamePanel extends AbstractGamePanel{
 		}
 	}
 	
+	private void setLocations() {
+		//Uses insuranceButton as reference
+		buttonsLocation = new Point(screenSize.x - buttonsSize.x * 4, screenSize.y - buttonsSize.y);
+		System.out.println(buttonsLocation.y - cardsSize.y);
+	}
+	
 	private void buildLabels() {
 		
 		labelsWidth = (int)(scoreLabelSize.x * 0.75);
 		
+		buildBalanceLabel();
+		buildBetLabel();
+	}
+	
+	private void buildBalanceLabel() {
 		balanceLabel = new JLabel(String.format("   Balance: %d ", balance), SwingConstants.CENTER);
 		balanceLabel.setBounds(1, screenSize.y - scoreLabelSize.y * 2, labelsWidth, scoreLabelSize.y);
 		balanceLabel.setOpaque(true);
 		add(balanceLabel);
-		
+	}
+	
+	private void buildBetLabel() {
 		betLabel = new JLabel(String.format("Bet value: %d", betValue), SwingConstants.CENTER);
 		betLabel.setBounds(1, screenSize.y - scoreLabelSize.y + 1, labelsWidth, scoreLabelSize.y);
 		betLabel.setOpaque(true);
@@ -119,12 +132,7 @@ public class DownerGamePanel extends AbstractGamePanel{
 		
 		doubleButton.setBounds(buttonsLocation.x + buttonsSize.x * 3, buttonsLocation.y, buttonsSize.x, buttonsSize.y);
 	}
-	
-	private void setLocations() {
-		//Uses insuranceButton as reference
-		buttonsLocation = new Point(screenSize.x - buttonsSize.x * 4, screenSize.y - buttonsSize.y);
-	}
-	
+				
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		
@@ -132,10 +140,6 @@ public class DownerGamePanel extends AbstractGamePanel{
 		g.drawLine(1, screenSize.y - scoreLabelSize.y, labelsWidth + 1, screenSize.y - scoreLabelSize.y);
 		g.drawRect(0, screenSize.y - scoreLabelSize.y * 2 - 1, labelsWidth + 1, scoreLabelSize.y * 2);
 		
-		if (debugPositioningMode) {
-			g.drawLine(screenSize.x/2, 0, screenSize.x/2, screenSize.y);
-			g.drawLine(0, screenSize.y/2, screenSize.x, screenSize.y/2);
-		}
 	}
 	
 	private class DebugPositioningMode implements ComponentPositionDebuggingInterface, ActionListener {
@@ -177,7 +181,7 @@ public class DownerGamePanel extends AbstractGamePanel{
 			debugPositionReferenceButton = new JButton("Reference");		
 			DownerGamePanel.this.add(debugPositionReferenceButton);
 			
-			debugPositionReferenceButton.setBounds(screenSize.x - 54, 0, 54, 54);
+			debugPositionReferenceButton.setBounds(screenSize.x - 54, 0, cardsSize.x, cardsSize.y);
 		}
 	}
 }
