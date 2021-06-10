@@ -8,8 +8,8 @@ import java.util.Map;
 /***********************************************************************/
 
 public class Tokens {
-	private int value;
-	private int quantity;
+	public int value;
+	public int quantity;
 	private int total;
 	
 	private static int tokensValues[];

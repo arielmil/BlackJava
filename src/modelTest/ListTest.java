@@ -3,6 +3,7 @@ package modelTest;
 import model.*;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
@@ -255,6 +256,22 @@ public class ListTest {
         
         
     }*/
+	
+	/* End Method: testClear */
+	/*
+	****************************************************************************
+	* 
+	* Method: void testEmpty
+	*  ****/
+	
+	@Test 
+    public void testEmpty() {
+        List actual_list = new List();        
+        
+        assertTrue("Method testUpdateSize Increase was unsuccessfull", actual_list.empty());
+        
+        
+    }
 	
 	/* End Method: testClear */
 }
