@@ -13,17 +13,14 @@ import javax.swing.SwingConstants;
 
 // Falta criar o painel das cartas, fazer a logica de se as cartas estiverem para baixo, renderizar a imagem dela para baixo
 // Falta criar o painel das fichas, e a logica de elas vão aparecendo conforme se vai apostando, ou diminuindo conforme se vai clicando de volta nelas, até que elas somem
-// Falta criar o painel que terá um JLabel com o valor da aposta do jogador
-// Falta criar o painel que terá um JLabel com a quantidade de fichas que o jogador possuí
-// Falta criar a função que muda a visibilidade de insurance quando estiver na hora
-// Falta criar a função que altera o valor da aposta
-// Falta criar a função que altera o a quantidade de fichas que o jogador possuí
 
 @SuppressWarnings("serial")
 public class DownerGamePanel extends AbstractGamePanel{
 	
 	@SuppressWarnings("unused") //For whatever reason, eclipse doesn't recognize that this variable is being used.
 	private DebugPositioningMode debugPositioning;
+	
+	private Boolean insuranceButtonIsVisible = false;
 	
 	private int betValue;
 	private int balance = 500;
@@ -64,7 +61,6 @@ public class DownerGamePanel extends AbstractGamePanel{
 	private void setLocations() {
 		//Uses insuranceButton as reference
 		buttonsLocation = new Point(screenSize.x - buttonsSize.x * 4, screenSize.y - buttonsSize.y);
-		System.out.println(buttonsLocation.y - cardsSize.y);
 	}
 	
 	private void buildLabels() {
@@ -132,7 +128,35 @@ public class DownerGamePanel extends AbstractGamePanel{
 		
 		doubleButton.setBounds(buttonsLocation.x + buttonsSize.x * 3, buttonsLocation.y, buttonsSize.x, buttonsSize.y);
 	}
-				
+	
+	private void repaintBalanceLabel() {
+		balanceLabel.setText(String.format("   Balance: %d ", balance));
+		balanceLabel.setAlignmentX(SwingConstants.CENTER);
+		repaint();
+	}
+	
+	private void repaintBetLabel() {
+		betLabel.setText(String.format("Bet value: %d", betValue));
+		betLabel.setAlignmentX(SwingConstants.CENTER);
+		repaint();
+	}
+	
+	void toggleInsuranceButtonVisibility() {
+		insuranceButtonIsVisible = !insuranceButtonIsVisible;
+		insuranceButton.setVisible(insuranceButtonIsVisible);
+		repaint();
+	}
+	
+	void setBetValue(int betValue) {
+		this.betValue = betValue;
+		repaintBetLabel();
+	}
+	
+	void setBalance(int balance) {
+		this.balance = balance;
+		repaintBalanceLabel();
+	}
+	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		
