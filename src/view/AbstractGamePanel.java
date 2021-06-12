@@ -18,6 +18,8 @@ abstract class AbstractGamePanel extends JPanel implements MyMouseListener {
 	
 	Boolean debugPositioningMode = false;
 	
+	Boolean canDrawCard[];
+	
 	int playerScore;
 	
 	String playerName;
@@ -39,8 +41,8 @@ abstract class AbstractGamePanel extends JPanel implements MyMouseListener {
 	Point cardsSize;
 	Point tokensSize;
 	Point scoreLabelLocation, scoreLabelSize;
-	Point grayTokenLocation, purpleTokenLocation, blueTokenLocation;
-	Point redTokenLocation, greenTokenLocation, blackTokenLocation;
+	
+	Point tokensLocations[];
 	Point cardsLocations[];
 	
 	MyMouseAdapter mouseEventHandler;
@@ -57,8 +59,12 @@ abstract class AbstractGamePanel extends JPanel implements MyMouseListener {
 		loadImages();
 		
 		setSizes(screenSize);
+		
 		setLocations();
+		
 		buildScoreLabel();
+		
+		buildCanDrawCardArray();
 		
 		mouseEventHandler = new MyMouseAdapter(this);
 		addMouseListener(mouseEventHandler);
@@ -76,8 +82,12 @@ abstract class AbstractGamePanel extends JPanel implements MyMouseListener {
 		loadImages();
 		
 		setSizes(screenSize);
+		
 		setLocations();
+		
 		buildScoreLabel();
+		
+		buildCanDrawCardArray();
 		
 		mouseEventHandler = new MyMouseAdapter(this);
 		addMouseListener(mouseEventHandler);
@@ -114,14 +124,23 @@ abstract class AbstractGamePanel extends JPanel implements MyMouseListener {
 	
 	private void setTokensLocations() {
 		int tokensXDistance = 31;
-		Point tokensBaseLocation = new Point(center.x + tokensXDistance/2, center.y - cardsSize.y * 2 + cardsSize.y/2 - tokensSize.y/2);
 		
-		greenTokenLocation = new Point(tokensBaseLocation.x, tokensBaseLocation.y);
-		grayTokenLocation = new Point(tokensBaseLocation.x - 3 * (tokensXDistance + tokensSize.x), tokensBaseLocation.y);
-		purpleTokenLocation = new Point(tokensBaseLocation.x - 2 * (tokensXDistance + tokensSize.x), tokensBaseLocation.y);
-		blueTokenLocation = new Point(tokensBaseLocation.x - (tokensXDistance + tokensSize.x), tokensBaseLocation.y);
-		redTokenLocation = new Point(tokensBaseLocation.x + (tokensXDistance + tokensSize.x), tokensBaseLocation.y);
-		blackTokenLocation = new Point(tokensBaseLocation.x + 2 * (tokensXDistance + tokensSize.x), tokensBaseLocation.y);
+		Point tokensBaseLocation = new Point(center.x + tokensXDistance/2, center.y - cardsSize.y * 2 + cardsSize.y/2 - tokensSize.y/2);
+				
+		tokensLocations = new Point[6];
+		
+		//Gray Token (Value: 1)
+		tokensLocations[0] = new Point(tokensBaseLocation.x - 3 * (tokensXDistance + tokensSize.x), tokensBaseLocation.y);
+		//Purple Token (Value: 5)
+		tokensLocations[1] = new Point(tokensBaseLocation.x - 2 * (tokensXDistance + tokensSize.x), tokensBaseLocation.y);
+		//Blue Token (Value: 10)
+		tokensLocations[2] = new Point(tokensBaseLocation.x - (tokensXDistance + tokensSize.x), tokensBaseLocation.y);
+		//Red Token (Value: 20)
+		tokensLocations[3] = new Point(tokensBaseLocation.x + (tokensXDistance + tokensSize.x), tokensBaseLocation.y);
+		//Green Token (Value: 50)
+		tokensLocations[4] = new Point(tokensBaseLocation.x, tokensBaseLocation.y);
+		//Black Token (Value: 100)
+		tokensLocations[5] = new Point(tokensBaseLocation.x + 2 * (tokensXDistance + tokensSize.x), tokensBaseLocation.y);
 	}
 	
 	private void buildScoreLabel() {
@@ -129,6 +148,15 @@ abstract class AbstractGamePanel extends JPanel implements MyMouseListener {
 		scoreLabel.setBounds(scoreLabelLocation.x, scoreLabelLocation.y, scoreLabelSize.x, scoreLabelSize.y);
 		scoreLabel.setOpaque(true);
 		add(scoreLabel);
+	}
+	
+	private void buildCanDrawCardArray() {
+		int i;
+		canDrawCard = new Boolean[19];
+		
+		for (i = 0; i < 19; i++) {
+			canDrawCard[i] = false;
+		}
 	}
 	
 	void loadImages() {
@@ -192,34 +220,34 @@ abstract class AbstractGamePanel extends JPanel implements MyMouseListener {
 		scoreLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		repaint();
 	}
-	
+		
 	int tokenClicked(Point clickedPoint) {
-		if (clickedPoint.x >= grayTokenLocation.x && clickedPoint.x <= grayTokenLocation.x + tokensSize.x) {
+		if (clickedPoint.x >= tokensLocations[0].x && clickedPoint.x <= tokensLocations[0].x + tokensSize.x) {
 			System.out.println("Gray token Clicked !");
 			return 0;
 		}
 		
-		else if (clickedPoint.x >= purpleTokenLocation.x && clickedPoint.x <= purpleTokenLocation.x + tokensSize.x) {
+		else if (clickedPoint.x >= tokensLocations[1].x && clickedPoint.x <= tokensLocations[1].x + tokensSize.x) {
 			System.out.println("Purple token Clicked !");
 			return 1;
 		}
 		
-		else if (clickedPoint.x >= blueTokenLocation.x && clickedPoint.x <= blueTokenLocation.x + tokensSize.x) {
+		else if (clickedPoint.x >= tokensLocations[2].x && clickedPoint.x <= tokensLocations[2].x + tokensSize.x) {
 			System.out.println("Blue token Clicked !");
 			return 2;
 		}
 		
-		else if (clickedPoint.x >= redTokenLocation.x && clickedPoint.x <= redTokenLocation.x + tokensSize.x) {
+		else if (clickedPoint.x >= tokensLocations[3].x && clickedPoint.x <= tokensLocations[3].x + tokensSize.x) {
 			System.out.println("Red token Clicked !");
 			return 3;
 		}
 		
-		else if (clickedPoint.x >= greenTokenLocation.x && clickedPoint.x <= greenTokenLocation.x + tokensSize.x) {
+		else if (clickedPoint.x >= tokensLocations[4].x && clickedPoint.x <= tokensLocations[4].x + tokensSize.x) {
 			System.out.println("Green token Clicked !");
 			return 4;
 		}
 		
-		else if (clickedPoint.x >= blackTokenLocation.x && clickedPoint.x <= blackTokenLocation.x + tokensSize.x) {
+		else if (clickedPoint.x >= tokensLocations[5].x && clickedPoint.x <= tokensLocations[5].x + tokensSize.x) {
 			System.out.println("Black token Clicked !");
 			return 5;
 		}
@@ -227,122 +255,31 @@ abstract class AbstractGamePanel extends JPanel implements MyMouseListener {
 		return -1;
 	}
 	
-	int cardClicked(int clickedX, cardPosition pos) {
-		
-		if (clickedX > cardsLocations[0].x && clickedX <= cardsLocations[1].x) {
-			switch(pos) {
-				case UP: System.out.println("Card 0 Clicked !"); return 0;
-				case DOWN: return -1;
-			}
-		}
-		
-		else if (clickedX > cardsLocations[1].x && clickedX <= cardsLocations[2].x) {
-			switch(pos) {
-				case UP: System.out.println("Card 1 Clicked !"); return 1;
-				case DOWN: System.out.println("Card 10 Clicked !"); return 10;
-			}
-		}
-		
-		else if (clickedX > cardsLocations[2].x && clickedX <= cardsLocations[3].x) {
-			switch(pos) {
-				case UP: System.out.println("Card 2 Clicked !"); return 2;
-				case DOWN: System.out.println("Card 11 Clicked !"); return 11;
-			}
-		}
-		
-		else if (clickedX > cardsLocations[3].x && clickedX <= cardsLocations[4].x) {
-			switch(pos) {
-				case UP: System.out.println("Card 3 Clicked !"); return 3;
-				case DOWN: System.out.println("Card 12 Clicked !"); return 12;
-			}
-		}
-		
-		else if (clickedX > cardsLocations[4].x && clickedX <= cardsLocations[5].x) {
-			switch(pos) {
-				case UP: System.out.println("Card 4 Clicked !"); return 4;
-				case DOWN: System.out.println("Card 13 Clicked !"); return 13;
-			}
-		}
-		
-		else if (clickedX > cardsLocations[5].x && clickedX <= cardsLocations[6].x) {
-			switch(pos) {
-				case UP: System.out.println("Card 5 Clicked !"); return 5;
-				case DOWN: System.out.println("Card 14 Clicked !"); return 14;
-			}
-		}
-		
-		else if (clickedX > cardsLocations[6].x && clickedX <= cardsLocations[7].x) {
-			switch(pos) {
-				case UP: System.out.println("Card 6 Clicked !"); return 6;
-				case DOWN: System.out.println("Card 15 Clicked !"); return 15;
-			}
-		}
-		
-		else if (clickedX > cardsLocations[7].x && clickedX <= cardsLocations[8].x) {
-			switch(pos) {
-				case UP: System.out.println("Card 7 Clicked !"); return 7;
-				case DOWN: System.out.println("Card 16 Clicked !"); return 16;
-			}
-		}
-		
-		else if (clickedX > cardsLocations[8].x && clickedX <= cardsLocations[9].x) {
-			switch(pos) {
-				case UP: System.out.println("Card 8 Clicked !"); return 8;
-				case DOWN: System.out.println("Card 17 Clicked !"); return 17;
-			}
-		}
-		
-		else {
-			switch(pos) {
-				case UP: System.out.println("Card 9 Clicked !"); return 9;
-				case DOWN: System.out.println("Card 18 Clicked !"); return 18;
-			}
-		}
-		
-		// For some reason, to avoid compiling errors, Javac forced a return statement here
-		return -1;
-	}
-		
 	public void setClickedPoint(Point clickedPoint) {
 
-		if ( (clickedPoint.x >= grayTokenLocation.x && clickedPoint.x <= blackTokenLocation.x + tokensSize.x) && (clickedPoint.y >= blackTokenLocation.y && clickedPoint.y <= blackTokenLocation.y + tokensSize.y) ) {
-			tokenClicked(clickedPoint);
+		if (clickedPoint.x >= tokensLocations[0].x && clickedPoint.x <= tokensLocations[5].x + tokensSize.x) {
+			if (clickedPoint.y >= tokensLocations[5].y && clickedPoint.y <= tokensLocations[5].y + tokensSize.y) {
+				tokenClicked(clickedPoint);				
+			}
 		} 
-		
-		else if ( (clickedPoint.x >= cardsLocations[0].x && clickedPoint.x <= cardsLocations[9].x + cardsSize.x) && (clickedPoint.y >= cardsLocations[0].y && clickedPoint.y <= cardsLocations[18].y + cardsSize.y) ) {
-
-			if (clickedPoint.y >= cardsLocations[0].y && clickedPoint.y < cardsLocations[18].y) {
-				cardClicked(clickedPoint.x, cardPosition.UP);
-			}
-			
-			else {
-				cardClicked(clickedPoint.x, cardPosition.DOWN);
-			}
-		}
 	}
 	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		
-		int i;
+		int i, j = 0;
 		
 		//Draws scoreLabel outline
 		g.drawRect(scoreLabelLocation.x - 1, scoreLabelLocation.y - 1, scoreLabelSize.x + 1, scoreLabelSize.y + 1);
 		
-		//Green Token (Value: 50)
-		g.drawImage(tokensImages[3], greenTokenLocation.x, greenTokenLocation.y, tokensSize.x, tokensSize.y, null);
-		//Gray Token (Value: 1)
-		g.drawImage(tokensImages[0], grayTokenLocation.x, grayTokenLocation.y, tokensSize.x, tokensSize.y, null);
-		//Purple Token (Value: 5)
-		g.drawImage(tokensImages[4], purpleTokenLocation.x, purpleTokenLocation.y, tokensSize.x, tokensSize.y, null);
-		//Blue Token (Value: 10)
-		g.drawImage(tokensImages[2], blueTokenLocation.x, blueTokenLocation.y, tokensSize.x, tokensSize.y, null);
-		//Red Token (Value: 20)
-		g.drawImage(tokensImages[1], redTokenLocation.x, redTokenLocation.y, tokensSize.x, tokensSize.y, null);
-		//Black Token (Value: 100)
-		g.drawImage(tokensImages[5], blackTokenLocation.x, blackTokenLocation.y, tokensSize.x, tokensSize.y, null);
+		for (i = 0; i < 6; i++) {
+			
+		}
 		
 		for (i = 0; i < 19; i++) {
+			if (canDrawCard[j]) {
+				g.drawImage(cardsImages[j], cardsLocations[i].x, cardsLocations[i].y, cardsSize.x, cardsSize.y, null);
+			}
 			g.drawImage(cardsImages[i], cardsLocations[i].x, cardsLocations[i].y, cardsSize.x, cardsSize.y, null);
 		}	
 		
@@ -364,8 +301,4 @@ abstract class AbstractGamePanel extends JPanel implements MyMouseListener {
 		}
 	}
 
-	private enum cardPosition {
-		UP,
-		DOWN
-	}
 }

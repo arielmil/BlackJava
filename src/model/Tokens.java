@@ -23,7 +23,7 @@ public class Tokens {
 	
 	static {
         tokensValues = new int[] {1, 5, 10, 20, 50, 100};
-		tokensNames = new String[] {"Gray", "Red", "Blue", "Green", "Purple", "Black"};
+		tokensNames = new String[] {"Gray", "Purple", "Blue", "Red", "Green", "Black"};
 		
 		int i;
 		for (i = 0; i < tokensValues.length; i++) {
@@ -119,13 +119,13 @@ public class Tokens {
         }
 
         if (value % 50 > 0) {
-            purpleTokens += value/50;
-            value -= purpleTokens * 50;
+            greenTokens += value/50;
+            value -= greenTokens * 50;
         }
 
-        if (value % 25 > 0) {
-            greenTokens += value/25;
-            value -= greenTokens * 25;
+        if (value % 20 > 0) {
+            redTokens += value/20;
+            value -= redTokens * 20;
         }
 
         if (value % 10 > 0) {
@@ -134,8 +134,8 @@ public class Tokens {
         }
 
         if (value % 5 > 0) {
-            redTokens += value/5;
-            value -= redTokens * 5;
+            purpleTokens += value/5;
+            value -= purpleTokens * 5;
         }
 
         if (value > 0) {
