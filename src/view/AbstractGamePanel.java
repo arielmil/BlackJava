@@ -108,7 +108,7 @@ abstract class AbstractGamePanel extends JPanel implements MyMouseListener {
 	
 	private void setLocations() {
 		center = new Point(screenSize.x/2, screenSize.y/2);
-		scoreLabelLocation = new Point(screenSize.x - 265, 1);
+		scoreLabelLocation = new Point(screenSize.x - ResizingTool.resizeX(screenSize.x, 265), 1);
 		
 		setCardsLocations();
 		setTokensLocations();
@@ -134,7 +134,7 @@ abstract class AbstractGamePanel extends JPanel implements MyMouseListener {
 	}
 	
 	private void setTokensLocations() {
-		int tokensXDistance = 31;
+		int tokensXDistance = ResizingTool.resizeX(screenSize.x, 31);
 		
 		Point tokensBaseLocation = new Point(center.x + tokensXDistance/2, center.y - cardsSize.y * 2 + cardsSize.y/2 - tokensSize.y/2);
 				
@@ -211,11 +211,22 @@ abstract class AbstractGamePanel extends JPanel implements MyMouseListener {
 	}
 	
 	void setSizes(Point screenSize) {
+		int resized45;
 		this.screenSize = screenSize;
-		cardsSize = new Point(deckImage.getWidth(null), deckImage.getHeight(null));
-		tokensSize = new Point(tokensImages[0].getWidth(null), tokensImages[0].getHeight(null));
-		buttonsSize = new Point(148, 45);
-		scoreLabelSize = new Point(264, 45);
+		
+		cardsSize = new Point(ResizingTool.resizeX(screenSize.x, deckImage.getWidth(null)), ResizingTool.resizeY(screenSize.y, deckImage.getHeight(null)));
+		tokensSize = new Point(ResizingTool.resizeX(screenSize.x, tokensImages[0].getWidth(null)), ResizingTool.resizeX(screenSize.x, tokensImages[0].getHeight(null)));
+		
+		System.out.println(cardsSize);
+		System.out.println(new Point(deckImage.getWidth(null), deckImage.getHeight(null)));
+		
+		System.out.println(tokensSize);
+		System.out.println(new Point(tokensImages[0].getWidth(null), tokensImages[0].getHeight(null)));
+		
+		resized45 = ResizingTool.resizeY(screenSize.y, 45);
+		System.out.println(resized45);
+		buttonsSize = new Point(ResizingTool.resizeX(screenSize.x, 148), resized45);
+		scoreLabelSize = new Point(ResizingTool.resizeX(screenSize.x, 264), resized45);
 	}
 	
 	void setPlayerName(String playerName) {
@@ -317,6 +328,8 @@ abstract class AbstractGamePanel extends JPanel implements MyMouseListener {
 			g.setColor(Color.red);
 			g.drawRect((cardsLocations[0].x + cardsSize.x), center.y - cardsSize.y * 2, cardsSize.x * 8, cardsSize.y);
 			g.drawLine((cardsLocations[0].x + cardsSize.x), center.y - cardsSize.y * 2 + cardsSize.y/2, (cardsLocations[0].x + cardsSize.x) + cardsSize.x * 8 , center.y - cardsSize.y * 2 + cardsSize.y/2);		
+		
+			g.setColor(Color.black);
 		}
 	}
 

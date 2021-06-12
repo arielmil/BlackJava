@@ -42,7 +42,7 @@ static private JFrame frame;
 		
 		PanelsSize = new Point(screenSize.x, screenSize.y - (frameBorders.top + frameBorders.bottom));
 		
-		Foreground = new DownerGamePanel(PanelsSize, "Player 1");
+		Foreground = new DownerGamePanel(PanelsSize, "Player 1", true);
 		backgroundPanel = new TablePanel(Foreground);
 	}
 }
