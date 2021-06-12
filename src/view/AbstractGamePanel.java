@@ -222,33 +222,28 @@ abstract class AbstractGamePanel extends JPanel implements MyMouseListener {
 	}
 		
 	int tokenClicked(Point clickedPoint) {
+		//Substituir por funcoes do controller ao invez dos valores de retorno ?
 		if (clickedPoint.x >= tokensLocations[0].x && clickedPoint.x <= tokensLocations[0].x + tokensSize.x) {
-			System.out.println("Gray token Clicked !");
 			return 0;
 		}
 		
 		else if (clickedPoint.x >= tokensLocations[1].x && clickedPoint.x <= tokensLocations[1].x + tokensSize.x) {
-			System.out.println("Purple token Clicked !");
 			return 1;
 		}
 		
 		else if (clickedPoint.x >= tokensLocations[2].x && clickedPoint.x <= tokensLocations[2].x + tokensSize.x) {
-			System.out.println("Blue token Clicked !");
 			return 2;
 		}
 		
 		else if (clickedPoint.x >= tokensLocations[3].x && clickedPoint.x <= tokensLocations[3].x + tokensSize.x) {
-			System.out.println("Red token Clicked !");
 			return 3;
 		}
 		
 		else if (clickedPoint.x >= tokensLocations[4].x && clickedPoint.x <= tokensLocations[4].x + tokensSize.x) {
-			System.out.println("Green token Clicked !");
 			return 4;
 		}
 		
 		else if (clickedPoint.x >= tokensLocations[5].x && clickedPoint.x <= tokensLocations[5].x + tokensSize.x) {
-			System.out.println("Black token Clicked !");
 			return 5;
 		}
 		
