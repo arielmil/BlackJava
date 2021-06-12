@@ -4,7 +4,7 @@ public class Hand {
 	public List cards;
 	public int score;
 	public boolean isBusted;
-	private boolean isBlackJack;
+	public boolean isBlackJack;
 	private boolean stopDraw;
 	private boolean canSplit;
 	private boolean stoppedThisTurn;
@@ -21,10 +21,11 @@ public class Hand {
 		for (i = 0; i < cards.getSize(); i++) {
 			card = (Card)cards.get(i);
 			score = score + card.getValue();
+			
 		}
 		
 		if (score > 21) {
-			isBusted = true;
+				isBusted = true;
 		}
 		
 		else if (score == 21 && isDrawPhase) {

@@ -12,16 +12,15 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 // Falta criar o painel das cartas, fazer a logica de se as cartas estiverem para baixo, renderizar a imagem dela para baixo
+// Falta criar o painel das fichas, e a logica de elas vão aparecendo conforme se vai apostando, ou diminuindo conforme se vai clicando de volta nelas, até que elas somem
 
 @SuppressWarnings("serial")
 public class DownerGamePanel extends AbstractGamePanel{
-	
+
 	@SuppressWarnings("unused") //For whatever reason, eclipse doesn't recognize that this variable is being used.
 	private DebugPositioningMode debugPositioning;
 	
 	private Boolean insuranceButtonIsVisible = false;
-	
-	private Boolean canDrawToken[];
 	
 	private int betValue;
 	private int balance = 500;
@@ -40,8 +39,6 @@ public class DownerGamePanel extends AbstractGamePanel{
 		
 		setLocations();
 		
-		buildCanDrawTokenArray();
-		
 		buildButtons();
 		
 		buildLabels();
@@ -51,8 +48,6 @@ public class DownerGamePanel extends AbstractGamePanel{
 		super(screenSize, playerName, debugPositioningMode);
 		
 		setLocations();
-		
-		buildCanDrawTokenArray();
 		
 		buildButtons();
 		
@@ -66,15 +61,6 @@ public class DownerGamePanel extends AbstractGamePanel{
 	private void setLocations() {
 		//Uses insuranceButton as reference
 		buttonsLocation = new Point(screenSize.x - buttonsSize.x * 4, screenSize.y - buttonsSize.y);
-	}
-	
-	private void buildCanDrawTokenArray() {
-		int i;
-		canDrawToken = new Boolean[6];
-		
-		for (i = 0; i < 6; i++) {
-			canDrawToken[i] = false;
-		}
 	}
 	
 	private void buildLabels() {
@@ -155,11 +141,6 @@ public class DownerGamePanel extends AbstractGamePanel{
 		repaint();
 	}
 	
-	void toggleTokenVisibility(int tokenIndex) {
-		canDrawToken[tokenIndex] = !canDrawToken[tokenIndex];
-		repaint();
-	}
-	
 	void toggleInsuranceButtonVisibility() {
 		insuranceButtonIsVisible = !insuranceButtonIsVisible;
 		insuranceButton.setVisible(insuranceButtonIsVisible);
@@ -178,17 +159,11 @@ public class DownerGamePanel extends AbstractGamePanel{
 	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		int i;
 		
 		//Draws labels outlines
 		g.drawLine(1, screenSize.y - scoreLabelSize.y, labelsWidth + 1, screenSize.y - scoreLabelSize.y);
 		g.drawRect(0, screenSize.y - scoreLabelSize.y * 2 - 1, labelsWidth + 1, scoreLabelSize.y * 2);
 		
-		for (i = 0; i < 6; i++) {
-			if (canDrawToken[i]) {
-				g.drawImage(tokensImages[i], tokensLocations[i].x, tokensLocations[i].y, tokensSize.x, tokensSize.y, null);
-			}
-		}
 	}
 	
 	private class DebugPositioningMode implements ComponentPositionDebuggingInterface, ActionListener {

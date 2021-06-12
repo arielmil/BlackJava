@@ -30,12 +30,12 @@ public class Bet {
 	public void addTokens(String color, int i) {
 		Tokens tokens = new Tokens(color, i);
 		this.tokens.insertL(tokens);
-		totalValue = totalValue + tokens.getValue();
+		totalValue = totalValue + i*tokens.getValue();
 	}
 	
 	public Tokens subtractTokens(Tokens token) {
 		Tokens tokens = (Tokens)this.tokens.drawL();
-		totalValue = totalValue - token.getValue();
+		totalValue = totalValue - token.quantity*token.getValue();
 		return tokens;
 	}
 	
