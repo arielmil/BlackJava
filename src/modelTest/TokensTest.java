@@ -22,7 +22,7 @@ public class TokensTest {
         actual.value = expected_value;
         
 
-        assertEquals("Instance Boolean Variable IsEleven didn't initialized sucessfully",expected_value,actual.getValue());
+        assertEquals("Method getValue didn't work sucessfully",expected_value,actual.getValue());
     }
     
     /* End Method: testGetValue */
@@ -38,9 +38,22 @@ public class TokensTest {
         actual.quantity = expected_quantity;
         
 
-        assertEquals("Instance Boolean Variable IsEleven didn't initialized sucessfully",expected_quantity,actual.getQuantity());
+        assertEquals("Method testgetQuantity didn't worked sucessfully",expected_quantity,actual.getQuantity());
     }
     
-    /* End Method: testGetValue */
+    /* End Method: testGetQuantity */
+    /****************************************************************************
+  	* 
+  	* Method: void testgetColor
+  	*  ****/
+  	
+      @Test (timeout = DEFAULT_TIMEOUT)
+      public void testgetColor() {
+          Tokens actual = new Tokens("Red", 10);
+                   
+          assertEquals("Method testgetQuantity didn't worked sucessfully",actual.color,actual.getColor());
+      }
+      
+      /* End Method: testGetQuantity */
 
 }

@@ -363,6 +363,26 @@ abstract class AbstractGamePanel extends JPanel implements MyMouseListener {
 			g.drawLine((cardsLocations[0].x + cardsSize.x), center.y - cardsSize.y * 2 + cardsSize.y/2, (cardsLocations[0].x + cardsSize.x) + cardsSize.x * 8 , center.y - cardsSize.y * 2 + cardsSize.y/2);		
 		}
 	}
+	
+	int ResizingCoodernate_X (int ScreenSize_X, int ObjectLocation_X)
+	{
+		ObjectLocation_X = ObjectLocation_X * (ScreenSize_X/1200);
+		return ObjectLocation_X;
+	}
+	
+	int ResizingCoodernate_Y (int ScreenSize_Y , int ObjectLocation_Y)
+	{
+		ObjectLocation_Y = ObjectLocation_Y * (ScreenSize_Y/720);
+		return ObjectLocation_Y;
+	}
+	
+	Point PointResizing (int ScreenSize_X, int ScreenSize_Y, Point object)
+	{
+		object.x = object.x * (ScreenSize_X/1200);
+		object.y = object.y * (ScreenSize_Y/700);
+		
+		return object;
+	}
 
 	private enum cardPosition {
 		UP,
