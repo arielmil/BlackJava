@@ -15,13 +15,20 @@ public class Hand {
 	}
 	
 	public void countScore(boolean isDrawPhase) {
-		int i;
+		int i,j=0;
+		int card_ace_index[] = null;
 		
 		Card card;
 		for (i = 0; i < cards.getSize(); i++) {
 			card = (Card)cards.get(i);
-			score = score + card.getValue();
 			
+			score = score + card.getValue();
+			if(score>21)
+			{
+				for (j = 0; j < i; j++) {
+					
+				}
+			}
 		}
 		
 		if (score > 21) {
