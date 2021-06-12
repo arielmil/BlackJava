@@ -87,12 +87,10 @@ public class UpperGamePanel extends AbstractGamePanel implements MyMouseListener
 	}
 		
 	private Boolean deckClicked() {
-		System.out.println("Deck Clicked !");
 		return true;
 	}
 	
 	private Boolean cardsBinClicked() {
-		System.out.println("Cards bin Clicked !");
 		return true;
 	}
 	

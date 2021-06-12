@@ -1,5 +1,7 @@
 package view;
 
+import java.util.Hashtable;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -16,23 +18,24 @@ import controller.API;
 abstract class AbstractGamePanel extends JPanel implements MyMouseListener {
 	private JLabel scoreLabel;
 	
+	static String cardNames[];
+	static String cardSuitNames[];
+	static String tokenNames[];
+	
+	static Hashtable<String, Image> cardNameImageMap;
+	
+	static Image deckImage;
+	static Image cardsBinImage;
+
+	static Image tokensImages[];
+	
 	Boolean debugPositioningMode = false;
-	
-	Boolean canDrawCard[];
-	
+		
 	int playerScore;
+	int cardsNumber;
 	
 	String playerName;
-
-	String cardNames[];
-	String cardSuitNames[];
-	String tokenNames[];
-	
-	Image deckImage;
-	Image cardsBinImage;
-
-	Image cardsImages[];
-	Image tokensImages[];
+	String cardsInHand[];
 	
 	Point screenSize;
 	Point center;
@@ -54,7 +57,13 @@ abstract class AbstractGamePanel extends JPanel implements MyMouseListener {
 		setBounds(0, 0, screenSize.x, screenSize.y);
 		setOpaque(false);
 		
+		playerScore = 0;
+		
+		cardsNumber = 0;
+		
 		this.playerName = playerName;					
+		
+		cardsInHand = new String[19];
 		
 		loadImages();
 		
@@ -63,9 +72,7 @@ abstract class AbstractGamePanel extends JPanel implements MyMouseListener {
 		setLocations();
 		
 		buildScoreLabel();
-		
-		buildCanDrawCardArray();
-		
+				
 		mouseEventHandler = new MyMouseAdapter(this);
 		addMouseListener(mouseEventHandler);
 	}
@@ -77,8 +84,14 @@ abstract class AbstractGamePanel extends JPanel implements MyMouseListener {
 		setBounds(0, 0, screenSize.x, screenSize.y);
 		setOpaque(false);
 		
+		playerScore = 0;
+		
+		cardsNumber = 0;
+		
 		this.playerName = playerName;
-				
+		
+		cardsInHand = new String[19];
+		
 		loadImages();
 		
 		setSizes(screenSize);
@@ -86,8 +99,6 @@ abstract class AbstractGamePanel extends JPanel implements MyMouseListener {
 		setLocations();
 		
 		buildScoreLabel();
-		
-		buildCanDrawCardArray();
 		
 		mouseEventHandler = new MyMouseAdapter(this);
 		addMouseListener(mouseEventHandler);
@@ -149,18 +160,12 @@ abstract class AbstractGamePanel extends JPanel implements MyMouseListener {
 		scoreLabel.setOpaque(true);
 		add(scoreLabel);
 	}
-	
-	private void buildCanDrawCardArray() {
-		int i;
-		canDrawCard = new Boolean[19];
-		
-		for (i = 0; i < 19; i++) {
-			canDrawCard[i] = false;
-		}
-	}
-	
+
 	void loadImages() {
 		int i = 0;
+		
+		Image cardImage;
+		
 		String imgName;
 		
 		String localCardNames[] = API.getCardNames();
@@ -175,13 +180,16 @@ abstract class AbstractGamePanel extends JPanel implements MyMouseListener {
 		cardSuitNames = localCardSuitNames;
 		tokenNames = localTokenNames;
 		
-		cardsImages = new Image[cardNames.length * cardSuitNames.length];
+		cardNameImageMap = new Hashtable <String, Image>();
 		
 		for (String cardName : cardNames) {
 			
 			for (String suitName : cardSuitNames) {
-				imgName = cardName + "_" + suitName + ".gif";
-				cardsImages[i] = ImageLoader.load(imgName);
+				imgName = cardName + "_" + suitName;
+				cardImage = ImageLoader.load(imgName + ".gif");
+				
+				cardNameImageMap.put(imgName, cardImage);
+				
 				i++;
 			}
 		}
@@ -250,6 +258,24 @@ abstract class AbstractGamePanel extends JPanel implements MyMouseListener {
 		return -1;
 	}
 	
+	void setCardInHand(String cardName) {
+		cardsInHand[cardsNumber] = cardName;
+		cardsNumber++;
+		repaint();
+		
+	}
+	
+	void resetCardsInHandArray() {
+		int i;
+		
+		for(i = 0; i < cardsInHand.length; i++) {
+			cardsInHand[i] = null;
+		}
+		
+		cardsNumber = 0;
+		repaint();
+	}
+	
 	public void setClickedPoint(Point clickedPoint) {
 
 		if (clickedPoint.x >= tokensLocations[0].x && clickedPoint.x <= tokensLocations[5].x + tokensSize.x) {
@@ -262,23 +288,21 @@ abstract class AbstractGamePanel extends JPanel implements MyMouseListener {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		
-		int i, j = 0;
+		int i;
+		
+		Image cardImage;
 		
 		//Draws scoreLabel outline
 		g.drawRect(scoreLabelLocation.x - 1, scoreLabelLocation.y - 1, scoreLabelSize.x + 1, scoreLabelSize.y + 1);
 		
-		for (i = 0; i < 6; i++) {
-			
+		for (i = 0; i < cardsNumber; i++) {	
+			cardImage = cardNameImageMap.get(cardsInHand[i]);
+			g.drawImage(cardImage, cardsLocations[i].x, cardsLocations[i].y, cardsSize.x, cardsSize.y, null);
 		}
 		
-		for (i = 0; i < 19; i++) {
-			if (canDrawCard[j]) {
-				g.drawImage(cardsImages[j], cardsLocations[i].x, cardsLocations[i].y, cardsSize.x, cardsSize.y, null);
-			}
-			g.drawImage(cardsImages[i], cardsLocations[i].x, cardsLocations[i].y, cardsSize.x, cardsSize.y, null);
-		}	
-		
 		if (debugPositioningMode) {
+			
+			//Draw middle lines for reference
 			g.drawLine(center.x, 0, center.x, screenSize.y);
 			g.drawLine(0, center.y, screenSize.x, center.y);
 			
