@@ -14,7 +14,7 @@ public class Tokens {
 	
 	private static int tokensValues[];
 	
-	private String color;
+	public String color;
 	
 	private static String tokensNames[];
 	
