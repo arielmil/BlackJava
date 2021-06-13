@@ -314,7 +314,7 @@ abstract class AbstractGamePanel extends JPanel implements MyMouseListener {
 		if (debugPositioningMode) {
 			
 			//Draw middle lines for reference
-			g.drawLine(center.x, 0, center.x, screenSize.y);
+			g.drawLine(center.x,  0, center.x, screenSize.y);
 			g.drawLine(0, center.y, screenSize.x, center.y);
 			
 			//Outlines cards and tokens position
