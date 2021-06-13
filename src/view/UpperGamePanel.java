@@ -87,10 +87,12 @@ public class UpperGamePanel extends AbstractGamePanel implements MyMouseListener
 	}
 		
 	private Boolean deckClicked() {
+		System.out.println("Deck Clicked !");
 		return true;
 	}
 	
 	private Boolean cardsBinClicked() {
+		System.out.println("Cards bin Clicked !");
 		return true;
 	}
 	
@@ -111,16 +113,10 @@ public class UpperGamePanel extends AbstractGamePanel implements MyMouseListener
 	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		int i;
 		
 		//Draw Deck and cards bin
 		g.drawImage(deckImage, deckLocation.x, deckLocation.y, cardsSize.x, cardsSize.y, null);
 		g.drawImage(cardsBinImage, cardsBinLocation.x, cardsBinLocation.y, cardsSize.x, cardsSize.y, null);
-		
-		//Draw Tokens
-		for (i = 0; i < 6; i++) {
-			g.drawImage(tokensImages[i], tokensLocations[i].x, tokensLocations[i].y, tokensSize.x, tokensSize.y, null);
-		}
 	}
 	
 	private class DebugPositioningMode implements ComponentPositionDebuggingInterface, ActionListener {
