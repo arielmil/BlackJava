@@ -139,32 +139,45 @@ public class ListTest {
 	/*
 	****************************************************************************
 	* 
-	* Method: void testDrawL
+	* Method: void testDrawLWithObject
 	*  ****/
 	
-	/*@Test 
-    public void testDrawL() {
+	@Test 
+    public void testDrawLWithObject() {
         List actual_list = new List();
         List expected_list = new List();
         int object_1 = 2;
-        int object_2 = 1;
-        int object_3 = 3;
+        int expected_object;
         
         
         actual_list.insertL(object_1);
         expected_list.insertL(object_1);
-        actual_list.insertL(object_2);  
-        expected_list.insertL(object_2);
-        actual_list.insertL(object_3);
         
-        assertEquals("Method testGetIndexGreaterThanSize Draw Equals was unsuccessfull", object_3,actual_list.drawL());
+        expected_object = (int)actual_list.drawL();
         
-        actual_list.drawL();
-        
-        assertEquals("Method testGetIndexGreaterThanSize Equals Lists was unsuccessfull", expected_list,actual_list);
-    }*/
+        assertEquals("Method testGetIndexGreaterThanSize Draw Equals was unsuccessfull", expected_object,object_1);
+                
+    }
 	
-	/* End Method: testDrawL */
+	/* End Method: testDrawLWithObject */
+	/****************************************************************************
+	* 
+	* Method: void testDrawLWithoutObject
+	*  ****/
+	
+	@Test 
+    public void testDrawLWithoutObject() {
+        List actual_list = new List();
+        int object_1 = -1;
+        int expected_object;
+               
+        expected_object = (int)actual_list.drawL();
+        
+        assertEquals("Method testGetIndexGreaterThanSize Draw Equals was unsuccessfull", expected_object,object_1);
+                
+    }
+	
+	/* End Method: testDrawLWithoutObject */
 	/*
 	****************************************************************************
 	* 
@@ -251,7 +264,7 @@ public class ListTest {
 	* 
 	* Method: void testDraw
 	*  ****/
-	/*
+	
 	@Test 
     public void testDrawAll() {
         List actual_list = new List();
@@ -266,12 +279,11 @@ public class ListTest {
         drawed_list.insertL(object_1);
         drawed_list.insertL(object_2);
         expected_list = drawed_list.drawAll();
-       
         
         assertEquals("Method testdrawAll was unsuccessfull", expected_list,actual_list);
         
         
-    }*/
+    }
 	
 	/* End Method: testClear */
 	/*
