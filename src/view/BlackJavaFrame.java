@@ -31,6 +31,7 @@ public class BlackJavaFrame extends JFrame {
 		setLayout(null);
 		setBounds(0, 0, screenSize.x, screenSize.y);
 		setVisible(true);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		frameBorders = getInsets();
 		
@@ -69,23 +70,25 @@ public class BlackJavaFrame extends JFrame {
 		int i;
 		
 		playerPanels = new DownerGamePanel[playersQuantity];
-		playerPanelsSize = new Point(openingScreenPanelSize.x / playersQuantity, openingScreenPanelSize.y/2);
+		playerPanelsSize = new Point(openingScreenPanelSize.x / playersQuantity, 700/2);
 		Point basePlayerPanelsScreenLocation = new Point(0, screenSize.y/2 - (frameBorders.top + frameBorders.bottom));
 		
 		playerPanelsBackgrounds = new TablePanel[playersQuantity];
-				
+		DownerGamePanel.setPlayersQuantity(playersQuantity);
+		
 		for (i = 0; i < playersQuantity; i++) {
 			System.out.println(playerNames[0]);
 			playerPanels[i] = new DownerGamePanel(basePlayerPanelsScreenLocation, playerPanelsSize, playerNames[i]);
 			playerPanelsBackgrounds[i] = new TablePanel(playerPanels[i]);
-			playerPanelsBackgrounds[i].setVisible(false);
+			playerPanelsBackgrounds[i].setVisible(true);
 			contentPane.add(playerPanelsBackgrounds[i]);
 			basePlayerPanelsScreenLocation.x = basePlayerPanelsScreenLocation.x + playerPanelsSize.x;
 		}
 	}
 	
 	public void setPlayerNames(String playerNames[]) {
-		playerNames = new String[playersQuantity];
+		
+		this.playerNames = new String[playersQuantity];
 		this.playerNames = playerNames;
 	}
 	

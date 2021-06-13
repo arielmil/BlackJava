@@ -36,7 +36,7 @@ public class TablePanel extends JPanel {
 		
 		panelSize = new Point(foreGround.getWidth(), foreGround.getHeight());
 		
-		setBounds(0, 0, panelSize.x, panelSize.y);
+		setBounds(foreGround.getX(), foreGround.getY(), panelSize.x, panelSize.y);
 		setOpaque(false);
 		
 		add(foreGround);
