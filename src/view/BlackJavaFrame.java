@@ -24,10 +24,7 @@ public class BlackJavaFrame extends JFrame {
 	private TablePanel openingScreenPanelBackground, dealerPanelBackground;
 	private TablePanel playerPanelsBackgrounds[];
 	
-	public BlackJavaFrame(int playersQuantity) {
-		this.playersQuantity = playersQuantity;
-		playerNames = new String[playersQuantity];
-		
+	public BlackJavaFrame() {
 		screenSize = new Point(1200, 700);
 		
 		setLayout(null);
@@ -39,19 +36,14 @@ public class BlackJavaFrame extends JFrame {
 		contentPane = getContentPane();
 		contentPane.setLayout(null);
 		
-		setPanelSizes(screenSize, frameBorders);		
+		setPanelSizes(screenSize, frameBorders);
+		startOpeningPanel();
 	}
 	
 	private void setPanelSizes(Point screenSize, Insets frameBorders) {
 		openingScreenPanelSize = new Point(screenSize.x, screenSize.y - (frameBorders.top + frameBorders.bottom));
 		dealerPanelSize = new Point(openingScreenPanelSize.x, openingScreenPanelSize.y / 2);
 		playerPanelsSize = new Point(openingScreenPanelSize.x / playersQuantity, openingScreenPanelSize.y/2);
-	}
-	
-	private void startPanels() {
-		startOpeningPanel();
-		startDealerPanel();
-		startPlayerPanels();
 	}
 	
 	private void startOpeningPanel() {
@@ -61,14 +53,20 @@ public class BlackJavaFrame extends JFrame {
 		contentPane.add(openingScreenPanelBackground);
 	}
 	
-	private void startDealerPanel() {
+	public void startGamePanels(int playersQuantity) {
+		this.playersQuantity = playersQuantity;
+		startDealerPanel();
+		startPlayerPanels();
+	}
+	
+	public void startDealerPanel() {
 		dealerPanel = new UpperGamePanel(dealerPanelSize);
 		dealerPanelBackground = new TablePanel(dealerPanel);
 		dealerPanelBackground.setVisible(false);
 		contentPane.add(dealerPanelBackground);
 	}
 	
-	private void startPlayerPanels() {
+	public void startPlayerPanels() {
 		int i;
 		Point basePlayerPanelsScreenLocation = new Point(0, screenSize.y/2 - (frameBorders.top + frameBorders.bottom));
 		
@@ -84,8 +82,12 @@ public class BlackJavaFrame extends JFrame {
 	}
 	
 	public void setPlayerNames(String playerNames[]) {
+		playerNames = new String[playersQuantity];
 		this.playerNames = playerNames;
-		startPanels();
+	}
+	
+	public void setPlayersQuantity(int playersQuantity) {
+		this.playersQuantity = playersQuantity;
 	}
 	
 	public void startGame() {
