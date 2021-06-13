@@ -24,15 +24,15 @@ public class UpperGamePanel extends AbstractGamePanel implements MyMouseListener
 	private JButton newTurnButton;
 	private JButton saveGameButton;
 	
-	public UpperGamePanel(Point screenSize, String playerName) {
-		super(screenSize, playerName);
+	public UpperGamePanel(Point screenSize) {
+		super(new Point(0, 0), screenSize, "Dealer");
 		
 		setLocations();
 		buildButtons();
 	}
 	
-	public UpperGamePanel(Point screenSize, String playerName, Boolean debugPositioningMode) {
-		super(screenSize, playerName, debugPositioningMode);
+	public UpperGamePanel(Point screenSize, Boolean debugPositioningMode) {
+		super(new Point(0, 0), screenSize, "Dealer", debugPositioningMode);
 		
 		setLocations();
 		buildButtons();

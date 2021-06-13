@@ -6,7 +6,7 @@ import java.awt.Point;
 
 import javax.swing.JFrame;
 
-import view.OpeningScreen;
+import view.OpeningScreenPanel;
 import view.TablePanel;
 
 class OpeningScreenTest {
@@ -18,7 +18,7 @@ class OpeningScreenTest {
 	static private Point PanelsSize;
 	
 	static private TablePanel backgroundPanel;
-	static private OpeningScreen Foreground;
+	static private OpeningScreenPanel Foreground;
 	
 	public static void main (String args[]) {
 		contentPane = frame.getContentPane();
@@ -39,10 +39,9 @@ class OpeningScreenTest {
 		frame.setVisible(true);
 		
 		frameBorders = frame.getInsets();
-		
 		PanelsSize = new Point(screenSize.x, screenSize.y - (frameBorders.top + frameBorders.bottom));
 		
-		Foreground = new OpeningScreen(PanelsSize);
+		Foreground = new OpeningScreenPanel(PanelsSize, true);
 		backgroundPanel = new TablePanel(Foreground);
 	}
 }

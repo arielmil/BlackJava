@@ -31,6 +31,7 @@ public class UpperGamePanelTest {
 	
 	static{
 		Insets frameBorders;
+		
 		frame = new JFrame("UpperGamePanel Test");
 		
 		screenSize = new Point(1200, 700);
@@ -44,7 +45,7 @@ public class UpperGamePanelTest {
 
 		PanelsSize = new Point(screenSize.x, screenSize.y - (frameBorders.top + frameBorders.bottom));
 		
-		Foreground = new UpperGamePanel(PanelsSize, "Dealer", true);
+		Foreground = new UpperGamePanel(PanelsSize);
 		backgroundPanel = new TablePanel(Foreground);
 	}
 }

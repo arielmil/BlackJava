@@ -30,10 +30,12 @@ public abstract class AbstractGamePanel extends JPanel implements MyMouseListene
 
 	static Image tokensImages[];
 	
+	static int playersQuantity = 1;
+	
 	Boolean debugPositioningMode = false;
 		
 	int playerScore;
-	int cardsNumber;
+	int cardsQuantity;
 	int fontSize;
 	
 	String playerName;
@@ -54,16 +56,15 @@ public abstract class AbstractGamePanel extends JPanel implements MyMouseListene
 	
 	MyMouseAdapter mouseEventHandler;
 	
-	public AbstractGamePanel(Point screenSize, String playerName) {
+	public AbstractGamePanel(Point locationOnFrame, Point screenSize, String playerName) {
 		super();
 		
 		setLayout(null);
-		setBounds(0, 0, screenSize.x, screenSize.y);
+		setBounds(locationOnFrame.x, locationOnFrame.y, screenSize.x, screenSize.y);
 		setOpaque(false);
 		
 		playerScore = 0;
-		
-		cardsNumber = 0;
+		cardsQuantity = 0;
 		
 		this.playerName = playerName;					
 		
@@ -83,16 +84,15 @@ public abstract class AbstractGamePanel extends JPanel implements MyMouseListene
 		addMouseListener(mouseEventHandler);
 	}
 	
-	public AbstractGamePanel(Point screenSize, String playerName, Boolean debugPositioningMode) {
+	public AbstractGamePanel(Point locationOnFrame, Point screenSize, String playerName, Boolean debugPositioningMode) {
 		super();
 		
 		setLayout(null);
-		setBounds(0, 0, screenSize.x, screenSize.y);
+		setBounds(locationOnFrame.x, locationOnFrame.y, screenSize.x, screenSize.y);
 		setOpaque(false);
 		
 		playerScore = 0;
-		
-		cardsNumber = 0;
+		cardsQuantity = 0;
 		
 		this.playerName = playerName;
 		
@@ -116,8 +116,13 @@ public abstract class AbstractGamePanel extends JPanel implements MyMouseListene
 	
 	private void setLocations() {
 		center = new Point(screenSize.x/2, screenSize.y/2);
+		
 		scoreLabelLocation = new Point(screenSize.x - ResizingTool.resizeX(screenSize.x, 265), 1);
 		
+		if (this instanceof DownerGamePanel) {
+			scoreLabelLocation = new Point(screenSize.x - ResizingTool.resizeX(screenSize.x, 265) * playersQuantity/2 - (ResizingTool.resizeX(screenSize.x, 21)), 1);
+		}
+				
 		setCardsLocations();
 		setTokensLocations();
 	}
@@ -174,12 +179,16 @@ public abstract class AbstractGamePanel extends JPanel implements MyMouseListene
 	}
 	
 	private void buildScoreLabel() {
-		scoreLabel = new JLabel(String.format("%s is Playing. Score: 0", playerName), SwingConstants.CENTER);
+		scoreLabel = new JLabel(String.format("%s.: Score: 0", playerName), SwingConstants.CENTER);
 		scoreLabel.setBounds(scoreLabelLocation.x, scoreLabelLocation.y, scoreLabelSize.x, scoreLabelSize.y);
 		scoreLabel.setOpaque(true);
 		add(scoreLabel);
 	}
 
+	public static void setPlayersQuantity(int value) {
+		playersQuantity = value;
+	}
+	
 	void loadImages() {
 		int i = 0;
 		
@@ -208,12 +217,6 @@ public abstract class AbstractGamePanel extends JPanel implements MyMouseListene
 				cardImage = ImageLoader.load(imgName + ".gif");
 				
 				cardNameImageMap.put(imgName, cardImage);
-				
-				if (i < 30) {
-					setCardInHand(imgName);
-					System.out.println(cardsInHand[i]);
-				}
-				
 				i++;
 			}
 		}
@@ -241,15 +244,16 @@ public abstract class AbstractGamePanel extends JPanel implements MyMouseListene
 		cardsSize = new Point(ResizingTool.resizeX(screenSize.x, deckImage.getWidth(null)), ResizingTool.resizeY(screenSize.y, deckImage.getHeight(null)));
 		tokensSize = new Point(ResizingTool.resizeX(screenSize.x, tokensImages[0].getWidth(null)), ResizingTool.resizeY(screenSize.y, tokensImages[0].getHeight(null)));
 		
-		System.out.println(cardsSize);
-		System.out.println(new Point(deckImage.getWidth(null), deckImage.getHeight(null)));
-		
-		System.out.println(screenSize);
-		
 		resized45 = ResizingTool.resizeY(screenSize.y, 45);
 		
 		buttonsSize = new Point(ResizingTool.resizeX(screenSize.x, 148), resized45);
-		scoreLabelSize = new Point(ResizingTool.resizeX(screenSize.x, 264), resized45);
+		scoreLabelSize = new Point(ResizingTool.resizeX(screenSize.x, 264) + (ResizingTool.resizeX(screenSize.x, 21)), resized45);
+			
+		if (this instanceof DownerGamePanel) {
+			buttonsSize.x = buttonsSize.x * playersQuantity/2;
+			scoreLabelSize.x = scoreLabelSize.x * playersQuantity/2;
+		}
+		
 		fontSize = 12;
 	}
 	
@@ -259,7 +263,7 @@ public abstract class AbstractGamePanel extends JPanel implements MyMouseListene
 	
 	void repaintPlayerScore(int playerScore) {
 		this.playerScore = playerScore;
-		scoreLabel.setText(String.format("%s is Playing. Score: %d", playerName, playerScore));
+		scoreLabel.setText(String.format("%s.: Score: %d", playerName, playerScore));
 		scoreLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		repaint();
 	}
@@ -294,8 +298,8 @@ public abstract class AbstractGamePanel extends JPanel implements MyMouseListene
 	}
 	
 	void setCardInHand(String cardName) {
-		cardsInHand[cardsNumber] = cardName;
-		cardsNumber++;
+		cardsInHand[cardsQuantity] = cardName;
+		cardsQuantity++;
 		repaint();
 		
 	}
@@ -307,7 +311,7 @@ public abstract class AbstractGamePanel extends JPanel implements MyMouseListene
 			cardsInHand[i] = null;
 		}
 		
-		cardsNumber = 0;
+		cardsQuantity = 0;
 		repaint();
 	}
 	
@@ -330,9 +334,11 @@ public abstract class AbstractGamePanel extends JPanel implements MyMouseListene
 		//Draws scoreLabel outline
 		g.drawRect(scoreLabelLocation.x - 1, scoreLabelLocation.y - 1, scoreLabelSize.x + 1, scoreLabelSize.y + 1);
 		
-		for (i = 0; i < cardsNumber; i++) {	
-			cardImage = cardNameImageMap.get(cardsInHand[i]);
-			g.drawImage(cardImage, cardsLocations[i].x, cardsLocations[i].y, cardsSize.x, cardsSize.y, null);
+		for (i = 0; i < cardsQuantity; i++) {
+			if (cardsInHand[i] != null) {
+				cardImage = cardNameImageMap.get(cardsInHand[i]);
+				g.drawImage(cardImage, cardsLocations[i].x, cardsLocations[i].y, cardsSize.x, cardsSize.y, null);
+			}
 		}
 		
 		if (debugPositioningMode) {
