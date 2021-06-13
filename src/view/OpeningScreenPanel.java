@@ -213,7 +213,7 @@ public class OpeningScreenPanel extends JPanel implements ActionListener{
 		else { 
 			for (JRadioButton button: playerSelectButton) {
 				if (button.isSelected()) {
-					GameController.funcao1(Integer.parseInt(button.getText()));
+					GameController.startGame(Integer.parseInt(button.getText()));
 				}
 			}
 		}

@@ -4,7 +4,7 @@ import view.BlackJavaFrame;
 
 public class GameController {
     
-	BlackJavaFrame mainFrame;
+	static BlackJavaFrame mainFrame;
     
 	public GameController () {
 		
@@ -13,16 +13,15 @@ public class GameController {
 		
 	}
 	
-    public void funcao1 () {
+    public static void startGame (int playerQuantity) {
     	
-    	
-    	
+    	String playerNames[] = new String[] {"Player1"};
+    	mainFrame.startGame(playerQuantity, playerNames);
     }
     
     public static void main(String args[]) {
     	
     	GameController teste = new GameController();
-    	
     }
     
 }

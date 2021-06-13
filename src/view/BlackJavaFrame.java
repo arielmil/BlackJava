@@ -38,6 +38,7 @@ public class BlackJavaFrame extends JFrame {
 		contentPane.setLayout(null);
 		
 		openingScreenPanelSize = new Point(screenSize.x, screenSize.y - (frameBorders.top + frameBorders.bottom));
+		
 		startOpeningPanel();
 	}
 	
@@ -67,12 +68,14 @@ public class BlackJavaFrame extends JFrame {
 	public void startPlayerPanels() {
 		int i;
 		
+		playerPanels = new DownerGamePanel[playersQuantity];
 		playerPanelsSize = new Point(openingScreenPanelSize.x / playersQuantity, openingScreenPanelSize.y/2);
 		Point basePlayerPanelsScreenLocation = new Point(0, screenSize.y/2 - (frameBorders.top + frameBorders.bottom));
 		
 		playerPanelsBackgrounds = new TablePanel[playersQuantity];
 				
 		for (i = 0; i < playersQuantity; i++) {
+			System.out.println(playerNames[0]);
 			playerPanels[i] = new DownerGamePanel(basePlayerPanelsScreenLocation, playerPanelsSize, playerNames[i]);
 			playerPanelsBackgrounds[i] = new TablePanel(playerPanels[i]);
 			playerPanelsBackgrounds[i].setVisible(false);
@@ -90,9 +93,11 @@ public class BlackJavaFrame extends JFrame {
 		this.playersQuantity = playersQuantity;
 	}
 	
-	public void startGame(int playersQuantity) {
+	public void startGame(int playersQuantity, String playerNames[]) {
 		setPlayersQuantity(playersQuantity);
+		setPlayerNames(playerNames);
 		startGamePanels(playersQuantity);
+		
 		openingScreenPanelBackground.setVisible(false);
 		dealerPanelBackground.setVisible(true);
 		
