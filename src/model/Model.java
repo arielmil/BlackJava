@@ -1,7 +1,7 @@
 package model;
 
 public class Model {
-	private static Deck deck = new Deck();;
+	private static Deck deck = new Deck();
 		
 	public static String[] getCardNames() {
 		return deck.getCardNames();

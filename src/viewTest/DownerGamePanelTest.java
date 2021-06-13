@@ -28,7 +28,7 @@ static private JFrame frame;
 		frame.repaint();
 	}
 	
-	static{
+	static {
 		Insets frameBorders;
 		frame = new JFrame("DownerGamePanel Test");
 		
