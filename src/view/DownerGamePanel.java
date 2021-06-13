@@ -11,9 +11,6 @@ import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
-// Falta criar o painel das cartas, fazer a logica de se as cartas estiverem para baixo, renderizar a imagem dela para baixo
-// Falta criar o painel das fichas, e a logica de elas v�o aparecendo conforme se vai apostando, ou diminuindo conforme se vai clicando de volta nelas, at� que elas somem
-
 @SuppressWarnings("serial")
 public class DownerGamePanel extends AbstractGamePanel{
 
