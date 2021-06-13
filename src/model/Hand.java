@@ -1,7 +1,7 @@
 package model;
 
 public class Hand {
-	public List cards;
+	private List cards;
 	public int score;
 	public boolean isBusted;
 	public boolean isBlackJack;
@@ -108,6 +108,18 @@ public class Hand {
 	public List clear() {
 		setScoreToZero();
 		return cards.drawAll();
+	}
+	
+	public String[] getCards() {
+		int i;
+		int size = cards.getSize();
+		String cardsNames[] = new String[size];
+		
+		for (i = 0; i < size; i++) {
+			cardsNames[i] = ((Card)(cards.get(i))).getName();
+		}
+		
+		return cardsNames;
 	}
 	
 	/* void render() {

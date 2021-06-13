@@ -240,7 +240,6 @@ public class DownerGamePanel extends AbstractGamePanel	{
 		
 	}
 	
-
 	private class DebugPositioningMode implements ComponentPositionDebuggingInterface, ActionListener {
 		private MouseAdapter mouseEventHandler;
 		

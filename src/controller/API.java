@@ -22,4 +22,8 @@ public class API {
 	public static String[] getTokensNames() {
 		return Model.getTokensNames();
 	}
+	
+	public static void startGame (int playerQuantity) {
+		GameController.startGame(playerQuantity);
+	}
 }

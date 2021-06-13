@@ -11,7 +11,7 @@ import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
-import controller.GameController;
+import controller.API;
 
 @SuppressWarnings("serial")
 public class OpeningScreenPanel extends JPanel implements ActionListener{
@@ -213,7 +213,7 @@ public class OpeningScreenPanel extends JPanel implements ActionListener{
 		else { 
 			for (JRadioButton button: playerSelectButton) {
 				if (button.isSelected()) {
-					GameController.startGame(Integer.parseInt(button.getText()));
+					API.startGame(Integer.parseInt(button.getText()));
 				}
 			}
 		}
