@@ -3,6 +3,7 @@ package view;
 import java.util.Hashtable;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
@@ -33,6 +34,7 @@ public abstract class AbstractGamePanel extends JPanel implements MyMouseListene
 		
 	int playerScore;
 	int cardsNumber;
+	int fontSize;
 	
 	String playerName;
 	String cardsInHand[];
@@ -47,6 +49,8 @@ public abstract class AbstractGamePanel extends JPanel implements MyMouseListene
 	
 	Point tokensLocations[];
 	Point cardsLocations[];
+	
+	Font myFont;
 	
 	MyMouseAdapter mouseEventHandler;
 	
@@ -63,7 +67,7 @@ public abstract class AbstractGamePanel extends JPanel implements MyMouseListene
 		
 		this.playerName = playerName;					
 		
-		cardsInHand = new String[19];
+		cardsInHand = new String[30];
 		
 		loadImages();
 		
@@ -72,7 +76,9 @@ public abstract class AbstractGamePanel extends JPanel implements MyMouseListene
 		setLocations();
 		
 		buildScoreLabel();
-				
+		
+		setMyFont();
+		
 		mouseEventHandler = new MyMouseAdapter(this);
 		addMouseListener(mouseEventHandler);
 	}
@@ -90,7 +96,7 @@ public abstract class AbstractGamePanel extends JPanel implements MyMouseListene
 		
 		this.playerName = playerName;
 		
-		cardsInHand = new String[19];
+		cardsInHand = new String[30];
 		
 		loadImages();
 		
@@ -99,6 +105,8 @@ public abstract class AbstractGamePanel extends JPanel implements MyMouseListene
 		setLocations();
 		
 		buildScoreLabel();
+		
+		setMyFont();
 		
 		mouseEventHandler = new MyMouseAdapter(this);
 		addMouseListener(mouseEventHandler);
@@ -117,19 +125,26 @@ public abstract class AbstractGamePanel extends JPanel implements MyMouseListene
 	private void setCardsLocations() {
 		int i;
 		
-		cardsLocations = new Point[19];
+		cardsLocations = new Point[30];
 		
 		Point cardsBaseLocation = new Point(center.x - cardsSize.x * 5, center.y - cardsSize.y);
 		
 		for (i = 0; i < 10; i++) {
 			cardsLocations[i] = new Point(cardsBaseLocation.x + (cardsSize.x * i), cardsBaseLocation.y);
 		}
-			
+		
 		cardsBaseLocation.x = center.x - cardsSize.x * 4;
 		cardsBaseLocation.y = center.y;
 
 		for (i = 0; i < 9; i++) {
 			cardsLocations[i + 10] = new Point(cardsBaseLocation.x + (cardsSize.x * i), cardsBaseLocation.y);
+		}
+		
+		cardsBaseLocation.x = center.x - cardsSize.x * 5;
+		cardsBaseLocation.y = center.y + cardsSize.y;
+		
+		for (i = 0; i < 11; i++) {
+			cardsLocations[i + 19] = new Point(cardsBaseLocation.x + (cardsSize.x * i), cardsBaseLocation.y);
 		}
 	}
 	
@@ -152,6 +167,10 @@ public abstract class AbstractGamePanel extends JPanel implements MyMouseListene
 		tokensLocations[4] = new Point(tokensBaseLocation.x, tokensBaseLocation.y);
 		//Black Token (Value: 100)
 		tokensLocations[5] = new Point(tokensBaseLocation.x + 2 * (tokensXDistance + tokensSize.x), tokensBaseLocation.y);
+	}
+	
+	private void setMyFont() {
+		myFont = new Font("Dialog", Font.BOLD, fontSize);
 	}
 	
 	private void buildScoreLabel() {
@@ -190,6 +209,11 @@ public abstract class AbstractGamePanel extends JPanel implements MyMouseListene
 				
 				cardNameImageMap.put(imgName, cardImage);
 				
+				if (i < 30) {
+					setCardInHand(imgName);
+					System.out.println(cardsInHand[i]);
+				}
+				
 				i++;
 			}
 		}
@@ -223,9 +247,10 @@ public abstract class AbstractGamePanel extends JPanel implements MyMouseListene
 		System.out.println(screenSize);
 		
 		resized45 = ResizingTool.resizeY(screenSize.y, 45);
-		System.out.println(resized45);
+		
 		buttonsSize = new Point(ResizingTool.resizeX(screenSize.x, 148), resized45);
 		scoreLabelSize = new Point(ResizingTool.resizeX(screenSize.x, 264), resized45);
+		fontSize = 12;
 	}
 	
 	void setPlayerName(String playerName) {
@@ -320,9 +345,9 @@ public abstract class AbstractGamePanel extends JPanel implements MyMouseListene
 			
 			//Cards position
 			g.setColor(Color.green);
-			g.drawRect(center.x - cardsSize.x * 5, center.y - cardsSize.y * 2, cardsSize.x * 10, cardsSize.y * 3);
+			g.drawRect(center.x - cardsSize.x * 5, center.y - cardsSize.y * 2, cardsSize.x * 10, cardsSize.y * 4);
 			g.drawLine(center.x - cardsSize.x * 5, center.y - cardsSize.y, center.x + cardsSize.x * 5, center.y - cardsSize.y);
-						
+			
 			//Tokens position
 			g.setColor(Color.red);
 			g.drawRect((cardsLocations[0].x + cardsSize.x), center.y - cardsSize.y * 2, cardsSize.x * 8, cardsSize.y);

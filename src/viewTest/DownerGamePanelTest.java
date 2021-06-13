@@ -7,6 +7,7 @@ import java.awt.Point;
 import javax.swing.JFrame;
 
 import view.DownerGamePanel;
+import view.ResizingTool;
 import view.TablePanel;
 
 class DownerGamePanelTest {
@@ -32,13 +33,14 @@ static private JFrame frame;
 		Insets frameBorders;
 		frame = new JFrame("DownerGamePanel Test");
 		
-		screenSize = new Point(1200/4, 700/2);
+		screenSize = new Point(1200, 700);
 		
 		frame.setBounds(0, 0, screenSize.x, screenSize.y);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 		
 		frameBorders = frame.getInsets();
+		ResizingTool.setBorderSizeY(frameBorders.top);
 		
 		PanelsSize = new Point(screenSize.x, screenSize.y - (frameBorders.top + frameBorders.bottom));
 		

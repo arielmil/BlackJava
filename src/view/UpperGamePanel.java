@@ -62,6 +62,8 @@ public class UpperGamePanel extends AbstractGamePanel implements MyMouseListener
 		newTurnButton = new JButton("New Turn");
 		newTurnButton.setToolTipText("Starts a new turn");
 		
+		newTurnButton.setFont(myFont);
+		
 		add(newTurnButton);
 		
 		newTurnButton.setBounds(buttonsLocation.x + buttonsSize.x * 2, buttonsLocation.y, buttonsSize.x, buttonsSize.y);
@@ -72,6 +74,8 @@ public class UpperGamePanel extends AbstractGamePanel implements MyMouseListener
 		saveGameButton = new JButton("Save");
 		saveGameButton.setToolTipText("Saves this game state");
 		
+		saveGameButton.setFont(myFont);
+		
 		add(saveGameButton);
 		
 		saveGameButton.setBounds(buttonsLocation.x + buttonsSize.x, buttonsLocation.y, buttonsSize.x, buttonsSize.y);
@@ -80,6 +84,8 @@ public class UpperGamePanel extends AbstractGamePanel implements MyMouseListener
 	private void buildQuitButton() {
 		quitButton = new JButton("Quit");
 		quitButton.setToolTipText("Returns to Opening Screen");
+		
+		quitButton.setFont(myFont);
 		
 		add(quitButton);
 		
@@ -160,7 +166,9 @@ public class UpperGamePanel extends AbstractGamePanel implements MyMouseListener
 		}
 		
 		private void buildDebugPositionReferenceButton() {
-			debugPositionReferenceButton = new JButton("Reference");		
+			debugPositionReferenceButton = new JButton("Reference");
+			debugPositionReferenceButton.setFont(myFont);
+			
 			UpperGamePanel.this.add(debugPositionReferenceButton);
 			
 			debugPositionReferenceButton.setBounds(screenSize.x - 54, 0, 54, 54);

@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 
 import view.TablePanel;
 import view.UpperGamePanel;
+import view.ResizingTool;
 
 public class UpperGamePanelTest {
 	static private JFrame frame;
@@ -32,14 +33,15 @@ public class UpperGamePanelTest {
 		Insets frameBorders;
 		frame = new JFrame("UpperGamePanel Test");
 		
-		screenSize = new Point(600, 350);
+		screenSize = new Point(1200, 700);
 		
 		frame.setBounds(0, 0, screenSize.x, screenSize.y);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 		
 		frameBorders = frame.getInsets();
-		System.out.println(frameBorders);
+		ResizingTool.setBorderSizeY(frameBorders.top + frameBorders.bottom);
+
 		PanelsSize = new Point(screenSize.x, screenSize.y - (frameBorders.top + frameBorders.bottom));
 		
 		Foreground = new UpperGamePanel(PanelsSize, "Dealer", true);
