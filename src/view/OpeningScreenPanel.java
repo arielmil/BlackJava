@@ -206,7 +206,11 @@ public class OpeningScreenPanel extends JPanel implements ActionListener{
 			}
 			
 			
-		}	
+		}
+		
+		else { 
+			
+		}
 	}
 	
 	public void paintComponent(Graphics g) {
