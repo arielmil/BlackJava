@@ -297,17 +297,23 @@ public class HandTest {
 	/* End Method: testcanDraw */
 	/****************************************************************************
 	* 
-	* Method: void testcanDraw
+	* Method: void testIsTwentyOne
 	*  ****/
 	
 	@Test (timeout = DEFAULT_TIMEOUT)
     public void testIsTwentyOne() {
-		Hand actual_hand = new Hand();	
+		Hand actual_hand = new Hand();
+		Suit suit = new Suit ("Clubs");
+		Card first_card = new Card (10,"Ten",suit);
+		Card second_card = new Card(11,"Ace",suit);
+		actual_hand.addCard(first_card);
+		actual_hand.addCard(second_card);
+		actual_hand.countScore(false);	
                
-        assertFalse("Method testIsTwentyOne was unsuccessfull because of Score",actual_hand.canDraw());
+        assertTrue("Method testIsTwentyOne was unsuccessfull because of Score",actual_hand.IsTwentyOne());
          
     }
-	/* End Method: testcanDraw */
+	/* End Method: testIsTwentyOne */
 	/****************************************************************************
 	* 
 	* Method: void testsetScoreToZero
@@ -327,5 +333,118 @@ public class HandTest {
             
     }
 	/* End Method: testsetScoreToZero */
+	/****************************************************************************
+	* 
+	* Method: void testgetCanSplit
+	*  ****/
+	
+	@Test (timeout = DEFAULT_TIMEOUT)
+    public void testgetCanSplit() {
+		Hand actual_hand = new Hand();	
+               
+        assertFalse("Method testIsTwentyOne was unsuccessfull",actual_hand.getCanSplit());
+         
+    }
+	/* End Method: testgetCanSplit*/
+	/****************************************************************************
+	* 
+	* Method: void testgetStoppedThisTurn
+	*  ****/
+	
+	@Test (timeout = DEFAULT_TIMEOUT)
+    public void testgetStoppedThisTurn() {
+		Hand actual_hand = new Hand();	
+               
+        assertFalse("Method testgetStoppedThisTurn was unsuccessfull",actual_hand.getStoppedThisTurn());
+         
+    }
+	/* End Method: testgetStoppedThisTurn*/
+	/****************************************************************************
+	* 
+	* Method: void testgetaddCard
+	*  ****/
+	
+	@Test (timeout = DEFAULT_TIMEOUT)
+    public void testgetaddCard() {
+		Hand actual_hand = new Hand();
+		Suit suit = new Suit ("Clubs");
+		Card expected_card = new Card (10,"Ten",suit);
+		actual_hand.addCard(expected_card);
+		       
+        assertEquals("Method testgetStoppedThisTurn was unsuccessfull",expected_card,actual_hand.cards.get(0));
+         
+    }
+	/* End Method: testgetaddCard*/
+	/****************************************************************************
+	* 
+	* Method: void testcanSplitIsTrue
+	*  ****/
+	
+	@Test (timeout = DEFAULT_TIMEOUT)
+    public void testcanSplitIsTrue() {
+		Hand actual_hand = new Hand();
+		Suit first_suit = new Suit ("Clubs");
+		Suit second_suit = new Suit ("Diamonds");
+		Card first_card = new Card (10,"Ten",first_suit);
+		Card second_card = new Card (10,"Ten",second_suit);
+		actual_hand.addCard(first_card);
+		actual_hand.addCard(second_card);
+		actual_hand.countScore(false);	
+		actual_hand.canSplit();
+		
+        assertTrue("Method testcanSplitIsTrue was unsuccessfull",actual_hand.getCanSplit());
+         
+    }
+	/* End Method: testcanSplitIsTrue*/
+	/****************************************************************************
+	* 
+	* Method: void testcanSplitIsFalse
+	*  ****/
+	
+	@Test (timeout = DEFAULT_TIMEOUT)
+    public void testcanSplitIsFalse() {
+		Hand actual_hand = new Hand();
+		Suit first_suit = new Suit ("Clubs");
+		Suit second_suit = new Suit ("Diamonds");
+		Card first_card = new Card (10,"King",first_suit);
+		Card second_card = new Card (10,"Ten",second_suit);
+		actual_hand.addCard(first_card);
+		actual_hand.addCard(second_card);
+		actual_hand.countScore(false);	
+		actual_hand.canSplit();
+		
+        assertFalse("Method testcanSplitIsFalse was unsuccessfull",actual_hand.getCanSplit());
+         
+    }
+	/* End Method: testcanSplitIsFalse*/
+	/****************************************************************************
+	* 
+	* Method: void teststop
+	*  ****/
+	
+	@Test (timeout = DEFAULT_TIMEOUT)
+    public void teststop() {
+		Hand actual_hand = new Hand();
+		actual_hand.stop();
+		       
+        assertTrue("Method testgetStoppedThisTurn was unsuccessfull",actual_hand.getStoppedThisTurn());
+         
+    }
+	/* End Method: teststop*/
+	/****************************************************************************
+	* 
+	* Method: void testclear
+	*  ****/
+	
+	@Test (timeout = DEFAULT_TIMEOUT)
+    public void testclear() {
+		Hand actual_hand = new Hand();
+		actual_hand.clear();
+		int expected_score = 0;
+		       
+        assertEquals("Method testgetStoppedThisTurn was unsuccessfull",expected_score,actual_hand.getScore());
+         
+    }
+	/* End Method: testclear*/
 
 }

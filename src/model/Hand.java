@@ -92,7 +92,9 @@ public class Hand {
 	}
 	
 	public boolean canSplit() {
-		if (cards.getSize() == 2 && (cards.get(0).equals(cards.get(1)))) {
+		Card first_card = (Card)cards.get(0);
+		Card second_card = (Card)cards.get(1);
+		if (cards.getSize() == 2 && (first_card.getName()==second_card.getName())) {
 			canSplit = true;
 		}
 		
@@ -101,10 +103,6 @@ public class Hand {
 	
 	public void stop() {
 		stoppedThisTurn = true;
-	}
-	
-	public boolean isStopped() {
-		return stoppedThisTurn;
 	}
 	
 	public List clear() {
