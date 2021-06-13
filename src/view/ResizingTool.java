@@ -8,7 +8,7 @@ class ResizingTool {
 	}
 	
 	static int resizeY(int screenSizeY, int elementYPosition) {
-		return (screenSizeY * elementYPosition)/700;
+		return (screenSizeY * elementYPosition)/(700 /*- borderSizeY*/);
 	}
 	
 	static Point resizePoint(Point screenSize, Point elementPosition) {

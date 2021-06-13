@@ -11,15 +11,9 @@ import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
-import controller.AppRunner;
-import controller.GameController;
-import controller.MainPane;
-
 @SuppressWarnings("serial")
-class OpeningScreen extends JPanel implements ActionListener{
+public class OpeningScreen extends JPanel implements ActionListener{
 
-	private GameController gameController;
-	
 	@SuppressWarnings("unused") //For whatever reason, eclipse doesn't recognize that this variable is being used.
 	private DebugPositioningMode debugPositioning;
 	private Boolean debugPositioningMode = false;
@@ -44,8 +38,6 @@ class OpeningScreen extends JPanel implements ActionListener{
 	public OpeningScreen(Point screenSize) {
 		super();
 
-		gameController = AppRunner.getGameController();
-
 		setBounds(0, 0, screenSize.x, screenSize.y);
 		setLayout(null);
 		setOpaque(false);
@@ -59,8 +51,6 @@ class OpeningScreen extends JPanel implements ActionListener{
 	
 	public OpeningScreen(Point screenSize, Boolean debugPositioningMode) {
 		super();
-
-		gameController = AppRunner.getGameController();
 		
 		setBounds(0, 0, screenSize.x, screenSize.y);
 		setLayout(null);
@@ -207,20 +197,8 @@ class OpeningScreen extends JPanel implements ActionListener{
 				button.setVisible(false);
 			}
 			
-		}
-		
-		else if (clickedButton.getText() == "Ok") {
-			for (JRadioButton button : playerSelectButton) {
-				if (button.isSelected()) {
-					int numberOfPlayers = Integer.parseInt(button.getText());
-					gameController.startGame(numberOfPlayers);
-					MainPane mainPane = (MainPane) this.getParent().getParent();
-					((CardLayout) mainPane.getLayout()).show(mainPane, MainPane.DOWNER_VIEW);
-					return;
-				}
-			}
-		}
-		
+			
+		}	
 	}
 	
 	public void paintComponent(Graphics g) {

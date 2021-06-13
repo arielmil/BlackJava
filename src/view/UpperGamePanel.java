@@ -10,7 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 
 @SuppressWarnings("serial")
-class UpperGamePanel extends AbstractGamePanel implements MyMouseListener {
+public class UpperGamePanel extends AbstractGamePanel implements MyMouseListener {
 	
 	@SuppressWarnings("unused") //For whatever reason, eclipse doesn't recognize that this variable is being used.
 	private DebugPositioningMode debugPositioning;

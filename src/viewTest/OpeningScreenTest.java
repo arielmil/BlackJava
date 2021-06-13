@@ -9,7 +9,7 @@ import javax.swing.JFrame;
 import view.OpeningScreen;
 import view.TablePanel;
 
-public class OpeningScreenTest {
+class OpeningScreenTest {
 	static private JFrame frame;
 	
 	static private Container contentPane;

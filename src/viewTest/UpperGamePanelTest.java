@@ -32,14 +32,14 @@ public class UpperGamePanelTest {
 		Insets frameBorders;
 		frame = new JFrame("UpperGamePanel Test");
 		
-		screenSize = new Point(1200, 700);
+		screenSize = new Point(600, 350);
 		
 		frame.setBounds(0, 0, screenSize.x, screenSize.y);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 		
 		frameBorders = frame.getInsets();
-		
+		System.out.println(frameBorders);
 		PanelsSize = new Point(screenSize.x, screenSize.y - (frameBorders.top + frameBorders.bottom));
 		
 		Foreground = new UpperGamePanel(PanelsSize, "Dealer", true);
