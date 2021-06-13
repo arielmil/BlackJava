@@ -4,7 +4,7 @@ import view.BlackJavaFrame;
 
 public class GameController {
     
-	BlackJavaFrame mainFrame;
+	static BlackJavaFrame mainFrame;
     
 	public GameController () {
 		
@@ -13,8 +13,9 @@ public class GameController {
 		
 	}
 	
-    public void funcao1 () {
+    public void funcao1 (int playerQuantity) {
     	
+    	mainFrame.startGame(playerQuantity);
     	
     	
     }
@@ -22,6 +23,7 @@ public class GameController {
     public static void main(String args[]) {
     	
     	GameController teste = new GameController();
+    	
     	
     }
     
