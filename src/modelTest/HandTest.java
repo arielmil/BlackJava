@@ -278,9 +278,35 @@ public class HandTest {
 		Hand actual_hand = new Hand();	
 		actual_hand.stopDraw();
                
-        assertTrue("Method testgetScore was unsuccessfull because of Score",actual_hand.stopDraw);
+        assertTrue("Method teststopDraw was unsuccessfull because of Score",actual_hand.stopDraw);
          
     }
-	/* End Method: testgetIsBlackJack */
+	/* End Method: teststopDraw */
+	/****************************************************************************
+	* 
+	* Method: void testcanDraw
+	*  ****/
+	
+	@Test (timeout = DEFAULT_TIMEOUT)
+    public void testcanDraw() {
+		Hand actual_hand = new Hand();	
+               
+        assertFalse("Method testcanDraw was unsuccessfull because of Score",actual_hand.canDraw());
+         
+    }
+	/* End Method: testcanDraw */
+	/****************************************************************************
+	* 
+	* Method: void testcanDraw
+	*  ****/
+	
+	@Test (timeout = DEFAULT_TIMEOUT)
+    public void testIsTwentyOne() {
+		Hand actual_hand = new Hand();	
+               
+        assertFalse("Method testIsTwentyOne was unsuccessfull",actual_hand.canDraw());
+         
+    }
+	/* End Method: testcanDraw */
 
 }
