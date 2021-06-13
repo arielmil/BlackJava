@@ -7,7 +7,7 @@ import java.awt.Point;
 import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
-public class TablePanel extends JPanel {
+class TablePanel extends JPanel {
 	private String img_name;
 	private Image img;
 	private Point panelSize;

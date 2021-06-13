@@ -2,6 +2,6 @@ package view;
 
 import java.awt.Point;
 
-public interface MyMouseListener {
+interface MyMouseListener {
 	public void setClickedPoint(Point clickedPoint);
 }

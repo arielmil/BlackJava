@@ -3,7 +3,7 @@ package view;
 import java.awt.Point;
 import java.awt.event.*;
 
-public class ComponentPositionHelper extends MouseAdapter{
+class ComponentPositionHelper extends MouseAdapter{
 	private ComponentPositionDebuggingInterface parent;
 	
 	public ComponentPositionHelper(ComponentPositionDebuggingInterface parent) {

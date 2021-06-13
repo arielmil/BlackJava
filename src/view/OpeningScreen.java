@@ -16,7 +16,7 @@ import controller.GameController;
 import controller.MainPane;
 
 @SuppressWarnings("serial")
-public class OpeningScreen extends JPanel implements ActionListener{
+class OpeningScreen extends JPanel implements ActionListener{
 
 	private GameController gameController;
 	
