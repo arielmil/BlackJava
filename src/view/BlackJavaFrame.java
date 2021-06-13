@@ -44,13 +44,15 @@ public class BlackJavaFrame extends JFrame {
 		openingScreenPanel = new OpeningScreenPanel(openingScreenPanelSize);
 		openingScreenPanelBackground = new TablePanel(openingScreenPanel);
 		openingScreenPanelBackground.setVisible(true);
-		contentPane.add(openingScreenPanel);
+		contentPane.add(openingScreenPanelBackground);
+		repaint();
 	}
 	
 	public void startGamePanels(int playersQuantity) {
 		this.playersQuantity = playersQuantity;
 		startDealerPanel();
 		startPlayerPanels();
+		repaint();
 	}
 	
 	public void startDealerPanel() {
