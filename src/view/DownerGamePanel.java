@@ -33,8 +33,8 @@ public class DownerGamePanel extends AbstractGamePanel{
 	private JButton insuranceButton;
 	private JButton surrenderButton;
 	
-	public DownerGamePanel(Point screenSize, String playerName) {
-		super(screenSize, playerName);
+	public DownerGamePanel(Point locationOnFrame, Point screenSize, String playerName) {
+		super(locationOnFrame, screenSize, playerName);
 		
 		setLocations();
 		
@@ -43,8 +43,8 @@ public class DownerGamePanel extends AbstractGamePanel{
 		buildLabels();
 	}
 	
-	public DownerGamePanel(Point screenSize, String playerName, Boolean debugPositioningMode) {
-		super(screenSize, playerName, debugPositioningMode);
+	public DownerGamePanel(Point locationOnFrame, Point screenSize, String playerName, Boolean debugPositioningMode) {
+		super(locationOnFrame, screenSize, playerName, debugPositioningMode);
 		
 		setLocations();
 		
@@ -107,6 +107,7 @@ public class DownerGamePanel extends AbstractGamePanel{
 		standButton = new JButton("Std");
 		standButton.setFont(myFont);
 		standButton.setToolTipText("End turn");
+		standButton.setVisible(false);
 		
 		add(standButton);
 		
@@ -117,17 +118,18 @@ public class DownerGamePanel extends AbstractGamePanel{
 		insuranceButton = new JButton("Ins");
 		insuranceButton.setFont(myFont);
 		insuranceButton.setToolTipText("Player get half his bet value if dealer's second card is a ten valued card (10, Jack, Queen or King)");
+		insuranceButton.setVisible(false);
 		
 		add(insuranceButton);
 		
 		insuranceButton.setBounds(buttonsLocation.x + buttonsSize.x * 3, buttonsLocation.y - buttonsSize.y, buttonsSize.x, buttonsSize.y);
-		insuranceButton.setVisible(false);
 	}
 	
 	private void buildSurrenderButton() {
 		surrenderButton = new JButton("Sur");
 		surrenderButton.setFont(myFont);
 		surrenderButton.setToolTipText("Player get half his bet value back and finish his turn");
+		surrenderButton.setVisible(false);
 		
 		add(surrenderButton);
 		
@@ -138,7 +140,8 @@ public class DownerGamePanel extends AbstractGamePanel{
 		splitButton = new JButton("Spt");
 		splitButton.setFont(myFont);
 		splitButton.setToolTipText("Player get another hand and doubles his bet value (player needs to have at least double of the amount of tokens available to bet)");
-		
+		splitButton.setVisible(false);
+
 		add(splitButton);
 		
 		splitButton.setBounds(buttonsLocation.x + buttonsSize.x * 2, buttonsLocation.y, buttonsSize.x, buttonsSize.y);
@@ -148,7 +151,8 @@ public class DownerGamePanel extends AbstractGamePanel{
 		doubleButton = new JButton("Dbl");
 		doubleButton.setFont(myFont);
 		doubleButton.setToolTipText("Player Doubles his bet value (player needs to have at least double of the amount of tokens available to bet)");
-		
+		doubleButton.setVisible(false);
+
 		add(doubleButton);
 		
 		doubleButton.setBounds(buttonsLocation.x + buttonsSize.x * 3, buttonsLocation.y, buttonsSize.x, buttonsSize.y);
@@ -163,6 +167,14 @@ public class DownerGamePanel extends AbstractGamePanel{
 	private void repaintBetLabel() {
 		betLabel.setText(String.format("Bet: %d", betValue));
 		betLabel.setAlignmentX(SwingConstants.CENTER);
+		repaint();
+	}
+	
+	void toggleButtonsVisibility() {
+		standButton.setVisible(!standButton.isVisible());
+		splitButton.setVisible(!splitButton.isVisible());
+		doubleButton.setVisible(!doubleButton.isVisible());
+		surrenderButton.setVisible(!surrenderButton.isVisible());
 		repaint();
 	}
 	

@@ -31,6 +31,8 @@ static private JFrame frame;
 	
 	static {
 		Insets frameBorders;
+		Point locationOnFrame = new Point(0, 0);
+		
 		frame = new JFrame("DownerGamePanel Test");
 		
 		screenSize = new Point(1200/4, 700/2);
@@ -46,7 +48,7 @@ static private JFrame frame;
 		
 		
 		DownerGamePanel.setPlayersQuantity(4);
-		Foreground = new DownerGamePanel(PanelsSize, "Player 1");
+		Foreground = new DownerGamePanel(locationOnFrame, PanelsSize, "Player 1");
 		
 		backgroundPanel = new TablePanel(Foreground);
 	}

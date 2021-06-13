@@ -56,11 +56,11 @@ public abstract class AbstractGamePanel extends JPanel implements MyMouseListene
 	
 	MyMouseAdapter mouseEventHandler;
 	
-	public AbstractGamePanel(Point screenSize, String playerName) {
+	public AbstractGamePanel(Point locationOnFrame, Point screenSize, String playerName) {
 		super();
 		
 		setLayout(null);
-		setBounds(0, 0, screenSize.x, screenSize.y);
+		setBounds(locationOnFrame.x, locationOnFrame.y, screenSize.x, screenSize.y);
 		setOpaque(false);
 		
 		playerScore = 0;
@@ -84,11 +84,11 @@ public abstract class AbstractGamePanel extends JPanel implements MyMouseListene
 		addMouseListener(mouseEventHandler);
 	}
 	
-	public AbstractGamePanel(Point screenSize, String playerName, Boolean debugPositioningMode) {
+	public AbstractGamePanel(Point locationOnFrame, Point screenSize, String playerName, Boolean debugPositioningMode) {
 		super();
 		
 		setLayout(null);
-		setBounds(0, 0, screenSize.x, screenSize.y);
+		setBounds(locationOnFrame.x, locationOnFrame.y, screenSize.x, screenSize.y);
 		setOpaque(false);
 		
 		playerScore = 0;
