@@ -33,7 +33,11 @@ public class List {
 	}
 	
 	public Object acess(Object o) {
+		
+		System.out.println(String.format("Token color: %s", ((Tokens)(o)).getColor() ));
+		
 		int i = list.indexOf(o);
+		System.out.println(i);
 		return list.get(i);
 	}
 	

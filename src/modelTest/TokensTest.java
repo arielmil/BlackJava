@@ -1,10 +1,10 @@
 package modelTest;
 
+
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import model.List;
 import model.Tokens;
 
 public class TokensTest {

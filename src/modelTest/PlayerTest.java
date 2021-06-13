@@ -15,7 +15,7 @@ public class PlayerTest {
 	
 	/****************************************************************************
 	* 
-	* Method: void testGetIsElevenChangesValue
+	* Method: void testaddTokens
 	*  ****/
 	/*
     @Test(timeout = DEFAULT_TIMEOUT)
@@ -32,7 +32,23 @@ public class PlayerTest {
 
     }*/
     
-    /* End Method: testIsInsuranceIsInitiallyFalse */
+    /* End Method: testaddTokens */
+	/****************************************************************************
+	* 
+	* Method: void testInsurance
+	*  ****/
+	
+    @Test(timeout = DEFAULT_TIMEOUT)
+    public void testInsurance() {
+        Player actual_player = new Player("Player");
+        
+        actual_player.insurance();
+        
+        assertTrue("Method testgetInsurance was unsuccessfull", actual_player.getInsurance()); 
+
+    }
+    
+    /* End Method: testGetInsurance */
 	/****************************************************************************
 	* 
 	* Method: void testGetInsurance
@@ -144,6 +160,73 @@ public class PlayerTest {
         } 
                 
        /* End Method: testToggleIsBetting */
+        /****************************************************************************
+         * 
+         * Method: void testhit
+         *  ****/
+         /*   	
+          @Test(timeout = DEFAULT_TIMEOUT)
+          public void testHit() {
+              Player actual_player = new Player("Player");
+              
+              Hand actual_hand = new Hand();
+              Suit actual_suit = new Suit("Clubs");
+              Card expected_card = new Card (10,"Ten",actual_suit);
+              actual_player.hit(expected_card, actual_hand);
+              
+              List expected_hand = actual_player.getHands();
+              
+              assertEquals("Method testHit was unsuccessfull", expected_card.getName(),actual_card.getName()); 
+
+          }*/
+                
+         /* End Method: testToggleIsBetting */
+        /****************************************************************************
+         * 
+         * Method: void testcanDouble
+         *  ****/
+            	
+          @Test(timeout = DEFAULT_TIMEOUT)
+          public void testcanDouble() {
+              Player actual_player = new Player("Player");
+              
+              assertTrue("Method testcanDouble was unsuccessfull", actual_player.canDouble()); 
+
+          }
+                
+         /* End Method: testcanDouble */ 
+         /****************************************************************************
+         * 
+         * Method: void testgetTotalMoney
+         *  ****/
+            	
+          @Test(timeout = DEFAULT_TIMEOUT)
+          public void testgetTotalMoney() {
+              Player actual_player = new Player("Player");
+              int expected_total_money = 500;
+               
+              assertEquals("Method testgetTotalMoney was unsuccessfull", expected_total_money,actual_player.getTotalMoney()); 
+
+          }
+                  
+         /* End Method: testgetTotalMoney */ 
+          /****************************************************************************
+           * 
+           * Method: void testinitializedTokenslist
+           *  ****/
+              	
+            @Test(timeout = DEFAULT_TIMEOUT)
+            public void testInitializeTokensList() {
+                Player actual_player = new Player("Player");
+               
+                actual_player.initializeTokensList();
+                
+                
+
+            }
+                    
+           /* End Method: testgetTotalMoney */ 
+       
         
         
 
