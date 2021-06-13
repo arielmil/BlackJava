@@ -114,7 +114,7 @@ public class DownerGamePanel extends AbstractGamePanel	{
 		standButton = new JButton("Std");
 		standButton.setFont(myFont);
 		standButton.setToolTipText("End turn");
-		standButton.setVisible(false);
+		standButton.setVisible(true);
 		
 		add(standButton);
 		
@@ -138,7 +138,7 @@ public class DownerGamePanel extends AbstractGamePanel	{
 		surrenderButton = new JButton("Sur");
 		surrenderButton.setFont(myFont);
 		surrenderButton.setToolTipText("Player get half his bet value back and finish his turn");
-		surrenderButton.setVisible(false);
+		surrenderButton.setVisible(true);
 		
 		add(surrenderButton);
 		
@@ -150,7 +150,7 @@ public class DownerGamePanel extends AbstractGamePanel	{
 		splitButton = new JButton("Spt");
 		splitButton.setFont(myFont);
 		splitButton.setToolTipText("Player get another hand and doubles his bet value (player needs to have at least double of the amount of tokens available to bet)");
-		splitButton.setVisible(false);
+		splitButton.setVisible(true);
 
 		add(splitButton);
 		
@@ -162,7 +162,7 @@ public class DownerGamePanel extends AbstractGamePanel	{
 		doubleButton = new JButton("Dbl");
 		doubleButton.setFont(myFont);
 		doubleButton.setToolTipText("Player Doubles his bet value (player needs to have at least double of the amount of tokens available to bet)");
-		doubleButton.setVisible(false);
+		doubleButton.setVisible(true);
 
 		add(doubleButton);
 		
