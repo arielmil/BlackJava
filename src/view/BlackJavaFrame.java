@@ -44,7 +44,7 @@ public class BlackJavaFrame extends JFrame {
 		openingScreenPanel = new OpeningScreenPanel(openingScreenPanelSize);
 		openingScreenPanelBackground = new TablePanel(openingScreenPanel);
 		openingScreenPanelBackground.setVisible(true);
-		contentPane.add(openingScreenPanelBackground);
+		contentPane.add(openingScreenPanel);
 	}
 	
 	public void startGamePanels(int playersQuantity) {
