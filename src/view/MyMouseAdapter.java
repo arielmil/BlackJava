@@ -3,7 +3,7 @@ package view;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class MyMouseAdapter extends MouseAdapter {
+class MyMouseAdapter extends MouseAdapter {
 	MyMouseListener source;
 	
 	public MyMouseAdapter(MyMouseListener source) {

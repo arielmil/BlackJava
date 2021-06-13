@@ -9,7 +9,7 @@ import javax.swing.JFrame;
 import view.DownerGamePanel;
 import view.TablePanel;
 
-public class DownerGamePanelTest {
+class DownerGamePanelTest {
 static private JFrame frame;
 	
 	static private Container contentPane;
@@ -32,7 +32,7 @@ static private JFrame frame;
 		Insets frameBorders;
 		frame = new JFrame("DownerGamePanel Test");
 		
-		screenSize = new Point(1200, 700);
+		screenSize = new Point(1200/4, 700/2);
 		
 		frame.setBounds(0, 0, screenSize.x, screenSize.y);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

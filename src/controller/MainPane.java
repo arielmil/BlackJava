@@ -1,6 +1,6 @@
 package controller;
 
-import view.DownerGamePanel;
+/*import view.DownerGamePanel;
 import view.OpeningScreen;
 import view.TablePanel;
 
@@ -27,4 +27,4 @@ public class MainPane extends JPanel {
 
         cardLayout.show(this, OPENING_VIEW);
     }
-}
+}*/

@@ -2,7 +2,7 @@ package view;
 
 import java.awt.Point;
 
-public interface ComponentPositionDebuggingInterface {
+interface ComponentPositionDebuggingInterface {
 	public void setChildPosition(Point p);
 	public void setSource(Object source);
 }

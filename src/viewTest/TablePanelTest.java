@@ -7,7 +7,7 @@ import javax.swing.*;
 import java.awt.Insets;
 import java.awt.Point;
 
-public class TablePanelTest {
+class TablePanelTest {
 	public static void main(String args[]) {
 		Insets frameBorders;
 		Point TablePanelSize;

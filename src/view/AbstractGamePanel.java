@@ -15,7 +15,7 @@ import controller.API;
 
 //Criar um método que escala uma coordenada x e y baseado em um tamanho de tela (largura x altura) para escalar todos os elementos dessa classe de acordo com o tamanho de tela utilizado.
 @SuppressWarnings("serial")
-abstract class AbstractGamePanel extends JPanel implements MyMouseListener {
+public abstract class AbstractGamePanel extends JPanel implements MyMouseListener {
 	private JLabel scoreLabel;
 	
 	static String cardNames[];
@@ -215,13 +215,12 @@ abstract class AbstractGamePanel extends JPanel implements MyMouseListener {
 		this.screenSize = screenSize;
 		
 		cardsSize = new Point(ResizingTool.resizeX(screenSize.x, deckImage.getWidth(null)), ResizingTool.resizeY(screenSize.y, deckImage.getHeight(null)));
-		tokensSize = new Point(ResizingTool.resizeX(screenSize.x, tokensImages[0].getWidth(null)), ResizingTool.resizeX(screenSize.x, tokensImages[0].getHeight(null)));
+		tokensSize = new Point(ResizingTool.resizeX(screenSize.x, tokensImages[0].getWidth(null)), ResizingTool.resizeY(screenSize.y, tokensImages[0].getHeight(null)));
 		
 		System.out.println(cardsSize);
 		System.out.println(new Point(deckImage.getWidth(null), deckImage.getHeight(null)));
 		
-		System.out.println(tokensSize);
-		System.out.println(new Point(tokensImages[0].getWidth(null), tokensImages[0].getHeight(null)));
+		System.out.println(screenSize);
 		
 		resized45 = ResizingTool.resizeY(screenSize.y, 45);
 		System.out.println(resized45);
