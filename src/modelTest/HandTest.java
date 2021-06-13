@@ -304,9 +304,28 @@ public class HandTest {
     public void testIsTwentyOne() {
 		Hand actual_hand = new Hand();	
                
-        assertFalse("Method testIsTwentyOne was unsuccessfull",actual_hand.canDraw());
+        assertFalse("Method testIsTwentyOne was unsuccessfull because of Score",actual_hand.canDraw());
          
     }
 	/* End Method: testcanDraw */
+	/****************************************************************************
+	* 
+	* Method: void testsetScoreToZero
+	*  ****/
+	
+	@Test (timeout = DEFAULT_TIMEOUT)
+    public void testsetScoreToZero() {
+		Hand actual_hand = new Hand();	
+        actual_hand.setScoreToZero();      
+		
+		assertEquals("Method testIsTwentyOne was unsuccessfull because of Score",0,actual_hand.getScore());
+        assertFalse("Method testIsTwentyOne was unsuccessfull because of IsBusted",actual_hand.getIsBusted());
+        assertFalse("Method testIsTwentyOne was unsuccessfull because of IsBlackJack",actual_hand.getIsBlackJack());
+        assertFalse("Method testIsTwentyOne was unsuccessfull because of stopDraw",actual_hand.canDraw());
+        assertFalse("Method testIsTwentyOne was unsuccessfull because of canSplit",actual_hand.getCanSplit());
+        assertFalse("Method testIsTwentyOne was unsuccessfull because of canSplit",actual_hand.getStoppedThisTurn());
+            
+    }
+	/* End Method: testsetScoreToZero */
 
 }

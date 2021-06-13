@@ -79,6 +79,14 @@ public class Hand {
 		stoppedThisTurn = false;
 	}
 	
+	public boolean getCanSplit() {
+		return canSplit;
+	}
+	
+	public boolean getStoppedThisTurn() {
+		return stoppedThisTurn;
+	}
+	
 	public void addCard(Card card) {
 		cards.insertL(card);
 	}
