@@ -3,6 +3,7 @@ package model;
 public class Model {
 	
 	private static Player players[];
+	private static Game game;
 	private static Dealer dealer;
 	private static Deck deck = new Deck();
 	
@@ -57,8 +58,20 @@ public class Model {
 	public static int getPlayerScore(int playerNumber, int handNumber) {
 		return getPlayerHand(playerNumber, handNumber).getScore();
 	}
+	
+	public static void startGame() {
+		game = new Game(players);
+	}
+	
+	public static void betPlayerToken(int playerNumber, int tokenColor) {
+		players[playerNumber].bet(null, true);
+	}
+	
+	public static void unbetPlayerToken(int playerNumber, int tokenColor) {
+		players[playerNumber].bet(null, false);
+	}
 
-	public static void betPlayerToken(int playerNumber, int token) {
-		
+	public static void addToPlayerBalance(int playerNumber, int value) {
+		game.addToPlayerBalance(int playerNumber, int value);
 	}
 }
