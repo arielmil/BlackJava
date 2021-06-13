@@ -92,4 +92,12 @@ public class Deck {
 		return cardValues;
 	}
 	
+	public List getBin() {
+		return bin;
+	}
+	
+	public List getDeck() {
+		return deck;
+	}
+	
 }

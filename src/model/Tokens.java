@@ -16,7 +16,7 @@ public class Tokens {
 	
 	public String color;
 	
-	private static String tokensNames[];
+	public static String tokensNames[];
 	
 	private static Map <String, Integer> color_to_value = new HashMap <String, Integer>(6);
 		
@@ -86,7 +86,7 @@ public class Tokens {
 	public Tokens tokensSubtract(int quantity) {
 		Tokens returned = new Tokens(color, quantity);
 		
-		this.quantity = this.quantity - quantity;
+		returned.quantity = this.quantity - returned.quantity;
 		setTotal();
 		
 		return returned;

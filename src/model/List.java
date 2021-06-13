@@ -9,7 +9,7 @@ import java.util.Collections;
 public class List {
 	
 	public int size;
-	private ArrayList<Object> list;
+	public ArrayList<Object> list;
 	private boolean empty;
 	public static int countRemoved;
 	public static int countAdded;

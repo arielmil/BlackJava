@@ -184,4 +184,8 @@ public class Player extends AbstractPlayer {
 	public int getTotalMoney() {
 		return total_money;
 	}
+	
+	public Bet getBet() {
+		return bet;
+	}
 }
