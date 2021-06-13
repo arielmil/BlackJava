@@ -6,9 +6,6 @@ import java.awt.Point;
 
 import javax.swing.JFrame;
 
-//Essa é a classe responsável por ser a tela do jogo (relativa ao Desktop) todas as outras "telas" serão JPanels inseridos nela.
-//Esses JPanels ficarão visiveis / serão ouvidos ou não de acordo com o contexto do jogo.
-
 @SuppressWarnings("serial")
 public class BlackJavaFrame extends JFrame {
 	private int playersQuantity;
@@ -16,17 +13,18 @@ public class BlackJavaFrame extends JFrame {
 	
 	private Container contentPane;
 	
+	private Insets frameBorders;
+	
 	private OpeningScreenPanel openingScreenPanel;
 	private UpperGamePanel dealerPanel;
 	private DownerGamePanel playerPanels[];
 	
 	private Point screenSize, openingScreenPanelSize, dealerPanelSize, playerPanelsSize;
 	
-	private TablePanel openingScreenPanelBackground, dealerPanelBackground, playerPanelsBackground;
+	private TablePanel openingScreenPanelBackground, dealerPanelBackground;
+	private TablePanel playerPanelsBackgrounds[];
 	
 	public BlackJavaFrame(int playersQuantity) {
-		Insets frameBorders;
-		
 		this.playersQuantity = playersQuantity;
 		playerNames = new String[playersQuantity];
 		
@@ -35,14 +33,13 @@ public class BlackJavaFrame extends JFrame {
 		setLayout(null);
 		setBounds(0, 0, screenSize.x, screenSize.y);
 		setVisible(true);
+		
 		frameBorders = getInsets();
 		
 		contentPane = getContentPane();
 		contentPane.setLayout(null);
 		
-		setPanelSizes(screenSize, frameBorders);
-		startPanels();
-		
+		setPanelSizes(screenSize, frameBorders);		
 	}
 	
 	private void setPanelSizes(Point screenSize, Insets frameBorders) {
@@ -59,22 +56,89 @@ public class BlackJavaFrame extends JFrame {
 	
 	private void startOpeningPanel() {
 		openingScreenPanel = new OpeningScreenPanel(openingScreenPanelSize);
-		
-		add(openingScreenPanel);
+		openingScreenPanelBackground = new TablePanel(openingScreenPanel);
+		openingScreenPanelBackground.setVisible(true);
+		contentPane.add(openingScreenPanelBackground);
 	}
 	
 	private void startDealerPanel() {
-		//dealerPanel = new UpperGamePanel(dealerPanelSize);
-		dealerPanel.setVisible(false);
-		add(dealerPanel);
+		dealerPanel = new UpperGamePanel(dealerPanelSize);
+		dealerPanelBackground = new TablePanel(dealerPanel);
+		dealerPanelBackground.setVisible(false);
+		contentPane.add(dealerPanelBackground);
 	}
 	
 	private void startPlayerPanels() {
 		int i;
+		Point basePlayerPanelsScreenLocation = new Point(0, screenSize.y/2 - (frameBorders.top + frameBorders.bottom));
+		
+		playerPanelsBackgrounds = new TablePanel[playersQuantity];
+				
 		for (i = 0; i < playersQuantity; i++) {
-			//playerPanels[i] = new DownerGamePanel(playerPanelsSize, playerNames[i]);
-			add(playerPanels[i]);
+			playerPanels[i] = new DownerGamePanel(basePlayerPanelsScreenLocation, playerPanelsSize, playerNames[i]);
+			playerPanelsBackgrounds[i] = new TablePanel(playerPanels[i]);
+			playerPanelsBackgrounds[i].setVisible(false);
+			contentPane.add(playerPanelsBackgrounds[i]);
+			basePlayerPanelsScreenLocation.x = basePlayerPanelsScreenLocation.x + playerPanelsSize.x;
 		}
 	}
 	
+	public void setPlayerNames(String playerNames[]) {
+		this.playerNames = playerNames;
+		startPanels();
+	}
+	
+	public void startGame() {
+		openingScreenPanelBackground.setVisible(false);
+		dealerPanelBackground.setVisible(true);
+		
+		for (TablePanel tablePanel: playerPanelsBackgrounds) {
+			tablePanel.setVisible(true);
+		}
+	}
+	
+	public void quitGame() {
+		for (TablePanel tablePanel: playerPanelsBackgrounds) {
+			tablePanel.setVisible(false);
+		}
+		dealerPanelBackground.setVisible(false);
+		
+		openingScreenPanelBackground.setVisible(true);
+	}
+	
+	public void setPlayerScore(int score, int playerNumber, int handNumber) {
+		if (playerNumber == 0) {
+			dealerPanel.repaintPlayerScore(score);
+		}
+		
+		else {
+			playerPanels[playerNumber].repaintPlayerScore(score, handNumber);
+		}
+	}
+		
+	public void dealCard(int playerNumber, String cardName) {
+		if (playerNumber == 0) {
+			dealerPanel.setCardInHand(cardName);
+		}
+		
+		else {
+			playerPanels[playerNumber].setCardInHand(cardName);
+		}
+	}
+	
+	public void endTurn() {
+		dealerPanel.resetCardsInHandArray();
+		
+		for (DownerGamePanel playerPanel : playerPanels) {
+			playerPanel.resetCardsInHandArray();
+		}
+	}
+	
+	public void setBalance(int playerNumber, int balance) {
+		playerPanels[playerNumber].setBalance(balance);
+	}
+	
+	public void setBet(int playerNumber, int bet) {
+		playerPanels[playerNumber].setBetValue(bet);
+	}
 }

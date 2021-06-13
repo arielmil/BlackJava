@@ -12,7 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
-public class DownerGamePanel extends AbstractGamePanel{
+public class DownerGamePanel extends AbstractGamePanel	{
 
 	@SuppressWarnings("unused") //For whatever reason, eclipse doesn't recognize that this variable is being used.
 	private DebugPositioningMode debugPositioning;
@@ -21,6 +21,7 @@ public class DownerGamePanel extends AbstractGamePanel{
 	
 	private int betValue;
 	private int balance = 500;
+	private int playerSplitScore;
 	private int labelsWidth;
 	
 	private JLabel scoreLabelDoubleSplit;
@@ -41,8 +42,8 @@ public class DownerGamePanel extends AbstractGamePanel{
 		buildButtons();
 		
 		buildLabels();
-	}
-	
+	}	
+
 	public DownerGamePanel(Point locationOnFrame, Point screenSize, String playerName, Boolean debugPositioningMode) {
 		super(locationOnFrame, screenSize, playerName, debugPositioningMode);
 		
@@ -57,10 +58,12 @@ public class DownerGamePanel extends AbstractGamePanel{
 		}
 	}
 	
+
 	private void setLocations() {
 		//Uses surrenderButton as reference
 		buttonsLocation = new Point(screenSize.x - buttonsSize.x * 4, screenSize.y - buttonsSize.y);
 	}
+	
 	
 	private void buildLabels() {
 		
@@ -70,6 +73,7 @@ public class DownerGamePanel extends AbstractGamePanel{
 		buildBalanceLabel();
 		buildScoreLabelDoubleSplit();
 	}
+	
 	
 	private void buildScoreLabelDoubleSplit() {
 		scoreLabelDoubleSplit = new JLabel(String.format("%s.: Score: 0", playerName), SwingConstants.CENTER);
@@ -87,6 +91,7 @@ public class DownerGamePanel extends AbstractGamePanel{
 		add(balanceLabel);
 	}
 	
+
 	private void buildBetLabel() {
 		betLabel = new JLabel(String.format("Bet: %d", betValue), SwingConstants.CENTER);
 		betLabel.setFont(myFont);
@@ -95,6 +100,7 @@ public class DownerGamePanel extends AbstractGamePanel{
 		add(betLabel);
 	}
 	
+
 	private void buildButtons() {
 		buildStandButton();
 		buildInsuranceButton();
@@ -103,6 +109,7 @@ public class DownerGamePanel extends AbstractGamePanel{
 		buildSurrenderButton();
 	}
 	
+
 	private void buildStandButton() {
 		standButton = new JButton("Std");
 		standButton.setFont(myFont);
@@ -114,6 +121,7 @@ public class DownerGamePanel extends AbstractGamePanel{
 		standButton.setBounds(buttonsLocation.x + buttonsSize.x, buttonsLocation.y, buttonsSize.x, buttonsSize.y);
 	}
 	
+
 	private void buildInsuranceButton() {
 		insuranceButton = new JButton("Ins");
 		insuranceButton.setFont(myFont);
@@ -125,6 +133,7 @@ public class DownerGamePanel extends AbstractGamePanel{
 		insuranceButton.setBounds(buttonsLocation.x + buttonsSize.x * 3, buttonsLocation.y - buttonsSize.y, buttonsSize.x, buttonsSize.y);
 	}
 	
+
 	private void buildSurrenderButton() {
 		surrenderButton = new JButton("Sur");
 		surrenderButton.setFont(myFont);
@@ -136,6 +145,7 @@ public class DownerGamePanel extends AbstractGamePanel{
 		surrenderButton.setBounds(buttonsLocation.x, buttonsLocation.y, buttonsSize.x, buttonsSize.y);
 	}
 	
+
 	private void buildSplitButton() {
 		splitButton = new JButton("Spt");
 		splitButton.setFont(myFont);
@@ -147,6 +157,7 @@ public class DownerGamePanel extends AbstractGamePanel{
 		splitButton.setBounds(buttonsLocation.x + buttonsSize.x * 2, buttonsLocation.y, buttonsSize.x, buttonsSize.y);
 	}
 	
+
 	private void buildDoubleButton() {
 		doubleButton = new JButton("Dbl");
 		doubleButton.setFont(myFont);
@@ -158,18 +169,34 @@ public class DownerGamePanel extends AbstractGamePanel{
 		doubleButton.setBounds(buttonsLocation.x + buttonsSize.x * 3, buttonsLocation.y, buttonsSize.x, buttonsSize.y);
 	}
 	
+
 	private void repaintBalanceLabel() {
 		balanceLabel.setText(String.format("Bal: %d ", balance));
 		balanceLabel.setAlignmentX(SwingConstants.CENTER);
 		repaint();
 	}
 	
+
 	private void repaintBetLabel() {
 		betLabel.setText(String.format("Bet: %d", betValue));
 		betLabel.setAlignmentX(SwingConstants.CENTER);
 		repaint();
 	}
 	
+	void repaintPlayerScore(int playerScore, int handNumber) {
+		if (handNumber == 1) {
+			super.repaintPlayerScore(playerScore);
+		}
+		
+		else {
+			playerSplitScore = playerScore;
+			scoreLabelDoubleSplit.setText(String.format("%s.: Score: %d", playerName, playerSplitScore));
+			scoreLabelDoubleSplit.setHorizontalAlignment(SwingConstants.CENTER);
+			repaint();
+		}
+		
+	}
+
 	void toggleButtonsVisibility() {
 		standButton.setVisible(!standButton.isVisible());
 		splitButton.setVisible(!splitButton.isVisible());
@@ -177,6 +204,7 @@ public class DownerGamePanel extends AbstractGamePanel{
 		surrenderButton.setVisible(!surrenderButton.isVisible());
 		repaint();
 	}
+	
 	
 	void toggleInsuranceButtonVisibility() {
 		insuranceButton.setVisible(!insuranceButton.isVisible());
@@ -189,14 +217,14 @@ public class DownerGamePanel extends AbstractGamePanel{
 		repaint();
 	}
 	
-	void setBetValue(int betValue) {
-		this.betValue = betValue;
-		repaintBetLabel();
-	}
-	
 	void setBalance(int balance) {
 		this.balance = balance;
 		repaintBalanceLabel();
+	}
+	
+	void setBetValue(int betValue) {
+		this.betValue = betValue;
+		repaintBetLabel();
 	}
 		
 	public void paintComponent(Graphics g) {
@@ -212,6 +240,7 @@ public class DownerGamePanel extends AbstractGamePanel{
 		
 	}
 	
+
 	private class DebugPositioningMode implements ComponentPositionDebuggingInterface, ActionListener {
 		private MouseAdapter mouseEventHandler;
 		
