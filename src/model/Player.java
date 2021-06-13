@@ -22,8 +22,11 @@ public class Player extends AbstractPlayer {
 		Tokens my_tokens;
 		
 		for(i = 0; i < tokens_list.getSize(); i++) {
+			
 			tokens = (Tokens) tokens_list.get(i);
+			
 			my_tokens = (Tokens)this.tokens_list.acess(tokens);
+			
 			my_tokens.tokensAdd(tokens);
 			total_money = total_money + tokens.getValue();
 		}
@@ -147,13 +150,14 @@ public class Player extends AbstractPlayer {
 		
 	public void initializeTokensList() {
 		tokens_list = new List();
-		String token_names[] = new String[] {"Gray", "Red", "Blue", "Green", "Purple", "Black"};
+		String token_names[] = new String[] {"Gray", "Purple", "Blue", "Red", "Green", "Black"};
 		int token_quantities[] = new int[] {10, 8, 5, 5, 2, 2};
 		
 		int i;
 		for (i = 0; i < 6; i++) {
 			tokens_list.insertL(new Tokens(token_names[i], token_quantities[i]));
 		}
+				
 	}
 		
 	public boolean canDouble() {
