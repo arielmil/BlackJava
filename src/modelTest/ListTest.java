@@ -3,6 +3,7 @@ package modelTest;
 import model.*;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
@@ -262,7 +263,7 @@ public class ListTest {
 	/*
 	****************************************************************************
 	* 
-	* Method: void testDraw
+	* Method: void testdrawAll
 	*  ****/
 	
 	@Test 
@@ -280,12 +281,65 @@ public class ListTest {
         drawed_list.insertL(object_2);
         expected_list = drawed_list.drawAll();
         
-        assertEquals("Method testdrawAll was unsuccessfull", expected_list,actual_list);
+        assertEquals("Method testdrawAll was unsuccessfull because of Object(1)", expected_list.get(1),object_1);
+        assertEquals("Method testdrawAll was unsuccessfull because of Object(0)", expected_list.get(0),object_2);
         
         
     }
 	
-	/* End Method: testClear */
+	/* End Method: testdrawAll */
+	/*
+	****************************************************************************
+	* 
+	* Method: void testDrawContainsObject
+	*  ****/
+	
+	@Test 
+    public void testDrawContainsObject() {
+        List actual_list = new List();
+        int object_1 = 1;
+        int object_2 = 2;
+        boolean isRemoved;
+        int expected_size = 1;
+        
+        actual_list.insertL(object_1);
+        actual_list.insertL(object_2);
+        
+        isRemoved = actual_list.draw(object_1);
+        
+        assertTrue("Method testdrawAll was unsuccessfull because of Object(1)", isRemoved);
+        assertEquals("Method testDrawContainsObject was unsuccessfull because of Size",expected_size,actual_list.getSize());
+        
+    }
+	
+	/* End Method: testDrawContainsObject */
+	/*
+	****************************************************************************
+	* 
+	* Method: void testDrawDontContainObject
+	*  ****/
+	
+	@Test 
+    public void testDrawDontContainObject() {
+        List actual_list = new List();
+        int object_1 = 1;
+        int object_2 = 2;
+        int object_3 = 3;
+        boolean isRemoved;
+        int expected_size = 2;
+        
+        actual_list.insertL(object_1);
+        actual_list.insertL(object_2);
+        
+        isRemoved = actual_list.draw(object_3);
+        
+        assertFalse("Method testdrawAll was unsuccessfull because of Object(1)", isRemoved);
+        assertEquals("Method testDrawContainsObject was unsuccessfull because of Size",expected_size,actual_list.getSize());
+        assertEquals("Method testDrawDontContainObject was unsuccessfull because of Object(0)",object_1,actual_list.get(0));
+        assertEquals("Method testDrawDontContainObject was unsuccessfull because of Object(0)",object_2,actual_list.get(1));
+    }
+	
+	/* End Method: testDrawContainsObject */
 	/*
 	****************************************************************************
 	* 
@@ -296,7 +350,29 @@ public class ListTest {
     public void testEmpty() {
         List actual_list = new List();        
         
-        assertTrue("Method testUpdateSize Increase was unsuccessfull", actual_list.empty());
+        assertTrue("Method testEmpty was unsuccessfull", actual_list.empty());
+        
+        
+    }
+	
+	/* End Method: testClear */
+	/*
+	****************************************************************************
+	* 
+	* Method: void testAcess
+	*  ****/
+	
+	@Test 
+    public void testAcess() {
+		List actual_list = new List();
+        int object_1 = 1;
+        int object_2 = 2;
+        int expected_object = 2;
+        
+        actual_list.insertL(object_1);
+        actual_list.insertL(object_2);       
+        
+        assertEquals("Method testAcess was unsuccessfull", expected_object,actual_list.acess(object_2));
         
         
     }

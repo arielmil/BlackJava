@@ -55,5 +55,20 @@ public class TokensTest {
       }
       
       /* End Method: testGetQuantity */
+      /****************************************************************************
+    	* 
+    	* Method: void testgetColor
+    	*  ****/
+    	/*
+        @Test (timeout = DEFAULT_TIMEOUT)
+        public void testgetTotal() {
+            Tokens actual_tokens = new Tokens("Red", 10);
+            actual_tokens.tokensAdd(actual_tokens);
+            
+                     
+            assertEquals("Method testgetTotal didn't worked sucessfully",actual.color,actual.getCol));
+        }*/
+        
+        /* End Method: testGetQuantity */
 
 }

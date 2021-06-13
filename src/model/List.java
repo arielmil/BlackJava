@@ -150,10 +150,15 @@ public class List {
 		size = 0;
 	}
 	
-	public Object draw(Object o) {
-		size--;
-		o = list.remove(o);
-		return o;
+	public boolean draw(Object o) {
+		
+		if(list.contains(o) == false) {
+			return list.remove(o);
+		}
+		else {
+			size--;
+			return list.remove(o);
+		}
 	}
 	
 	public List drawAll() {
