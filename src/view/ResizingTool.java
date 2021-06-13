@@ -2,18 +2,23 @@ package view;
 
 import java.awt.Point;
 
-class ResizingTool {
-	static int resizeX(int screenSizeX, int elementXPosition) {
+public class ResizingTool {
+	static int borderSizeY;
+	
+	public static int resizeX(int screenSizeX, int elementXPosition) {
 		return (screenSizeX * elementXPosition)/1200;
 	}
 	
-	static int resizeY(int screenSizeY, int elementYPosition) {
-		return (screenSizeY * elementYPosition)/(700 /*- borderSizeY*/);
+	public static int resizeY(int screenSizeY, int elementYPosition) {
+		return (screenSizeY * elementYPosition)/(700 - borderSizeY);
 	}
 	
-	static Point resizePoint(Point screenSize, Point elementPosition) {
+	public static Point resizePoint(Point screenSize, Point elementPosition) {
 		Point resizedPoint = new Point(resizeX(screenSize.x, elementPosition.x), resizeY(screenSize.y, elementPosition.y));
 		return resizedPoint;
 	}
 	
+	public static void setBorderSizeY(int value) {
+		borderSizeY = value;
+	}
 }

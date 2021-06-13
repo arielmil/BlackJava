@@ -70,6 +70,7 @@ public class DownerGamePanel extends AbstractGamePanel{
 	
 	private void buildBalanceLabel() {
 		balanceLabel = new JLabel(String.format("   Balance: %d ", balance), SwingConstants.CENTER);
+		balanceLabel.setFont(myFont);
 		balanceLabel.setBounds(1, screenSize.y - scoreLabelSize.y * 2, labelsWidth, scoreLabelSize.y);
 		balanceLabel.setOpaque(true);
 		add(balanceLabel);
@@ -77,6 +78,7 @@ public class DownerGamePanel extends AbstractGamePanel{
 	
 	private void buildBetLabel() {
 		betLabel = new JLabel(String.format("Bet value: %d", betValue), SwingConstants.CENTER);
+		betLabel.setFont(myFont);
 		betLabel.setBounds(1, screenSize.y - scoreLabelSize.y + 1, labelsWidth, scoreLabelSize.y);
 		betLabel.setOpaque(true);
 		add(betLabel);
@@ -91,6 +93,7 @@ public class DownerGamePanel extends AbstractGamePanel{
 	
 	private void buildStandButton() {
 		standButton = new JButton("Stand");
+		standButton.setFont(myFont);
 		standButton.setToolTipText("End turn");
 		
 		add(standButton);
@@ -100,6 +103,7 @@ public class DownerGamePanel extends AbstractGamePanel{
 	
 	private void buildInsuranceButton() {
 		insuranceButton = new JButton("Insurance");
+		insuranceButton.setFont(myFont);
 		insuranceButton.setToolTipText("Get half the value of player's bet if dealer's second card is a ten valued card (10, Jack, Queen or King)");
 		
 		add(insuranceButton);
@@ -110,6 +114,7 @@ public class DownerGamePanel extends AbstractGamePanel{
 	
 	private void buildSplitButton() {
 		splitButton = new JButton("Split");
+		splitButton.setFont(myFont);
 		splitButton.setToolTipText("Take in another hand and doubles the bet (player needs to have at least double of the amount of tokens available to bet)");
 		
 		add(splitButton);
@@ -119,6 +124,7 @@ public class DownerGamePanel extends AbstractGamePanel{
 	
 	private void buildDoubleButton() {
 		doubleButton = new JButton("Double");
+		doubleButton.setFont(myFont);
 		doubleButton.setToolTipText("Doubles the bet (player needs to have at least double of the amount of tokens available to bet)");
 		
 		add(doubleButton);
@@ -199,7 +205,9 @@ public class DownerGamePanel extends AbstractGamePanel{
 		}
 		
 		private void buildDebugPositionReferenceButton() {
-			debugPositionReferenceButton = new JButton("Reference");		
+			debugPositionReferenceButton = new JButton("Reference");
+			debugPositionReferenceButton.setFont(myFont);
+			
 			DownerGamePanel.this.add(debugPositionReferenceButton);
 			
 			debugPositionReferenceButton.setBounds(screenSize.x - 54, 0, cardsSize.x, cardsSize.y);
