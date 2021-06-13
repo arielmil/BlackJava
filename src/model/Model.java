@@ -74,4 +74,24 @@ public class Model {
 	public static void addToPlayerBalance(int playerNumber, int value) {
 		game.addToPlayerBalance(int playerNumber, int value);
 	}
+	
+	public static void playerHit(int playerNumber, int handNumber) {
+		players[playerNumber].hit(deck.draw(), getPlayerHand(playerNumber, handNumber));
+	}
+	
+	public static void playerSurrender(int playerNumber) {
+		players[playerNumber].Surrender();
+	}
+
+	public static void playerDouble(int playerNumber, int handNumber) {
+		players[playerNumber].Double(deck.draw(), getPlayerHand(playerNumber, handNumber));
+	}
+	
+	public static void playerSplit(int playerNumber) {
+		players[playerNumber].Split(deck.draw(), deck.draw());
+	}
+
+	public void dealFirstCards(Player playersInTurn[]) {
+		dealer.dealFirstCards(deck, playersInTurn);
+	}
 }
