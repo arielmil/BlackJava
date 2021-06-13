@@ -16,7 +16,7 @@ public class GameController {
 
     public static void startGame (int playerQuantity) {
     	
-    	String playerNames[] = new String[] {"Player1"};
+    	String playerNames[] = new String[] {"Player1","Player2","Player3","Player4"};
     	mainFrame.startGame(playerQuantity, playerNames);
     }
     
