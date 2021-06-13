@@ -90,7 +90,9 @@ public class BlackJavaFrame extends JFrame {
 		this.playersQuantity = playersQuantity;
 	}
 	
-	public void startGame() {
+	public void startGame(int playersQuantity) {
+		setPlayersQuantity(playersQuantity);
+		startGamePanels(playersQuantity);
 		openingScreenPanelBackground.setVisible(false);
 		dealerPanelBackground.setVisible(true);
 		
