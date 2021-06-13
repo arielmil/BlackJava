@@ -16,6 +16,7 @@ public class Player extends AbstractPlayer {
 		total_money = 500;
 	}
 	
+	
 	public void addTokens(List tokens_list) {
 		int i;
 		Tokens tokens;
@@ -32,7 +33,7 @@ public class Player extends AbstractPlayer {
 		}
 		
 	}
-	
+		
 	public void insurance() {
 		insurance = true;
 	}
@@ -62,8 +63,7 @@ public class Player extends AbstractPlayer {
 		( (Tokens)tokens_list.acess(token) ).tokensAdd(toAdd);
 		total_money = total_money + token.getValue();
 	}
-	
-	
+			
 	public void toggleIsBetting() {
 		isBetting = !isBetting;
 	}
@@ -85,7 +85,9 @@ public class Player extends AbstractPlayer {
 		return true;
 	}
 	
-	public void Split(Card card1, Card card2, Hand hand) {
+	
+	
+	public void Split(Card card1, Card card2) {
 		if (getIsPlaying()) {
 			if (getHands().getSize() <= 2) {
 				hand = (Hand) getHands().acess(hand);
@@ -168,6 +170,11 @@ public class Player extends AbstractPlayer {
 		return false;
 	}
 	
+	public void setTotalMoney (int value) {
+		total_money= total_money + value;
+	}
+	
+		
 	public void doubleBet() {
 		int totalValue = bet.getTotalValue(), i;
 		List tokens;

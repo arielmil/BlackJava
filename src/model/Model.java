@@ -72,6 +72,6 @@ public class Model {
 	}
 
 	public static void addToPlayerBalance(int playerNumber, int value) {
-		game.addToPlayerBalance(int playerNumber, int value);
+		game.addToPlayerBalance(playerNumber, value);
 	}
 }

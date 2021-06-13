@@ -13,4 +13,10 @@ public class Game {
 		}
 	}
 	
+	public void addToPlayerBalance(int playerNumber, int value) {
+		players[playerNumber].setTotalMoney(value);
+	}
+	
+	
+	
 }
