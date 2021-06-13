@@ -6,7 +6,7 @@ package model;
 
 public class Card {
 	
-	private int value;
+	public int value;
 	private String name;
 	private Suit suit;
 	private boolean revealed = false;

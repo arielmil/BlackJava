@@ -1,9 +1,10 @@
 package model;
 
 public class Deck {
-	private int quantity;
-	private List deck;
-	private List bin;
+	public int quantity;
+	public int quantity_bin;
+	public List deck;
+	public List bin;
 	
 	private String cardNames[];
 	private String cardSuitsNames[];
@@ -13,6 +14,7 @@ public class Deck {
 		
 		deck = new List();
 		bin = new List();
+		quantity_bin = 0;
 		
 		cardNames = new String[] {"Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"};
 		cardSuitsNames = new String[] {"Clubs", "Diamonds", "Hearts", "Spades"};
@@ -42,6 +44,10 @@ public class Deck {
 		return quantity;
 	}
 	
+	public int getQuantityBin() {
+		return quantity_bin;
+	}
+	
 	public void makeOneDeck() {
 		int i, j;
 		Card card;
@@ -60,9 +66,9 @@ public class Deck {
 		}
 	}
 	
-	
 	public void addToBin(Card card) {
 		bin.insertL(card);
+		quantity_bin++;
 	}
 	
 	/* ArrayList.addAll(Collection) could be used, but since it was choosen to abstract the use of such structure for the use of List (which contains an private ArrayList)
@@ -71,6 +77,7 @@ public class Deck {
 	
 	public void emptyBin() {
 		deck.moveFrom(bin);
+		quantity_bin=0;
 	}
 	 
 	public String[] getCardNames() {

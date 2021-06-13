@@ -98,11 +98,28 @@ public class ListTest {
 	/*
 	****************************************************************************
 	* 
-	* Method: void insertL
+	* Method: void insertLOneTime
 	*  ****/
 	
 	@Test 
-    public void testInsertL() {
+    public void testInsertLOneTime() {
+        List actual_list = new List();
+        int object = 2;
+        
+        actual_list.insertL(object);
+        
+        assertEquals("Method testInsertL Size was unsuccessfull", 1,actual_list.getSize());
+        assertEquals("Method testInsertL Element Add was unsuccessfull",object,actual_list.get(0));
+	}    
+	/* End Method: testInsertLOneTime */
+	/*
+	****************************************************************************
+	* 
+	* Method: void insertLTwoTimes
+	*  ****/
+	
+	@Test 
+    public void testInsertLTwoTimes() {
         List actual_list = new List();
         int object = 2;
         int object_2 = 3;
@@ -117,9 +134,8 @@ public class ListTest {
         assertEquals("Method testInsertL Size was unsuccessfull", 2,actual_list.getSize());
         assertEquals("Method testInsertL Element Add was unsuccessfull",object_2,actual_list.get(1));
         
-    }
-	
-	/* End Method: testInsertL */
+	}    
+	/* End Method: testInsertLTwoTimes */
 	/*
 	****************************************************************************
 	* 

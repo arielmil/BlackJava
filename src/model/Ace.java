@@ -24,12 +24,4 @@ public class Ace extends Card {
 		setValue(1);
 	}
 	 
-	/* To be implemented...
-	 
-	  Method: void render: Render the image of the Ace Card on the Screen. */
-	/*	void render() {
-		
-	}
-	
-	/* End Method: void render */
 }

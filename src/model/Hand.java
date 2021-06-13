@@ -4,8 +4,8 @@ public class Hand {
 	public List cards;
 	public int score;
 	public boolean isBusted;
-	private boolean isBlackJack;
-	private boolean stopDraw;
+	public boolean isBlackJack;
+	public boolean stopDraw;
 	private boolean canSplit;
 	private boolean stoppedThisTurn;
 	
@@ -15,16 +15,28 @@ public class Hand {
 	}
 	
 	public void countScore(boolean isDrawPhase) {
-		int i;
+		int i,j=0;
 		
 		Card card;
 		for (i = 0; i < cards.getSize(); i++) {
 			card = (Card)cards.get(i);
+			
 			score = score + card.getValue();
+			if(score>21)
+			{
+				score = 0;
+				for (j = 0; j < cards.getSize(); j++) {
+					card = (Card)cards.get(j);
+					if (card.getName() == "Ace") {
+						score = score-10;
+					}
+					score = score + card.getValue();
+				}
+			}
 		}
 		
 		if (score > 21) {
-			isBusted = true;
+				isBusted = true;
 		}
 		
 		else if (score == 21 && isDrawPhase) {
@@ -33,7 +45,7 @@ public class Hand {
 		
 	}
 	
-	public int getscore() {
+	public int getScore() {
 		return score;
 	}
 	
