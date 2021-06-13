@@ -25,8 +25,9 @@ public class BlackJavaFrame extends JFrame {
 	private TablePanel playerPanelsBackgrounds[];
 	
 	public BlackJavaFrame() {
+		super("BlackJava");
 		screenSize = new Point(1200, 700);
-		
+				
 		setLayout(null);
 		setBounds(0, 0, screenSize.x, screenSize.y);
 		setVisible(true);
