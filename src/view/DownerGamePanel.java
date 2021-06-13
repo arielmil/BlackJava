@@ -31,6 +31,7 @@ public class DownerGamePanel extends AbstractGamePanel{
 	private JButton doubleButton;
 	private JButton splitButton;
 	private JButton insuranceButton;
+	private JButton surrenderButton;
 	
 	public DownerGamePanel(Point screenSize, String playerName) {
 		super(screenSize, playerName);
@@ -57,7 +58,7 @@ public class DownerGamePanel extends AbstractGamePanel{
 	}
 	
 	private void setLocations() {
-		//Uses insuranceButton as reference
+		//Uses surrenderButton as reference
 		buttonsLocation = new Point(screenSize.x - buttonsSize.x * 4, screenSize.y - buttonsSize.y);
 	}
 	
@@ -99,6 +100,7 @@ public class DownerGamePanel extends AbstractGamePanel{
 		buildInsuranceButton();
 		buildSplitButton();
 		buildDoubleButton();
+		buildSurrenderButton();
 	}
 	
 	private void buildStandButton() {
@@ -114,18 +116,28 @@ public class DownerGamePanel extends AbstractGamePanel{
 	private void buildInsuranceButton() {
 		insuranceButton = new JButton("Ins");
 		insuranceButton.setFont(myFont);
-		insuranceButton.setToolTipText("Get half the value of player's bet if dealer's second card is a ten valued card (10, Jack, Queen or King)");
+		insuranceButton.setToolTipText("Player get half his bet value if dealer's second card is a ten valued card (10, Jack, Queen or King)");
 		
 		add(insuranceButton);
 		
-		insuranceButton.setBounds(buttonsLocation.x, buttonsLocation.y, buttonsSize.x, buttonsSize.y);
+		insuranceButton.setBounds(buttonsLocation.x + buttonsSize.x * 3, buttonsLocation.y - buttonsSize.y, buttonsSize.x, buttonsSize.y);
 		insuranceButton.setVisible(false);
+	}
+	
+	private void buildSurrenderButton() {
+		surrenderButton = new JButton("Sur");
+		surrenderButton.setFont(myFont);
+		surrenderButton.setToolTipText("Player get half his bet value back and finish his turn");
+		
+		add(surrenderButton);
+		
+		surrenderButton.setBounds(buttonsLocation.x, buttonsLocation.y, buttonsSize.x, buttonsSize.y);
 	}
 	
 	private void buildSplitButton() {
 		splitButton = new JButton("Spt");
 		splitButton.setFont(myFont);
-		splitButton.setToolTipText("Take in another hand and doubles the bet (player needs to have at least double of the amount of tokens available to bet)");
+		splitButton.setToolTipText("Player get another hand and doubles his bet value (player needs to have at least double of the amount of tokens available to bet)");
 		
 		add(splitButton);
 		
@@ -135,7 +147,7 @@ public class DownerGamePanel extends AbstractGamePanel{
 	private void buildDoubleButton() {
 		doubleButton = new JButton("Dbl");
 		doubleButton.setFont(myFont);
-		doubleButton.setToolTipText("Doubles the bet (player needs to have at least double of the amount of tokens available to bet)");
+		doubleButton.setToolTipText("Player Doubles his bet value (player needs to have at least double of the amount of tokens available to bet)");
 		
 		add(doubleButton);
 		
