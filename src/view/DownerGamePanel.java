@@ -33,6 +33,7 @@ public class DownerGamePanel extends AbstractGamePanel	{
 	private JButton splitButton;
 	private JButton insuranceButton;
 	private JButton surrenderButton;
+	private JButton hitButton;
 	
 	public DownerGamePanel(Point locationOnFrame, Point screenSize, String playerName) {
 		super(locationOnFrame, screenSize, playerName);
@@ -107,6 +108,7 @@ public class DownerGamePanel extends AbstractGamePanel	{
 		buildSplitButton();
 		buildDoubleButton();
 		buildSurrenderButton();
+		buildHitButton();
 	}
 	
 
@@ -131,6 +133,17 @@ public class DownerGamePanel extends AbstractGamePanel	{
 		add(insuranceButton);
 		
 		insuranceButton.setBounds(buttonsLocation.x + buttonsSize.x * 3, buttonsLocation.y - buttonsSize.y, buttonsSize.x, buttonsSize.y);
+	}
+	
+	private void buildHitButton() {
+		hitButton = new JButton("Hit");
+		hitButton.setFont(myFont);
+		hitButton.setToolTipText("Player will hit on his Second Hand");
+		hitButton.setVisible(false);
+		
+		add(hitButton);
+		
+		hitButton.setBounds(buttonsLocation.x + buttonsSize.x * 3, buttonsLocation.y - buttonsSize.y, buttonsSize.x, buttonsSize.y);
 	}
 	
 
@@ -211,6 +224,11 @@ public class DownerGamePanel extends AbstractGamePanel	{
 		repaint();
 	}
 	
+	void toggleHitButtonVisibility() {
+		hitButton.setVisible(!hitButton.isVisible());
+		repaint();
+	}
+	
 	void tobbleScoreLabelDoubleSplitVisibility() {
 		scoreLabelDoubleSplitIsVisible = !scoreLabelDoubleSplitIsVisible;
 		scoreLabelDoubleSplit.setVisible(scoreLabelDoubleSplitIsVisible);
@@ -257,6 +275,7 @@ public class DownerGamePanel extends AbstractGamePanel	{
 			
 			splitButton.addActionListener(this);
 			insuranceButton.addActionListener(this);
+			hitButton.addActionListener(this);
 			standButton.addActionListener(this);
 			doubleButton.addActionListener(this);
 			

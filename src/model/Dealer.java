@@ -48,6 +48,7 @@ public class Dealer extends AbstractPlayer {
 	
 	public void dealFirstCards(Deck deck, Player players[]) {
 		Hand hand;
+		Card card;
 		for (Player player : players) {
 			hand = (Hand)player.getHands().get(0);
 			player.takeCard(deck.draw(), hand);
@@ -56,6 +57,10 @@ public class Dealer extends AbstractPlayer {
 		
 		hand = (Hand)this.getHands().get(0);
 		this.takeCard(deck.draw(), hand);
-		this.takeCard(deck.draw(), hand);
+		
+		card = deck.draw();
+		card.toggleReveal();
+		
+		this.takeCard(card, hand);
 	}
 }

@@ -17,6 +17,11 @@ public class Game {
 		players[playerNumber].setTotalMoney(value);
 	}
 	
+	public void betPlayerToken(int playerNumber, int tokenColor) {
+		
+		
+		
+	}
 	
 	
 }

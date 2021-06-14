@@ -143,7 +143,7 @@ public class PlayerTest {
         * 
         * Method: void testToggleIsBetting
         *  ****/
-           	
+        /*   	
         @Test(timeout = DEFAULT_TIMEOUT)
         public void testSplit() {
             Player actual_player = new Player("Player");
@@ -153,11 +153,11 @@ public class PlayerTest {
             Card first_card = new Card (10,"Ten",suit_1);
             Card second_card = new Card (10,"Ten",suit_2);
             
-            actual_player.Split(first_card, second_card, actual_hand);
+            actual_player.Split(first_card, second_card);
             
             assertFalse("Method testIsBetting was unsuccessfull", actual_player.isBetting()); 
 
-        } 
+        } */
                 
        /* End Method: testToggleIsBetting */
         /****************************************************************************

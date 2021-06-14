@@ -84,14 +84,12 @@ public class Player extends AbstractPlayer {
 		
 		return true;
 	}
-	
-	
-	
+		
 	public void Split(Card card1, Card card2) {
+		Hand hands = (Hand)super.getHands().get(0);
 		if (getIsPlaying()) {
-			if (getHands().getSize() <= 2) {
-				hand = (Hand) getHands().acess(hand);
-				if(hand.canSplit() && canDouble()) {
+			if (super.hands.getSize() == 2) {
+				if(hands.canSplit() && canDouble()) {
 					doubleBet();
 					appendHand(card1, card2);
 				}	
