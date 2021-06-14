@@ -6,11 +6,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 import model.Card;
 import model.Deck;
-import model.List;
 import model.Player;
 
 public class saveController implements ActionListener {
@@ -23,61 +21,52 @@ public class saveController implements ActionListener {
         savePlayer = players;
     }
     
-    public String getBin() {
+    public String saveBin() {
         ArrayList<Object> bin = saveDeck.getBin().list;
-        String linhaBin = "";
+        String binLine = "";
         
         for(Object item : bin) {
             Card c = (Card)item;
-            linhaBin += c.getName() + '+' + c.getSuitname() + ",";
+            binLine += c.getName() + '+' + c.getSuitname() + ",";
         }
         
-        return linhaBin;
+        return binLine;
     }
     
-    public String getDeck() {
+    public String saveDeck() {
         ArrayList<Object> deck = saveDeck.getDeck().list;
-        String linhaDeck = "";
+        String deckLine = "";
         
         for(Object item : deck) {
             Card c = (Card)item;
-            linhaDeck += c.getName() + '+' + c.getSuitname() + ",";
+            deckLine += c.getName() + '+' + c.getSuitname() + ",";
         }
         
-        return linhaDeck;
+        return deckLine;
     }
     
-  /*  public String getTotalMoney() {
+    public String saveTotalPlayersMoney() {
     	
-        ArrayList<Object> players = savePlayer[0].getTotalMoney().list;
-        String linhaPlayersMoney = "";
+    	int i;
+    	String playerMoneyLine = "";
         
-        for(Object item : players) {
-            Player c = (Player)item;
-            linhaPlayersMoney += c.getTotalMoney() + ",";
+        for(i = 0; i < 4; i++) {
+            
+        	playerMoneyLine += savePlayer[i].getTotalMoney() + ",";
         }
         
-        return linhaPlayersMoney;
-    }*/
+        return playerMoneyLine;
+    }
     
     public void actionPerformed(ActionEvent e) {
         try {
-            Path path = Paths.get("saves/1.txt");
-            Files.write(path, "test".getBytes());
+            Path path = Paths.get("save.txt");
+            Files.write(path, saveBin().getBytes() );
+            Files.write(path, saveDeck().getBytes() );
+            Files.write(path, saveTotalPlayersMoney().getBytes() );
         } catch (Exception ex) {
             //
         }
         
-    }
-
-    
-    public void loadBin(String linhaBin) {
-        // "Two+Club,Five+Spades,Ace+Diamonds"
-        linhaBin.split(",");
-        // "Two+Club" "Five+Spade" "Ace+Diamonds"
-        linhaBin.split("+");
-        // "Two" "Club"
-        // "Five" "Spade"
-        // "Ace" "Diamonds"
     }
 }

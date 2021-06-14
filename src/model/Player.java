@@ -1,7 +1,7 @@
 package model;
 
 public class Player extends AbstractPlayer {
-	private Bet bet;
+	Bet bet;
 	private List tokens_list;
 	private int total_money;
 	private boolean insurance;
@@ -170,6 +170,10 @@ public class Player extends AbstractPlayer {
 	
 	public void setTotalMoney (int value) {
 		total_money= total_money + value;
+	}
+	
+	public void setReduceTotalMoney (int value) {
+		total_money= total_money - value;
 	}
 	
 		
