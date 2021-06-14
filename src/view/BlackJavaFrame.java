@@ -58,14 +58,14 @@ public class BlackJavaFrame extends JFrame {
 		repaint();
 	}
 	
-	public void startGamePanels(int playersQuantity) {
+	private void startGamePanels(int playersQuantity) {
 		this.playersQuantity = playersQuantity;
 		startDealerPanel();
 		startPlayerPanels();
 		repaint();
 	}
 	
-	public void startDealerPanel() {
+	private void startDealerPanel() {
 		dealerPanelSize = new Point(openingScreenPanelSize.x, openingScreenPanelSize.y / 2);
 		dealerPanel = new UpperGamePanel(dealerPanelSize);
 		dealerPanelBackground = new TablePanel(dealerPanel);
@@ -73,7 +73,7 @@ public class BlackJavaFrame extends JFrame {
 		contentPane.add(dealerPanelBackground);
 	}
 	
-	public void startPlayerPanels() {
+	private void startPlayerPanels() {
 		int i;
 		
 		playerPanels = new DownerGamePanel[playersQuantity];
@@ -92,13 +92,13 @@ public class BlackJavaFrame extends JFrame {
 		}
 	}
 	
-	public void setPlayerNames(String playerNames[]) {
+	private void setPlayerNames(String playerNames[]) {
 		
 		this.playerNames = new String[playersQuantity];
 		this.playerNames = playerNames;
 	}
 	
-	public void setPlayersQuantity(int playersQuantity) {
+	private void setPlayersQuantity(int playersQuantity) {
 		this.playersQuantity = playersQuantity;
 	}
 	
