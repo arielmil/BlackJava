@@ -87,8 +87,14 @@ public class Model {
 		game.addToPlayerBalance(playerNumber, value);
 	}
 	
-	public static void playerHit(int playerNumber, int handNumber) {
-		players[playerNumber].hit(deck.draw(), getPlayerHand(playerNumber, handNumber));
+	public static String playerHit(int playerNumber, int handNumber) {
+		String cardFullName;
+		Card card = deck.draw();
+		
+		players[playerNumber].hit(card, getPlayerHand(playerNumber, handNumber));
+		cardFullName = card.getName() + "_" + card.getSuitname();
+		
+		return cardFullName;
 	}
 	
 	public static void playerSurrender(int playerNumber) {

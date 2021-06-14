@@ -4,19 +4,14 @@ import view.BlackJavaFrame;
 
 public class GameController {
     
-	static BlackJavaFrame mainFrame;
+	private static BlackJavaFrame mainFrame;
     
 	public GameController () {
-		
 		mainFrame = new BlackJavaFrame();
-
 	}
 	
 
     public static void startGame (int playerQuantity, String playerNames[]) {
-    	
-
-
     	mainFrame.startGame(playerQuantity, playerNames);
     }
     
@@ -25,9 +20,20 @@ public class GameController {
     }
     
     public static void main(String args[]) {
-    	
-    	GameController teste = new GameController();
+    	@SuppressWarnings("unused")
+		GameController teste = new GameController();
 
     }
     
+    public static void quitGame() {
+    	mainFrame.quitGame();
+    }
+
+    public static void setPlayerScore(int score, int playerNumber, int handNumber) {
+    	mainFrame.setPlayerScore(score, playerNumber, handNumber);
+    }
+
+    public static void dealCard(int playerNumber, String cardName) {
+    	mainFrame.dealCard(playerNumber, cardName);
+    }
 }
