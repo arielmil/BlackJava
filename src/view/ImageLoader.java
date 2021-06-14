@@ -1,3 +1,6 @@
+// Ariel Mileguir
+// Pedro Gabriel 
+
 package view;
 
 import java.awt.Image;

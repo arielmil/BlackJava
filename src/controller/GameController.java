@@ -1,3 +1,6 @@
+// Ariel Mileguir
+// Pedro Gabriel 
+
 package controller;
 
 import view.BlackJavaFrame;

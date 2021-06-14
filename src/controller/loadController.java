@@ -1,3 +1,6 @@
+// Ariel Mileguir
+// Pedro Gabriel 
+
 package controller;
 
 
@@ -24,10 +27,12 @@ public class loadController implements ActionListener {
     
     
     
+    
     public void actionPerformed(ActionEvent e) {
         try {
-            Path path = Paths.get("saves/1.txt");
-            Files.write(path, "test".getBytes());
+        	String[] content;
+            Path path = Paths.get("saves.txt");
+        //    Files.read(content, "".getBytes());
         } catch (Exception ex) {
             //
         }

@@ -1,3 +1,6 @@
+// Ariel Mileguir
+// Pedro Gabriel 
+
 /***********************************************************************/
 package model;
 
@@ -32,12 +35,8 @@ public class List {
 		return list.get(index);
 	}
 	
-	public Object acess(Object o) {
-		
-		System.out.println(String.format("Token color: %s", ((Tokens)(o)).getColor() ));
-		
+	public Object acess(Object o) {	
 		int i = list.indexOf(o);
-		System.out.println(i);
 		return list.get(i);
 	}
 	

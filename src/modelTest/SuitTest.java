@@ -1,3 +1,6 @@
+// Ariel Mileguir
+// Pedro Gabriel 
+
 package modelTest;
 
 import static org.junit.Assert.assertEquals;

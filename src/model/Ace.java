@@ -1,3 +1,7 @@
+// Ariel Mileguir
+// Pedro Gabriel 
+
+
 package model;
 
 public class Ace extends Card {
