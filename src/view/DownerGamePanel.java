@@ -235,6 +235,30 @@ public class DownerGamePanel extends AbstractGamePanel	{
 		repaint();
 	}
 	
+	void hideButtonsAndBetLabel() {
+		scoreLabelDoubleSplit.setVisible(false);
+		betLabel.setVisible(false);
+	
+		standButton.setVisible(false);
+		doubleButton.setVisible(false);
+		splitButton.setVisible(false);
+		insuranceButton.setVisible(false);
+		surrenderButton.setVisible(false);
+		hitButton.setVisible(false);
+	}
+	
+	void showButtonsAndBetLabel() {
+		scoreLabelDoubleSplit.setVisible(true);
+		betLabel.setVisible(true);
+	
+		standButton.setVisible(true);
+		doubleButton.setVisible(true);
+		splitButton.setVisible(true);
+		insuranceButton.setVisible(true);
+		surrenderButton.setVisible(true);
+		hitButton.setVisible(true);
+	}
+	
 	void setBalance(int balance) {
 		this.balance = balance;
 		repaintBalanceLabel();
