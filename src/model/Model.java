@@ -100,7 +100,7 @@ public class Model {
 	}
 	
 	public static void playerSplit(int playerNumber) {
-		players[playerNumber].Split(deck.draw(), deck.draw(), getPlayerHand(playerNumber, 1));
+		players[playerNumber].Split(deck.draw(), deck.draw());
 	}
 
 	public void dealFirstCards(Player playersInTurn[]) {
