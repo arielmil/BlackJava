@@ -3,6 +3,7 @@ package controller;
 import model.Model;
 
 public class API {
+	
 	public static String[] getCardNames() {
 		return Model.getCardNames();
 	}
@@ -24,6 +25,28 @@ public class API {
 	}
 	
 	public static void startGame (int playerQuantity) {
-		GameController.startGame(playerQuantity);
+		Model.startGame(playerQuantity);
+		GameController.startGame(playerQuantity, Model.getPlayerNames());
 	}
+	
+	public static void playerHit(int playerNumber, int handNumber) {
+		Model.playerHit(playerNumber, handNumber);
+	}
+	
+	public static void playerSurrender(int playerNumber) {
+		Model.playerSurrender(playerNumber);
+	}
+	
+	public static void playerDouble(int playerNumber, int handNumber) {
+		Model.playerDouble(playerNumber, handNumber);
+	}
+	
+	public static void playerSplit(int playerNumber) {
+		Model.playerSplit(playerNumber);
+	}
+	
+	public static void playerStand(int playerNumber) {
+		GameController.playerStand();
+	}
+	
 }

@@ -9,6 +9,10 @@ import javax.swing.JFrame;
 @SuppressWarnings("serial")
 public class BlackJavaFrame extends JFrame {
 	private int playersQuantity;
+	
+	//Stores the number of the currently playing player
+	private int playerIsPlaying = 0;
+	
 	private String playerNames[];
 	
 	private Container contentPane;
@@ -143,6 +147,8 @@ public class BlackJavaFrame extends JFrame {
 		for (DownerGamePanel playerPanel : playerPanels) {
 			playerPanel.resetCardsInHandArray();
 		}
+		
+		playerPanels[playerIsPlaying].showButtonsAndBetLabel();
 	}
 	
 	public void setBalance(int playerNumber, int balance) {
@@ -151,5 +157,15 @@ public class BlackJavaFrame extends JFrame {
 	
 	public void setBet(int playerNumber, int bet) {
 		playerPanels[playerNumber].setBetValue(bet);
+	}
+	
+	public void playerStand() {
+		playerPanels[playerIsPlaying].hideButtonsAndBetLabel();
+		playerIsPlaying++;
+		playerPanels[playerIsPlaying].showButtonsAndBetLabel();
+		
+		if (playerIsPlaying == playersQuantity) {
+			playerIsPlaying = 0;
+		}
 	}
 }

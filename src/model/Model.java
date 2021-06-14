@@ -11,6 +11,17 @@ public class Model {
 		return (Hand)players[playerNumber].getHands().get(handNumber);
 	}
 	
+	public static String[] getPlayerNames() {
+		int i;
+		String playerNames[] = new String[players.length];
+		
+		for (i = 0; i < players.length; i++) {
+			playerNames[i] = players[i].getName();
+		}
+		
+		return playerNames;
+	}
+	
 	public static String[] getCardNames() {
 		return deck.getCardNames();
 	}
@@ -35,7 +46,7 @@ public class Model {
 	public static int[] getTokensValues() {
 		return Tokens.getTokensValues();
 	}
-		
+	
 	public static void initializePlayers(int playerQuantity) {
 		int i;
 		players = new Player[playerQuantity];
@@ -59,7 +70,8 @@ public class Model {
 		return getPlayerHand(playerNumber, handNumber).getScore();
 	}
 	
-	public static void startGame() {
+	public static void startGame(int playerQuantity) {
+		initializePlayers(playerQuantity);
 		game = new Game(players);
 	}
 	
@@ -88,7 +100,7 @@ public class Model {
 	}
 	
 	public static void playerSplit(int playerNumber) {
-		players[playerNumber].Split(deck.draw(), deck.draw());
+		players[playerNumber].Split(deck.draw(), deck.draw(), getPlayerHand(playerNumber, 1));
 	}
 
 	public void dealFirstCards(Player playersInTurn[]) {
