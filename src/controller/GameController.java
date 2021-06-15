@@ -13,7 +13,6 @@ public class GameController {
 		mainFrame = new BlackJavaFrame();
 	}
 	
-
     public static void startGame (int playerQuantity, String playerNames[]) {
     	mainFrame.startGame(playerQuantity, playerNames);
     }
@@ -31,7 +30,15 @@ public class GameController {
     public static void quitGame() {
     	mainFrame.quitGame();
     }
-
+    
+    public static void setPlayerBalance(int balance, int playerNumber) {
+    	mainFrame.setBalance(playerNumber, balance);
+    }
+    
+    public static void setPlayerBet(int betValue, int playerNumber) {
+    	mainFrame.setBet(playerNumber, betValue);
+    }
+    
     public static void setPlayerScore(int score, int playerNumber, int handNumber) {
     	mainFrame.setPlayerScore(score, playerNumber, handNumber);
     }

@@ -84,7 +84,7 @@ public class BlackJavaFrame extends JFrame {
 		DownerGamePanel.setPlayersQuantity(playersQuantity);
 		
 		for (i = 0; i < playersQuantity; i++) {
-			playerPanels[i] = new DownerGamePanel(basePlayerPanelsScreenLocation, playerPanelsSize, playerNames[i], true);
+			playerPanels[i] = new DownerGamePanel(basePlayerPanelsScreenLocation, playerPanelsSize, playerNames[i], i + 1, true);
 			playerPanelsBackgrounds[i] = new TablePanel(playerPanels[i]);
 			playerPanelsBackgrounds[i].setVisible(true);
 			contentPane.add(playerPanelsBackgrounds[i]);

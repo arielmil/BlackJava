@@ -38,8 +38,8 @@ public class DownerGamePanel extends AbstractGamePanel	{
 	private JButton surrenderButton;
 	private JButton hitButton;
 	
-	public DownerGamePanel(Point locationOnFrame, Point screenSize, String playerName) {
-		super(locationOnFrame, screenSize, playerName);
+	public DownerGamePanel(Point locationOnFrame, Point screenSize, String playerName, int playerNumber) {
+		super(locationOnFrame, screenSize, playerName, playerNumber);
 		
 		setLocations();
 		
@@ -48,8 +48,8 @@ public class DownerGamePanel extends AbstractGamePanel	{
 		buildLabels();
 	}	
 
-	public DownerGamePanel(Point locationOnFrame, Point screenSize, String playerName, Boolean debugPositioningMode) {
-		super(locationOnFrame, screenSize, playerName, debugPositioningMode);
+	public DownerGamePanel(Point locationOnFrame, Point screenSize, String playerName, int playerNumber, Boolean debugPositioningMode) {
+		super(locationOnFrame, screenSize, playerName, playerNumber, debugPositioningMode);
 		
 		setLocations();
 		
@@ -270,6 +270,11 @@ public class DownerGamePanel extends AbstractGamePanel	{
 	void setBetValue(int betValue) {
 		this.betValue = betValue;
 		repaintBetLabel();
+	}
+	
+	public void actionPerformed(ActionEvent e) {
+		String clickedButtonText = ((JButton)e.getSource()).getText();
+		//completar com os botoes de acoes VER !!!
 	}
 		
 	public void paintComponent(Graphics g) {
