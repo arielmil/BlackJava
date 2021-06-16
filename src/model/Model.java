@@ -14,6 +14,16 @@ public class Model {
 		return (Hand)players[playerNumber].getHands().get(handNumber);
 	}
 	
+	public static String playerHit(int playerNumber, int handNumber) {
+		String cardFullName;
+		Card card = deck.draw();
+		
+		players[playerNumber].hit(card, getPlayerHand(playerNumber, handNumber));
+		cardFullName = card.getName() + "_" + card.getSuitname();
+		
+		return cardFullName;
+	}
+	
 	public static String[] getPlayerNames() {
 		int i;
 		String playerNames[] = new String[players.length];
@@ -42,14 +52,6 @@ public class Model {
 		return hand.getCardsNames();
 	}
 	
-	public static int[] getCardValues() {
-		return deck.getCardValues();
-	}
-	
-	public static int[] getTokensValues() {
-		return Tokens.getTokensValues();
-	}
-	
 	public static void initializePlayers(int playerQuantity) {
 		int i;
 		players = new Player[playerQuantity];
@@ -61,6 +63,10 @@ public class Model {
 		dealer = new Dealer();
 	}
 
+	public static int getPlayerHandsQuantity(int playerNumber) {
+		return players[playerNumber].getHands().getSize();
+	}
+	
 	public static int getPlayerBalance(int playerNumber) {
 		return players[playerNumber].getTotalMoney();
 	}
@@ -81,6 +87,14 @@ public class Model {
 		return getPlayerHand(playerNumber, handNumber).getScore();
 	}
 	
+	public static int[] getCardValues() {
+		return deck.getCardValues();
+	}
+	
+	public static int[] getTokensValues() {
+		return Tokens.getTokensValues();
+	}
+	
 	public static void startGame(int playerQuantity) {
 		initializePlayers(playerQuantity);
 		game = new Game(players);
@@ -93,28 +107,18 @@ public class Model {
 		game = new Game(players);
 	}
 	
-	public static void betPlayerToken(int playerNumber, int tokenColor) {
+	public static void betPlayerToken(int playerNumber, String tokenColor) {
 		players[playerNumber].bet(null, true);
 	}
 	
-	public static void unbetPlayerToken(int playerNumber, int tokenColor) {
+	public static void unbetPlayerToken(int playerNumber, String tokenColor) {
 		players[playerNumber].bet(null, false);
 	}
 
 	public static void addToPlayerBalance(int playerNumber, int value) {
 		game.addToPlayerBalance(playerNumber, value);
 	}
-	
-	public static String playerHit(int playerNumber, int handNumber) {
-		String cardFullName;
-		Card card = deck.draw();
 		
-		players[playerNumber].hit(card, getPlayerHand(playerNumber, handNumber));
-		cardFullName = card.getName() + "_" + card.getSuitname();
-		
-		return cardFullName;
-	}
-	
 	public static void playerSurrender(int playerNumber) {
 		players[playerNumber].Surrender();
 	}

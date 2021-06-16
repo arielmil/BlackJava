@@ -61,7 +61,11 @@ public class TokensTest {
       /* End Method: testGetQuantity */
       /****************************************************************************
     	* 
+<<<<<<< HEAD
     	* Method: void testTokensAddMultipleTokens - testTokensAdd
+=======
+    	* Method: void testTokensAddMultipleTokens
+>>>>>>> c2c4341aba2c334e874c0d0abe1fb064931b276b
     	*  ****/
     	
         @Test (timeout = DEFAULT_TIMEOUT)
@@ -80,7 +84,11 @@ public class TokensTest {
         /* End Method: testTokensAddWithParameters */
         /****************************************************************************
     	* 
+<<<<<<< HEAD
     	* Method: void testTokensAddOnlyOne - testTokensAdd
+=======
+    	* Method: void testTokensAddOnlyOne
+>>>>>>> c2c4341aba2c334e874c0d0abe1fb064931b276b
     	*  ****/
     	
         @Test (timeout = DEFAULT_TIMEOUT)
@@ -114,7 +122,11 @@ public class TokensTest {
         /* End Method: testSetTotal */
         /****************************************************************************
     	* 
+<<<<<<< HEAD
     	* Method: void testSubtractMultipleTokens - testTokensSubtract
+=======
+    	* Method: void testSubtractMultipleTokens
+>>>>>>> c2c4341aba2c334e874c0d0abe1fb064931b276b
     	*  ****/
     	
         @Test (timeout = DEFAULT_TIMEOUT)
@@ -131,7 +143,11 @@ public class TokensTest {
         /* End Method: testSubtractMultipleTokens */
         /****************************************************************************
     	* 
+<<<<<<< HEAD
     	* Method: void testTokenSubtractOnlyOneToken - testTokensSubtract
+=======
+    	* Method: void testTokenSubtractOnlyOneToken
+>>>>>>> c2c4341aba2c334e874c0d0abe1fb064931b276b
     	*  ****/
     	
         @Test (timeout = DEFAULT_TIMEOUT)
@@ -262,6 +278,5 @@ public class TokensTest {
         
         /* End Method: testColorToValueBlack */
         /****************************************************************************/
-       
-
 }
+

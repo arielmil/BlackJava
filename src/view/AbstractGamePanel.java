@@ -17,9 +17,11 @@ import javax.swing.SwingConstants;
 
 import controller.API;
 
-//Criar um método que escala uma coordenada x e y baseado em um tamanho de tela (largura x altura) para escalar todos os elementos dessa classe de acordo com o tamanho de tela utilizado.
+//Criar um mÃ©todo que escala uma coordenada x e y baseado em um tamanho de tela (largura x altura) para escalar todos os elementos dessa classe de acordo com o tamanho de tela utilizado.
 @SuppressWarnings("serial")
 public abstract class AbstractGamePanel extends JPanel implements MyMouseListener {
+	private int playerNumber;
+	
 	private JLabel scoreLabel;
 	
 	static String cardNames[];
@@ -59,7 +61,7 @@ public abstract class AbstractGamePanel extends JPanel implements MyMouseListene
 	
 	MyMouseAdapter mouseEventHandler;
 	
-	public AbstractGamePanel(Point locationOnFrame, Point screenSize, String playerName) {
+	public AbstractGamePanel(Point locationOnFrame, Point screenSize, String playerName, int playerNumber) {
 		super();
 		
 		setLayout(null);
@@ -68,7 +70,9 @@ public abstract class AbstractGamePanel extends JPanel implements MyMouseListene
 		
 		playerScore = 0;
 		cardsQuantity = 0;
-		
+	
+		this.playerNumber = playerNumber;
+
 		this.playerName = playerName;					
 		
 		cardsInHand = new String[30];
@@ -87,7 +91,8 @@ public abstract class AbstractGamePanel extends JPanel implements MyMouseListene
 		addMouseListener(mouseEventHandler);
 	}
 	
-	public AbstractGamePanel(Point locationOnFrame, Point screenSize, String playerName, Boolean debugPositioningMode) {
+	
+	public AbstractGamePanel(Point locationOnFrame, Point screenSize, String playerName, int playerNumber, Boolean debugPositioningMode) {
 		super();
 		
 		setLayout(null);
@@ -96,6 +101,8 @@ public abstract class AbstractGamePanel extends JPanel implements MyMouseListene
 		
 		playerScore = 0;
 		cardsQuantity = 0;
+
+		this.playerNumber = playerNumber;
 		
 		this.playerName = playerName;
 		
@@ -270,34 +277,32 @@ public abstract class AbstractGamePanel extends JPanel implements MyMouseListene
 		scoreLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		repaint();
 	}
-		
-	int tokenClicked(Point clickedPoint) {
+	
+	void tokenClicked(Point clickedPoint) {
 		//Substituir por funcoes do controller ao invez dos valores de retorno ?
 		if (clickedPoint.x >= tokensLocations[0].x && clickedPoint.x <= tokensLocations[0].x + tokensSize.x) {
-			return 0;
+			API.playerBet(playerNumber, "Grey");
 		}
 		
 		else if (clickedPoint.x >= tokensLocations[1].x && clickedPoint.x <= tokensLocations[1].x + tokensSize.x) {
-			return 1;
+			API.playerBet(playerNumber, "Purple");
 		}
 		
 		else if (clickedPoint.x >= tokensLocations[2].x && clickedPoint.x <= tokensLocations[2].x + tokensSize.x) {
-			return 2;
+			API.playerBet(playerNumber, "Blue");
 		}
 		
 		else if (clickedPoint.x >= tokensLocations[3].x && clickedPoint.x <= tokensLocations[3].x + tokensSize.x) {
-			return 3;
+			API.playerBet(playerNumber, "Red");
 		}
 		
 		else if (clickedPoint.x >= tokensLocations[4].x && clickedPoint.x <= tokensLocations[4].x + tokensSize.x) {
-			return 4;
+			API.playerBet(playerNumber, "Green");
 		}
 		
 		else if (clickedPoint.x >= tokensLocations[5].x && clickedPoint.x <= tokensLocations[5].x + tokensSize.x) {
-			return 5;
+			API.playerBet(playerNumber, "Black");
 		}
-		
-		return -1;
 	}
 	
 	void setCardInHand(String cardName) {

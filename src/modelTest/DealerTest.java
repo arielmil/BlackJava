@@ -30,6 +30,10 @@ public class DealerTest {
           
         
         assertTrue("Method setIsTen for true was unsuccessfull",checkIsTen(Player));
+<<<<<<< HEAD
+=======
+
+>>>>>>> c2c4341aba2c334e874c0d0abe1fb064931b276b
     }*/
 
 	/* End Method: testcheckIsTenIsTrue */
@@ -93,7 +97,6 @@ public class DealerTest {
 		Deck actual_deck = new Deck();
         actual_deck.shuffle();
         actual_dealer.deal(actual_player,actual_hand,actual_deck);
-        actual_dealer.deal(actual_player,actual_hand,actual_deck);
         int size = actual_player.hands.getSize();    
                
         assertEquals("Method getIsTen was unsuccessfull",2,size);
@@ -102,3 +105,4 @@ public class DealerTest {
 	/* End Method: testsetIsTenIsFalse */
 
 }
+

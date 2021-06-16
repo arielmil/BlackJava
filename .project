@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
+<<<<<<< HEAD
 	<name>blackjack</name>
+=======
+	<name>BlackJava</name>
+>>>>>>> c2c4341aba2c334e874c0d0abe1fb064931b276b
 	<comment></comment>
 	<projects>
 	</projects>

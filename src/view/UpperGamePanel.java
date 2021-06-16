@@ -14,6 +14,7 @@ import javax.swing.JComponent;
 
 import controller.SaveController;
 import model.Model;
+import controller.API;
 
 @SuppressWarnings("serial")
 public class UpperGamePanel extends AbstractGamePanel implements MyMouseListener {
@@ -33,16 +34,17 @@ public class UpperGamePanel extends AbstractGamePanel implements MyMouseListener
 	private SaveController saveController;
 	
 	public UpperGamePanel(Point screenSize) {
-		super(new Point(0, 0), screenSize, "Dealer");
-		saveController = new SaveController ();
+		super(new Point(0, 0), screenSize, "Dealer", 0);
 		
 		setLocations();
 		buildButtons();
+		
+		saveController = new SaveController ();
 	}
-	
-	
+		
+
 	public UpperGamePanel(Point screenSize, Boolean debugPositioningMode) {
-		super(new Point(0, 0), screenSize, "Dealer", debugPositioningMode);
+		super(new Point(0, 0), screenSize, "Dealer", 0, debugPositioningMode);
 		
 		setLocations();
 		buildButtons();
@@ -52,6 +54,7 @@ public class UpperGamePanel extends AbstractGamePanel implements MyMouseListener
 			debugPositioning = new DebugPositioningMode();
 		}
 		
+		saveController = new SaveController ();
 	}
 	
 	private void setLocations() {
@@ -97,6 +100,7 @@ public class UpperGamePanel extends AbstractGamePanel implements MyMouseListener
 	        	saveController.saveGame(Model.getDeck(), Model.getPlayers());
 	        }
 	    });
+		
 	}
 		
 	private void buildQuitButton() {
@@ -109,15 +113,15 @@ public class UpperGamePanel extends AbstractGamePanel implements MyMouseListener
 		
 		quitButton.setBounds(buttonsLocation.x, buttonsLocation.y, buttonsSize.x, buttonsSize.y);
 	}
-		
-	private Boolean deckClicked() {
-		System.out.println("Deck Clicked !");
-		return true;
+	
+	private void deckClicked() {
+		//VER
+		API.playerHit(ALLBITS, ABORT);
 	}
 	
-	private Boolean cardsBinClicked() {
-		System.out.println("Cards bin Clicked !");
-		return true;
+	private void cardsBinClicked() {
+		//VER
+		API.playerStand(ABORT);
 	}
 	
 	public void setClickedPoint(Point clickedPoint) {
@@ -133,6 +137,11 @@ public class UpperGamePanel extends AbstractGamePanel implements MyMouseListener
 			}
 		}
 			
+	}
+	
+	public void actionPerformed(ActionEvent e) {
+		//completar com os botoes de acoes!! VER
+		String clickedButtonText = ((JButton)e.getSource()).getText();
 	}
 	
 	public void paintComponent(Graphics g) {

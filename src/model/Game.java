@@ -53,10 +53,6 @@ public class Game {
 		token_value = tokensValues[index];
 		Tokens tokens = new Tokens (tokenColor,1);
 		players[playerNumber].bet.subtractTokens(tokens);
-		players[playerNumber].setTotalMoney(token_value);
-		
-		
-	}
-	
-	
+		players[playerNumber].setTotalMoney(token_value);	
+	}	
 }

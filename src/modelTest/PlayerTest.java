@@ -32,6 +32,10 @@ public class PlayerTest {
         int expected_money = 80;
           
         assertEquals("Method testaddTokens was unsuccessfull", expected_money,actual_player.getTotalMoney()); 
+<<<<<<< HEAD
+=======
+
+>>>>>>> c2c4341aba2c334e874c0d0abe1fb064931b276b
     }*/
     
     /* End Method: testaddTokens */
@@ -158,6 +162,10 @@ public class PlayerTest {
             actual_player.Split(first_card, second_card);
             
             assertFalse("Method testIsBetting was unsuccessfull", actual_player.isBetting()); 
+<<<<<<< HEAD
+=======
+
+>>>>>>> c2c4341aba2c334e874c0d0abe1fb064931b276b
         } */
                 
        /* End Method: testToggleIsBetting */
@@ -178,6 +186,10 @@ public class PlayerTest {
               List expected_hand = actual_player.getHands();
               
               assertEquals("Method testHit was unsuccessfull", expected_card.getName(),actual_card.getName()); 
+<<<<<<< HEAD
+=======
+
+>>>>>>> c2c4341aba2c334e874c0d0abe1fb064931b276b
           }*/
                 
          /* End Method: testToggleIsBetting */

@@ -472,3 +472,4 @@ public class HandTest {
 	/* End Method: testGetCardNames*/
 
 }
+

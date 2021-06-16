@@ -13,11 +13,11 @@ import javax.swing.JFrame;
 public class BlackJavaFrame extends JFrame {
 	//Stores the number of the currently playing player
 	private int playerIsPlaying = 0;
-	
 	private int playersQuantity;
-	private String playerNames[];
 	private int playersBalance[];
 	
+	private String playerNames[];
+			
 	private Container contentPane;
 	
 	private Insets frameBorders;
@@ -85,7 +85,7 @@ public class BlackJavaFrame extends JFrame {
 		DownerGamePanel.setPlayersQuantity(playersQuantity);
 		
 		for (i = 0; i < playersQuantity; i++) {
-			playerPanels[i] = new DownerGamePanel(basePlayerPanelsScreenLocation, playerPanelsSize, playerNames[i], playersBalance[i], true);
+			playerPanels[i] = new DownerGamePanel(basePlayerPanelsScreenLocation, playerPanelsSize, playerNames[i], i + 1, playersBalance[i]);
 			playerPanelsBackgrounds[i] = new TablePanel(playerPanels[i]);
 			playerPanelsBackgrounds[i].setVisible(true);
 			contentPane.add(playerPanelsBackgrounds[i]);

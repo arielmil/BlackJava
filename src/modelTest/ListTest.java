@@ -381,4 +381,6 @@ public class ListTest {
     }
 	
 	/* End Method: testClear */
+
 }
+

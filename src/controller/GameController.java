@@ -14,8 +14,9 @@ public class GameController {
 	}
 	
 
-    public static void startGame (int playerQuantity, String playerNames[], int playersBalance[]) {
-    	mainFrame.startGame(playerQuantity, playerNames, playersBalance);
+
+public static void startGame (int playerQuantity, String playerNames[], int playersBalance[]) {
+	mainFrame.startGame(playerQuantity, playerNames, playersBalance);
     }
     
     public static void playerStand() {
@@ -31,7 +32,15 @@ public class GameController {
     public static void quitGame() {
     	mainFrame.quitGame();
     }
-
+    
+    public static void setPlayerBalance(int balance, int playerNumber) {
+    	mainFrame.setBalance(playerNumber, balance);
+    }
+    
+    public static void setPlayerBet(int betValue, int playerNumber) {
+    	mainFrame.setBet(playerNumber, betValue);
+    }
+    
     public static void setPlayerScore(int score, int playerNumber, int handNumber) {
     	mainFrame.setPlayerScore(score, playerNumber, handNumber);
     }

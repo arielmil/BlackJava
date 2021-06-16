@@ -27,4 +27,6 @@ public class SuitTest {
 	
 	/* End Method: testGetNameReturnsExpectedName */
 	
+
 }
+

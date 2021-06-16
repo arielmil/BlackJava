@@ -109,5 +109,4 @@ public class Deck {
 		deck = loadDeck;
 		quantity = loadDeck.getSize();
 	}
-	
 }

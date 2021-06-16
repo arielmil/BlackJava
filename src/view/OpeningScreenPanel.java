@@ -39,13 +39,13 @@ public class OpeningScreenPanel extends JPanel implements ActionListener{
 	private ButtonGroup playerSelectButtonsGroup;
 	
 	private MouseAdapter mouseEventHandler;
+
 	private LoadController loadController;
-	
 	
 	public OpeningScreenPanel(Point screenSize) {
 		super();
+		
 		loadController = new LoadController();
-
 		setBounds(0, 0, screenSize.x, screenSize.y);
 		setLayout(null);
 		setOpaque(false);
@@ -102,6 +102,7 @@ public class OpeningScreenPanel extends JPanel implements ActionListener{
 	        	loadController.loadGame();
 	        	
 	        }});
+		loadGameButton.addActionListener(this);
 	}
 	
 	private void buildOkButton() {
@@ -198,11 +199,11 @@ public class OpeningScreenPanel extends JPanel implements ActionListener{
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		JButton clickedButton = (JButton)e.getSource();
+		String clickedButtonText = ((JButton)e.getSource()).getText();
 		
 		changeMenusVisibility();
 		
-		if (clickedButton.getText() == "New Game") {
+		if (clickedButtonText == "New Game") {
 			playerSelectMenu.setVisible(true);
 			
 			for (JRadioButton button : playerSelectButton) {
@@ -212,8 +213,7 @@ public class OpeningScreenPanel extends JPanel implements ActionListener{
 			okButton.setVisible(true);
 		}
 		
-		
-		else if (clickedButton.getText() == "Load Game") {			
+		else if (clickedButtonText == "Load Game") {			
 			loadGameMenu.setVisible(true);
 			
 			for (JRadioButton button : playerSelectButton) {

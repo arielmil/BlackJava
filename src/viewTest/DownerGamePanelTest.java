@@ -51,7 +51,8 @@ static private JFrame frame;
 		
 		
 		DownerGamePanel.setPlayersQuantity(4);
-		Foreground = new DownerGamePanel(locationOnFrame, PanelsSize, "Player 1");
+
+		Foreground = new DownerGamePanel(locationOnFrame, PanelsSize, "Player 1", 1);
 		
 		backgroundPanel = new TablePanel(Foreground);
 	}
