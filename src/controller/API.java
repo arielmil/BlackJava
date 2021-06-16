@@ -8,9 +8,12 @@ import model.Deck;
 import model.Model;
 import model.Player;
 
+
 public class API {
 	private static String cardNames[];
 	private static String cardsSuitNames[];
+	private static LoadController loadController;
+	private static SaveController saveController;
 
 	static {
 		cardNames = new String[13];
@@ -18,6 +21,9 @@ public class API {
 		
 		cardNames = Model.getCardNames();
 		cardsSuitNames = Model.getCardSuitNames();
+		
+		loadController = new LoadController();
+		saveController = new SaveController();
 	}
 	
 	private static void dealCard(int playerNumber, String cardName) {
@@ -47,6 +53,14 @@ public class API {
 	public static void startGame (int playerQuantity) {
 		Model.startGame(playerQuantity);
 		GameController.startGame(playerQuantity, Model.getPlayerNames(), Model.getPlayersBalance());
+	}
+	
+	public static void saveGame() {
+		saveController.saveGame(Model.getDeck(), Model.getPlayers());
+	}
+	
+	public static void callLoadGame() {
+		loadController.loadGame();
 	}
 	
 	public static void loadGame (Deck deck, Player players[]) {
@@ -115,5 +129,7 @@ public class API {
 		int bet = Model.getPlayerBet(playerNumber);
 		GameController.setPlayerBet(bet, playerNumber);
 	}
+	
+	
 }
 

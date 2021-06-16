@@ -15,7 +15,6 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
 import controller.API;
-import controller.LoadController;
 
 @SuppressWarnings("serial")
 public class OpeningScreenPanel extends JPanel implements ActionListener{
@@ -39,13 +38,10 @@ public class OpeningScreenPanel extends JPanel implements ActionListener{
 	private ButtonGroup playerSelectButtonsGroup;
 	
 	private MouseAdapter mouseEventHandler;
-
-	private LoadController loadController;
 	
 	public OpeningScreenPanel(Point screenSize) {
 		super();
 		
-		loadController = new LoadController();
 		setBounds(0, 0, screenSize.x, screenSize.y);
 		setLayout(null);
 		setOpaque(false);
@@ -94,14 +90,6 @@ public class OpeningScreenPanel extends JPanel implements ActionListener{
 		
 		loadGameButton.setBounds(ResizingTool.resizeX(screenSize.x, 648), center.y, ResizingTool.resizeX(screenSize.x, 148), ResizingTool.resizeY(screenSize.y, 45));
 		
-		loadGameButton.addActionListener(new ActionListener(){
-
-	        @Override
-	        public void actionPerformed(ActionEvent arg0) {
-	        	
-	        	loadController.loadGame();
-	        	
-	        }});
 		loadGameButton.addActionListener(this);
 	}
 	
@@ -218,8 +206,9 @@ public class OpeningScreenPanel extends JPanel implements ActionListener{
 			
 			for (JRadioButton button : playerSelectButton) {
 				button.setVisible(false);
-			}
-			
+			}	        	
+	        
+			API.callLoadGame();
 			
 		}
 		

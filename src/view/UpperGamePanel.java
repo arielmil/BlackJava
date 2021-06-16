@@ -12,8 +12,6 @@ import java.awt.event.MouseAdapter;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 
-import controller.SaveController;
-import model.Model;
 import controller.API;
 
 @SuppressWarnings("serial")
@@ -31,15 +29,11 @@ public class UpperGamePanel extends AbstractGamePanel implements MyMouseListener
 	private JButton newTurnButton;
 	private JButton saveGameButton;
 	
-	private SaveController saveController;
-	
 	public UpperGamePanel(Point screenSize) {
 		super(new Point(0, 0), screenSize, "Dealer", 0);
 		
 		setLocations();
 		buildButtons();
-		
-		saveController = new SaveController ();
 	}
 		
 
@@ -53,8 +47,6 @@ public class UpperGamePanel extends AbstractGamePanel implements MyMouseListener
 			this.debugPositioningMode = debugPositioningMode;
 			debugPositioning = new DebugPositioningMode();
 		}
-		
-		saveController = new SaveController ();
 	}
 	
 	private void setLocations() {
@@ -97,7 +89,7 @@ public class UpperGamePanel extends AbstractGamePanel implements MyMouseListener
 
 	        @Override
 	        public void actionPerformed(ActionEvent arg0) {
-	        	saveController.saveGame(Model.getDeck(), Model.getPlayers());
+	        	API.saveGame();
 	        }
 	    });
 		

@@ -35,7 +35,7 @@ public class LoadController {
 
 		for (String rawCard : binLine.split(",")) {
 			if (rawCard.isEmpty()) {
-				continue;
+				break;
 			}
 
 			String rawCardAttrs[] = rawCard.split("\\+");
@@ -48,7 +48,7 @@ public class LoadController {
 		List innerDeck = new List();
 		for (String rawCard : deckLine.split(",")) {
 			if (rawCard.isEmpty()) {
-				continue;
+				break;
 			}
 
 			String rawCardAttrs[] = rawCard.split("\\+");
@@ -64,7 +64,7 @@ public class LoadController {
 		int index = 0;
 		for (String rawTotalMoney : playersTotalMoney) {
 			if (rawTotalMoney.isEmpty()) {
-				continue;
+				break;
 			}
 
 			players[index] = new Player("Player" + String.valueOf(index));

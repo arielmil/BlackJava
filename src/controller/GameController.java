@@ -9,7 +9,7 @@ public class GameController {
     
 	private static BlackJavaFrame mainFrame;
     
-	public GameController () {
+	private GameController () {
 		mainFrame = new BlackJavaFrame();
 	}
 	
